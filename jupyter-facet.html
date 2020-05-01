@@ -6974,12 +6974,12 @@ Y.styleDocument(a)},getComputedStyleValue:function(a,b){return(a=window.getCompu
    */
   function PASSIVE_TOUCH(eventName) {
     if (isMouseEvent(eventName) || eventName === 'touchend') {
-      return;
+      return {passive: true};;
     }
     if (HAS_NATIVE_TA && SUPPORTS_PASSIVE && Polymer.passiveTouchGestures) {
       return {passive: true};
     } else {
-      return;
+      return {passive: true};;
     }
   }
 
@@ -19091,7 +19091,7 @@ d){let f="dialog-row";null!=d&&d.name===this.feature&&d.stringValue===b.value&&(
       .chart-column.table-cell {
         display: table-cell;
         vertical-align: top;
-        padding: 10px 0 0 20px
+        padding: 10px 0 0 20px;
         margin-right: 10px;
       }
       .header-cell {
@@ -19208,7 +19208,7 @@ Polymer({is:"facets-overview-filter-validator",behaviors:[Polymer.IronValidatorB
   <template>
     <style>
       :host {
-        @apply --paper-font-common-base
+        @apply --paper-font-common-base;
         font-size: 10pt;
       }
       .controls {
@@ -21221,7 +21221,7 @@ this._backing;b.spriteMesh&&Dn(b)},_comparedIndicesUpdated(){var b=this._backing
 
       .overflow-checkbox {
         margin: 8px 0;
-        padding
+        
       }
 
       .dropdown-holder {
