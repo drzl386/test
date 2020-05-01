@@ -14739,7 +14739,7 @@ this._changedButtonState()},_changedButtonState:function(){this._buttonStateChan
            Note: We only apply this style conditionally. Otherwise, the browser
            will create a new compositing layer for every ripple element on the
            page, and that would be bad. */
-        -webkit-transform: translate(0, 0);
+        -webkit-transform: translate(NaN NaN);
         transform: translate3d(0, 0, 0);
       }
 
