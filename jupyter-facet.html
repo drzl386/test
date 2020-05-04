@@ -16320,7 +16320,7 @@ Polymer({is:"paper-input-char-counter",behaviors:[Polymer.PaperInputAddonBehavio
         @apply --paper-font-common-nowrap;
         @apply --paper-font-subhead;
         @apply --paper-input-container-label;
-        @apply --paper-transition-easing;
+        @apply --paper-transition-easing; 
       }
 
       .input-content.label-is-floating ::slotted(label),
@@ -21080,7 +21080,7 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
       }
       .rotate {
         stroke-dasharray: 1.5, 0.5;
-        animation: rotate 1s linear infinite;
+        animation: None; /*rotate 1s linear infinite;*/
       }
       @keyframes rotate {
         from {
