@@ -21065,20 +21065,33 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
 
 
 
+
 <dom-module id="facets-dive-vis">
   <template>
     <style>
       :host {
         box-sizing: border-box;
-        display: hidden;
-        height: 100%;
-        width: 100%;
+        display: block;
+        height: 1%;
+        width: 1%;
       }
       .labels {
         @apply --paper-font-common-base;
         @apply --paper-font-headline;
       }
+      .rotate {
+        stroke-dasharray: 0.01, 0.02;
+        animation: None; /*rotate 1s linear infinite;*/
+      }
       
+      @keyframes rotate {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: 2;
+        }
+      } 
     </style>
     <div id="holder">
       
