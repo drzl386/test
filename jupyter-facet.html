@@ -21080,7 +21080,7 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
         @apply --paper-font-headline;
       }
       .rotate {
-        stroke-dasharray: 0, 0;
+        stroke-dasharray: 0.5, 1.5;
         animation: None; /*rotate 1s linear infinite;*/
       }
       
@@ -21089,7 +21089,7 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
           stroke-dashoffset: 0;
         }
         to {
-          stroke-dashoffset: 0;
+          stroke-dashoffset: 2;
         }
       } 
     </style>
@@ -21124,9 +21124,9 @@ m=>`scale(${b.scale<m.minScale?b.scale/m.minScale:1})`);d=b.axesLayer.selectAll(
 function Cn(b){b.renderQueued||(b.renderQueued=!0,requestAnimationFrame(()=>{if(b.renderQueued){b.renderQueued=!1;var d=Date.now();b.endTimestamp>d&&Cn(b);if(b.spriteMesh&&(b.spriteMesh.time=d,81>+THREE.REVISION&&b.spriteMesh.onBeforeRender))b.spriteMesh.onBeforeRender();b.renderer&&b.renderer.render(b.scene,b.camera);if(b.spriteMesh&&b.spriteMesh.spriteAtlas&&(d=b.spriteMesh.spriteAtlas,!(d.drawQueue.length||0<d.pendingImageCount)))for(;d.callbackQueue.length;){const {callback:f,args:h}=d.callbackQueue.shift();
 f.apply(null,h)}}}))}
 function Dn(b){var d=b.elem.selectedIndices.map(h=>({x:b.spriteMesh.getX(h),y:b.spriteMesh.getY(h)}));d=b.selectedLayer.selectAll(".selected").data(d);var f=d.enter().append("g").classed("selected",!0).attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${3})`).style("opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#483d06").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",
-.3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#fad411").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",1);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",1);d.exit().transition().style("opacity",0).remove()}
+.3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#fad411").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",0);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",0);d.exit().transition().style("opacity",0).remove()}
 function En(b){var d=b.elem.comparedIndices.map(h=>({x:b.spriteMesh.getX(h),y:b.spriteMesh.getY(h)}));d=b.comparedLayer.selectAll(".compared").data(d);var f=d.enter().append("g").classed("compared",!0).attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${3})`).style("opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#44ff44").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",
-.3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#1d6b1d").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",1);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",1);d.exit().transition().style("opacity",0).remove()}
+.3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#1d6b1d").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",0);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",0);d.exit().transition().style("opacity",0).remove()}
 function Fn(b,d){b.elem.verticalFacet in b.stats&&vm(b.grid,b.grid.horizontalKeys[b.grid.horizontalKeys.length-1]).forEach(f=>{const h=b.verticalFacetInfo.labelingFunction(f.verticalKey),m=new zn;m.text=h.label;m.x=f.x+f.width;m.y=f.contentY+f.innerHeight/2;m.side=Zl.Right;m.cell=f;m.attributes={"alignment-baseline":"middle",fill:"#666666","font-size":yn["font-size"],"text-anchor":"start","font-style":h.special?"italic":"normal"};m.offsetPosition={x:8};m.minScale=yn["font-size"]/(f.height+b.grid.cellMargin);
 m.scaleDown=!0;d.push(m)})}
 function Gn(b,d){b.elem.horizontalFacet in b.stats&&um(b.grid,b.grid.verticalKeys[b.grid.verticalKeys.length-1]).forEach(f=>{const h=b.horizontalFacetInfo.labelingFunction(f.horizontalKey),m=new zn;m.text=h.label;m.x=f.contentX+f.innerWidth/2;m.y=f.y+f.height;m.side=Zl.Top;m.cell=f;m.rotate=-45;m.attributes={"alignment-baseline":"ideographic",fill:"#dd6622","font-size":yn["font-size"],"text-anchor":"start","font-style":h.special?"italic":"normal"};m.offsetPosition={x:8,y:-8};m.minScale=yn["font-size"]/
