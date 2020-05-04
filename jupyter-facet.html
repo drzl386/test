@@ -21066,38 +21066,22 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
 
 
 <dom-module id="facets-dive-vis">
-  <template>
-    <style>
-      :host {
-        box-sizing: border-box;
-        display: None;
-        height: 100%;
-        width: 100%;
-        border-style: none;
-      }
-      .labels {
-        @apply --paper-font-common-base;
-        @apply --paper-font-headline;
-      }
-      .rotate {
-        stroke-dasharray: 1.5, 0.5;
-        animation: None; /*rotate 1s linear infinite;*/
-      }
-      
-      @keyframes rotate {
-        from {
-          stroke-dashoffset: 0;
+    <template>
+      <style>
+        :host {
+          box-sizing: border-box;
+          display: block;
+          height: 100%;
+          width: 100%;
         }
-        to {
-          stroke-dashoffset: 2;
+        ::content .labels {
+          @apply(--paper-font-common-base);
+          @apply(--paper-font-headline);
         }
-      } 
-    </style>
-    <div id="holder">
+      </style>
       
-    </div>
-  </template>
-</dom-module>
+    </template>
+  </dom-module>
 
 <script>//~~WEBPATH~~/facets-dive/components/facets-dive-vis/facets-dive-vis.js
 /*
