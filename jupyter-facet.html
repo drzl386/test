@@ -21070,7 +21070,7 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
     <style>
       :host {
         box-sizing: border-box;
-        display: block;
+        display: None;
         height: 100%;
         width: 100%;
       }
@@ -21078,7 +21078,19 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
         @apply --paper-font-common-base;
         @apply --paper-font-headline;
       }
+      .rotate {
+        stroke-dasharray: 1.5, 0.5;
+        animation: None; /*rotate 1s linear infinite;*/
+      }
       
+      @keyframes rotate {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: 2;
+        }
+      } 
     </style>
     <div id="holder">
       
