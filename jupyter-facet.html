@@ -19939,17 +19939,11 @@
     (d,f,h)=>{d.x=f;d.y=h};this.computeItemPosition=hm;this.horizontalGridAlignment=this.verticalGridAlignment=im.Tight;this.cellItemComparator=null}clear(){this.verticalKeys=[];this.verticalKeysHash={};this.horizontalKeys=[];this.horizontalKeysHash={};this.cells={};this.height=this.width=this.longestCellLength=0}};
     </script>
     
-    <--!script>//~~WEBPATH~~/facets-dive/lib/axis.js
+    <script>//~~WEBPATH~~/facets-dive/lib/axis.js
     class xm extends am{constructor(b,d){super();this.side=b;this.cell=d;switch(b){case Zl.Left:this.minScale=30/d.innerHeight;for(b=d.siblings.left;!(!b||b.items.length||b.siblings.above&&b.siblings.above.items.length);)b=b.siblings.left;b&&(this.minScale=Math.max(this.minScale,39.2/(d.contentX-(b.contentX+b.innerWidth))));break;case Zl.Bottom:this.minScale=30/d.innerWidth;for(b=d.siblings.below;!(!b||b.items.length||b.siblings.right&&b.siblings.right.items.length);)b=b.siblings.below;b&&(this.minScale=
     Math.max(this.minScale,39.2/(d.contentY-(b.contentY+b.innerHeight))));break;default:throw Error("Axes for specified side are not implemented.");}}path(b){const d=4/b,f=6/b;return this.side===Zl.Left?`M ${this.cell.contentX-d-f},${this.cell.contentY+.6/b} h ${f} v ${this.cell.innerHeight-1.2/b} h -${f}`:this.side===Zl.Bottom?`M ${this.cell.contentX+.6/b},${this.cell.contentY-d-f} v ${f} h ${this.cell.innerWidth-1.2/b} v -${f}`:""}key(){return`${this.cell.compoundKey}-${this.side}`}};
-    </script-->
-
-    <script>//~~WEBPATH~~/facets-dive/lib/axis.js
-        var wf=this&&this.__extends||function(){var a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var b in c)c.hasOwnProperty(b)&&(a[b]=c[b])};return function(b,c){function d(){this.constructor=b}a(b,c);b.prototype=null===c?Object.create(c):(d.prototype=c.prototype,new d)}}(),xf=function(a){function b(b,d){var c=a.call(this)||this;c.side=b;c.cell=d;switch(b){case kf.Left:c.minScale=30/d.innerHeight;for(b=d.siblings.left;!(!b||b.items.length||b.siblings.above&&
-        b.siblings.above.items.length);)b=b.siblings.left;b&&(c.minScale=Math.max(c.minScale,39.2/(d.contentX-(b.contentX+b.innerWidth))));break;case kf.Bottom:c.minScale=30/d.innerWidth;for(b=d.siblings.below;!(!b||b.items.length||b.siblings.right&&b.siblings.right.items.length);)b=b.siblings.below;b&&(c.minScale=Math.max(c.minScale,39.2/(d.contentY-(b.contentY+b.innerHeight))));break;default:throw Error("Axes for specified side are not implemented.");}return c}wf(b,a);b.prototype.strokeWidth=function(a){return 1.2/
-        a};b.prototype.path=function(a){var b=4/a;var c=6/a;if(this.side===kf.Left){var f=this.cell.contentX-b-c;b=this.cell.contentY+.6/a;return"M "+f+","+b+" h "+c+" v "+(this.cell.innerHeight-1.2/a)+" h -"+c}return this.side===kf.Bottom?(f=this.cell.contentX+.6/a,b=this.cell.contentY-b-c,"M "+f+","+b+" v "+c+" h "+(this.cell.innerWidth-1.2/a)+" v -"+c):""};b.prototype.key=function(){return this.cell.compoundKey+"-"+this.side};return b}(jf);
     </script>
-        
+    
     
     <script>//~~WEBPATH~~/facets-dive/lib/data-example.js
     </script>
@@ -21106,505 +21100,1018 @@
     </dom-module>
     
     <script>//~~WEBPATH~~/facets-dive/components/facets-dive-vis/facets-dive-vis.js
-        var $g=this&&this.__extends||function(){var a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var b in c)c.hasOwnProperty(b)&&(a[b]=c[b])};return function(b,c){function d(){this.constructor=b}a(b,c);b.prototype=null===c?Object.create(c):(d.prototype=c.prototype,new d)}}(),ah={bottom:6,left:6,right:6,top:6},bh={"\ufffcOTHER\ufffc":"other","\ufffcNO_WORDS\ufffc":"non-words","\ufffcALL_WORDS\ufffc":"other"};
-        function ch(a){return null!==a&&a in bh?{label:bh[a],special:!0}:"number"!==typeof a&&"string"!==typeof a?{label:""+a,special:!0}:{label:Zg(""+a),special:!1}}
-        var dh="#4285F4 #DB4437 #F4B400 #0F9D58 #AB47BC #00ACC1 #FF7043 #9E9D24 #5C6BC0 #F06292 #00796B #C2185B".split(" "),eh="#4285F4 #0F9D58 #00ACC1 #9E9D24 #5C6BC0 #00796B #607D8B".split(" "),fh="#DB4437 #F4B400 #AB47BC #F06292 #AB47BC #795548 #FF7043 #C2185B".split(" "),gh="#4285F4 #C53929 #F7CB4D #0B8043 #5E35B1 #80DEEA #FF7043 #C0CA33".split(" "),hh={"alignment-baseline":"middle",fill:"#444444","font-size":18,"font-style":"normal","text-anchor":"middle",x:0,y:0},ih=function(a){function b(){return null!==
-        a&&a.apply(this,arguments)||this}$g(b,a);return b}(jf),jh=function(){function a(a){this.elem=a;this.endTimestamp=0;this.renderQueued=!1;this.labels=[];this.autoColorBy=!1;this.horizontalFacetInfo=this.verticalFacetInfo=null}a.prototype.ready=function(){this.layout=new yf;this.cellBackgroundSVG=d3.select(this.elem).append("svg").style("left",0).style("position","absolute").style("top",0);this.cellBackgroundSVGRoot=this.cellBackgroundSVG.append("g").attr("class","root");this.cellBackgroundLayer=this.cellBackgroundSVGRoot.append("g").attr("class",
-        "labels");this.scene=new Z.Scene;this.camera=new Z.OrthographicCamera(0,100,0,100,.1,1E3);try{this.renderer=new Z.WebGLRenderer({alpha:!0}),this.renderer.setPixelRatio(),d3.select(this.renderer.domElement).style("left",0).style("pointer-events","none").style("position","absolute").style("top",0),this.elem.appendChild(this.renderer.domElement)}catch(b){}this.zoom=d3.zoom().scaleExtent([.01,1E3]).on("zoom",this.zoomed.bind(this));d3.select(this.elem).call(this.zoom);this.labelsAndAxesSVG=d3.select(this.elem).append("svg").style("left",
-        0).style("position","absolute").style("top",0);this.labelsAndAxesSVGRoot=this.labelsAndAxesSVG.append("g").attr("class","root");this.labelsLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","labels");this.axesLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","axes");this.labelsAndAxesSVG.on("click",this.clicked.bind(this));this.renderer||(this.labelsAndAxesSVG.style("display","none"),this.cellBackgroundSVG.style("display","none"),d3.select(this.elem).append("p").attr("class","error").style("color",
-        "darkred").html('\n            \x3cstrong\x3eERROR\x3c/strong\x3e: Facets Dive requires WebGL, and it is not\n            enabled in your browser. See\n            \x3ca rel\x3d"noreferrer" href\x3d"http://webglreport.com/"\x3e\n            WebGL Report\x3c/a\x3e for details.\n          '))};a.prototype.zoomed=function(){var a=d3.event.transform,c=a.x,d=a.y,a=a.k,e=this.scale/a;this.camera.top*=e;this.camera.left*=e;this.camera.right*=e;this.camera.bottom*=e;this.camera.position.set(-c/a,d/a,this.camera.position.z);
-        this.camera.updateProjectionMatrix();this.scale=a;this.transformSVG();this.updateObjectVisibility();this.queueRenderScene()};a.prototype.clicked=function(){for(var a=this.elem.getBoundingClientRect(),c=d3.event,a=this.spriteMesh.findSprites(this.camera.position.x+(c.clientX-a.left)/this.scale,this.camera.position.y-(c.clientY-a.top)/this.scale),c=Array(a.length),d=0;d<a.length;d++)c[d]=this.elem.data[a[d]];this.elem.set("selectedData",c)};a.prototype.fitToViewport=function(){var a=this,c=this.elem.getBoundingClientRect();
-        if(c.width&&c.height){this.layout.viewport.width=c.width;this.layout.viewport.height=c.height;this.layout.padding.bottom=this.elem.scenePadding;this.layout.padding.left=this.elem.scenePadding;this.layout.padding.right=this.elem.scenePadding;this.layout.padding.top=this.elem.scenePadding;this.layout.grid={bottom:0,left:0,right:this.grid.width,top:this.grid.height};if(this.labels.length){var d=0,e=0,f=0,g=0;this.labelsLayer.selectAll(".label").each(function(a){var b=d3.select(this).select(".current").node().getBoundingClientRect(),
-        c=a.elementMargin||{bottom:0,left:0,right:0,top:0},k=b.height+c.top+c.bottom,b=b.width+c.left+c.right;switch(a.side){case kf.Bottom:d=Math.max(d,k);break;case kf.Top:g=Math.max(g,k);break;case kf.Left:e=Math.max(e,b);break;case kf.Right:f=Math.max(f,b);break;default:throw Error("Unrecognized Side.");}});this.layout.padding.bottom+=d;this.layout.padding.left+=e;this.layout.padding.right+=f;this.layout.padding.top+=g}this.layout.reducePaddingToFitWidth(c.width);this.layout.reducePaddingToFitHeight(c.height);
-        this.scale=this.layout.computeScale();var k=this.layout.computeCamera(),c=k.position,k=k.frustum;this.camera.left=k.left;this.camera.right=k.right;this.camera.top=k.top;this.camera.bottom=k.bottom;this.camera.position.set(c.x,c.y,100);this.camera.updateProjectionMatrix();d3.select(this.elem).call(this.zoom.transform,d3.zoomIdentity.scale(this.scale).translate(-this.camera.position.x,this.camera.position.y));this.transformSVG();this.updateObjectVisibility();this.queueRenderScene()}else setTimeout(function(){return a.fitToViewport()},
-        100)};a.prototype.zoomIn=function(){this.zoom.scaleBy(d3.select(this.elem),1.1)};a.prototype.zoomOut=function(){this.zoom.scaleBy(d3.select(this.elem),1/1.1)};a.prototype.transformSVG=function(){var a=this,c=-this.camera.position.x*this.scale,d=this.camera.position.y*this.scale;this.cellBackgroundSVGRoot.attr("transform","translate("+c+","+d+") scale("+this.scale+","+-this.scale+")");this.labelsAndAxesSVGRoot.attr("transform","translate("+c+","+d+") scale("+this.scale+","+-this.scale+")");this.labelsAndAxesSVGRoot.selectAll(".unscale").attr("transform",
-        "scale("+1/this.scale+")");this.axesLayer.selectAll(".axis").select("path").attr("d",function(b){return b.path(a.scale)}).attr("stroke-width",function(b){return b.strokeWidth(a.scale)})};a.prototype.isVisible=function(a,c){return a.shouldBeVisible(c,this.scale,this.camera.position,this.camera)};a.prototype.updateObjectVisibility=function(){var a=this,c=this,d=this.labelsLayer.selectAll(".label"),e=d.filter(function(a){return(void 0===a.visible||!a.visible)&&c.isVisible(a,this)}).each(function(a){return a.visible=
-        !0}),f=d.filter(function(a){return(void 0===a.visible||a.visible)&&!c.isVisible(a,this)}).each(function(a){return a.visible=!1});e.selectAll(".opacity").transition().duration(this.elem.tweenDuration).attr("opacity",1);f.selectAll(".opacity").transition().duration(this.elem.tweenDuration).attr("opacity",0);d.filter(function(a){return!!a.scaleDown}).selectAll(".scale").attr("transform",function(b){return"scale("+(a.scale<b.minScale?a.scale/b.minScale:1)+")"});d=this.axesLayer.selectAll(".axis").each(function(a){a.visible=
-        c.isVisible(a,this)});d.filter(function(a){return!!a.visible}).select("path").transition().duration(this.elem.tweenDuration).attr("stroke-opacity",1);d.filter(function(a){return!a.visible}).select("path").transition().duration(this.elem.tweenDuration).attr("stroke-opacity",0)};a.prototype.addVerticalFacetLabels=function(a){var b=this;this.elem.verticalFacet in this.stats&&this.grid.getColumn(this.grid.horizontalKeys[this.grid.horizontalKeys.length-1]).forEach(function(c){var d=b.verticalFacetInfo.labelingFunction(c.verticalKey),
-        f=new ih;f.text=d.label;f.x=c.x+c.width;f.y=c.contentY+c.innerHeight/2;f.side=kf.Right;f.cell=c;f.attributes={"alignment-baseline":"middle",fill:"#666666","font-size":hh["font-size"],"text-anchor":"start","font-style":d.special?"italic":"normal"};f.offsetPosition={x:8};f.minScale=hh["font-size"]/(c.height+b.grid.cellMargin);f.scaleDown=!0;a.push(f)})};a.prototype.addHorizontalFacetLabels=function(a){var b=this;this.elem.horizontalFacet in this.stats&&this.grid.getRow(this.grid.verticalKeys[this.grid.verticalKeys.length-
-        1]).forEach(function(c){var d=b.horizontalFacetInfo.labelingFunction(c.horizontalKey),f=new ih;f.text=d.label;f.x=c.contentX+c.innerWidth/2;f.y=c.y+c.height;f.side=kf.Top;f.cell=c;f.rotate=-45;f.attributes={"alignment-baseline":"ideographic",fill:"#dd6622","font-size":hh["font-size"],"text-anchor":"start","font-style":d.special?"italic":"normal"};f.offsetPosition={x:8,y:-8};f.minScale=hh["font-size"]/(c.width+b.grid.cellMargin/2);f.scaleDown=!0;a.push(f)})};a.prototype.addVerticalPositioningLabels=
-        function(a){var b=this;if("scatter"===this.elem.positionMode&&this.elem.verticalPosition in this.stats){var d=this.stats[this.elem.verticalPosition],e=this.formatNumber(d.numberMin),f=this.formatNumber(d.numberMax),g=(e.length+3)/(e.length+f.length+6);this.grid.eachCell(function(c){if(c.items.length){for(var d=c.siblings.left;!(!d||d.items.length||d.siblings.above&&d.siblings.above.items.length);)d=d.siblings.left;var d=d?d.contentX+d.innerWidth:-Infinity,k=c.x+8,n=c.contentY,q=c.contentY+c.innerHeight,
-        p=new ih;p.id=c.compoundKey+"-left-start";p.text=e;p.x=c.x+8;p.y=c.y+(b.elem.horizontalPosition?8:0);p.side=kf.Left;p.cell=c;p.rotate=-90;p.attributes={"alignment-baseline":"ideographic",fill:"#2255aa","font-size":16,"text-anchor":"start"};p.offsetPosition={x:ah.bottom,y:-ah.right};p.boundingBox={bottom:n,left:d,right:k,top:n+c.innerHeight*(Math.max(g,.1)-.05)};p.elementMargin=ah;a.push(p);p=new ih;p.id=c.compoundKey+"-left-end";p.text=f;p.x=c.x+8;p.y=c.y+c.height;p.side=kf.Left;p.cell=c;p.rotate=
-        -90;p.attributes={"alignment-baseline":"ideographic",fill:"#2255aa","font-size":16,"text-anchor":"end"};p.offsetPosition={x:-ah.top,y:-ah.right};p.boundingBox={bottom:n+c.innerHeight*(Math.min(g,.9)+.05),left:d,right:k,top:q};p.elementMargin=ah;a.push(p)}})}};a.prototype.addHorizontalPositioningLabels=function(a){var b=this;if("scatter"===this.elem.positionMode&&this.elem.horizontalPosition in this.stats){var d=this.stats[this.elem.horizontalPosition],e=this.formatNumber(d.numberMin),f=this.formatNumber(d.numberMax),
-        g=(e.length+3)/(e.length+f.length+6);this.grid.eachCell(function(c){if(c.items.length){for(var d=c.siblings.below;!(!d||d.items.length||d.siblings.right&&d.siblings.right.items.length);)d=d.siblings.below;var d=d?d.contentY+d.innerHeight:-Infinity,k=c.contentY,n=c.contentX,q=n+c.innerWidth,p=new ih;p.id=c.compoundKey+"-bottom-start";p.text=e;p.x=c.x+(b.elem.verticalPosition?8:0);p.y=c.y+8;p.side=kf.Bottom;p.cell=c;p.attributes={"alignment-baseline":"hanging",fill:"#118844","font-size":16,"text-anchor":"start"};
-        p.offsetPosition={x:ah.left,y:ah.top};p.boundingBox={bottom:d,left:n,right:n+c.innerWidth*(Math.max(g,.1)-.05),top:k};p.elementMargin=ah;a.push(p);p=new ih;p.id=c.compoundKey+"-bottom-end";p.text=f;p.x=c.x+c.width;p.y=c.y+8;p.side=kf.Bottom;p.cell=c;p.attributes={"alignment-baseline":"hanging",fill:"#118844","font-size":16,"text-anchor":"end"};p.offsetPosition={x:-ah.right,y:ah.top};p.boundingBox={bottom:d,left:n+c.innerWidth*(Math.min(g,.9)+.05),right:q,top:k};p.elementMargin=ah;a.push(p)}})}};a.prototype.determineLabels=
-        function(){var a=[];this.addVerticalFacetLabels(a);this.addHorizontalFacetLabels(a);this.addVerticalPositioningLabels(a);this.addHorizontalPositioningLabels(a);return a};a.prototype.updateCellBackgrounds=function(){var a=this.grid.getCells().filter(function(a){return a.items.length}),a=this.cellBackgroundLayer.selectAll(".cell").data(a,function(a){return a.compoundKey});a.enter().append("rect").attr("class","cell").attr("x",function(a){return a.contentX||0}).attr("y",function(a){return a.contentY||
-        0}).attr("width",function(a){return a.innerWidth||0}).attr("height",function(a){return a.innerHeight||0}).attr("fill","#f8f8f9").attr("fill-opacity",0).merge(a).transition().duration(this.elem.tweenDuration).attr("x",function(a){return a.contentX||0}).attr("y",function(a){return a.contentY||0}).attr("width",function(a){return a.innerWidth||0}).attr("height",function(a){return a.innerHeight||0}).attr("fill-opacity",1);a.exit().transition().duration(this.elem.tweenDuration).remove().attr("fill-opacity",
-        0)};a.prototype.updateAxes=function(){var a=this,c=[];"stacked"!==this.elem.positionMode&&this.grid.eachCell(function(b){if(b.items.length){if(a.elem.verticalPosition){var d=new xf(kf.Left,b);c.push(d)}a.elem.horizontalPosition&&(d=new xf(kf.Bottom,b),c.push(d))}});var d=this.axesLayer.selectAll(".axis").data(c,function(a){return a.key()}),e=d.enter().append("g").attr("class","axis").attr("opacity",0);e.append("path").attr("d",function(b){return b.path(a.scale)}).attr("stroke",function(a){return a.side===
-        kf.Left?"#2255aa":"#118844"}).attr("stroke-width",function(b){return b.strokeWidth(a.scale)}).attr("stroke-opacity",0).attr("fill","none");e.merge(d).transition().duration(this.elem.tweenDuration).attr("opacity",1);e.merge(d).select("path").transition().duration(this.elem.tweenDuration).attr("d",function(b){return b.path(a.scale)});d.exit().transition().duration(this.elem.tweenDuration).remove().attr("opacity",0)};a.prototype.updateLabels=function(){if(this.scale){this.labels=this.determineLabels();
-        var a=this.labelsLayer.selectAll(".label").data(this.labels,function(a){return a.id||a.side+"-"+a.text});a.each(function(a){var b=d3.select(this),c=b.select(".current");a.text!==c.text()&&(c.attr("fill-opacity",0),b.select(".old").attr("fill-opacity",1).text(c.text()))}).select(".current").text(function(a){return a.text});var c=function(a){return function(b){return void 0===b.attributes||void 0===b.attributes[a]?hh[a]:b.attributes[a]}},d=a.enter().append("g").attr("class","label").attr("transform",
-        function(a){return"translate("+a.x+","+a.y+")"}),e=d.append("g").attr("class","flip").attr("transform","scale(1,-1)").append("g").attr("class","rotate").attr("transform",function(a){return"rotate("+("rotate"in a?a.rotate:0)+")"}).append("g").attr("class","unscale").attr("transform","scale("+1/this.scale+")").append("g").attr("class","position").append("g").attr("class","opacity scale"),f=e.append("text").attr("class","old").attr("fill-opacity",0),e=e.append("text").attr("class","current").attr("fill-opacity",
-        0).text(function(a){return a.text}),g;for(g in hh)hh.hasOwnProperty(g)&&(f.attr(g,c(g)),e.attr(g,c(g)));f=d.merge(a).transition().duration(this.elem.tweenDuration).attr("transform",function(a){return"translate("+a.x+","+a.y+")"});f.select(".rotate").attr("transform",function(a){return"rotate("+("rotate"in a?a.rotate:0)+")"});f.filter(function(a){return!!a.offsetPosition}).select(".position").attr("transform",function(a){return"translate("+(a.offsetPosition.x||0)+","+(a.offsetPosition.y||0)+")"});
-        d=f.select(".old").attr("fill-opacity",0);f=f.select(".current").attr("fill-opacity",1);for(g in hh)hh.hasOwnProperty(g)&&(d.attr(g,c(g)),f.attr(g,c(g)));a.exit().transition().duration(this.elem.tweenDuration).remove().select(".current").attr("fill-opacity",0)}};a.prototype.dataChange=function(){var a=this,c=this.elem.data;if(c&&c.length)if(this.scene){var d=!!this.spriteMesh;this.resizeHandler();d&&(this.scene.remove(this.spriteMesh),this.spriteMesh.spriteAtlas.clearQueues(),delete this.spriteMesh);
-        var e=this.elem.spriteImageWidth,f=this.elem.spriteImageHeight,g=e/f,k=c.length;this.spriteMesh=new Sg(k,e,f);this.scene.add(this.spriteMesh);this.spriteMesh.spriteAtlas.onDrawFinished=function(){return a.queueRenderScene()};this.items=[];for(var e=Math.ceil(Math.sqrt(k)),f=Math.ceil(k/e),l=0;l<k;l++){var m=this.spriteMesh.createSprite();m.x=e/2;m.y=f/2;m.opacity=0;m.timestamp=Date.now();m.rebase(m.timestamp);this.items.push({sprite:m,data:c[l]})}this.grid=new uf(this.items);this.grid.cellMargin=
-        1;this.grid.itemAspectRatio=g;this.grid.itemPositionSetter=function(b,c,d){var e=Date.now();b.sprite.rebase(e);b.sprite.x=c;b.sprite.y=d;b.sprite.opacity=1;b.sprite.timestamp=e+a.elem.tweenDuration;a.renderUntil(b.sprite.timestamp)};this.stats=Yg(c);this.updateGridFaceting();this.updateGridItemPositions();d?this.updateColors():this.elem.colorBy||this.pickColorByField();d?this.updateImageFieldName():this.elem.imageFieldName||this.pickTextDrawingField()}else requestAnimationFrame(this.dataChange.bind(this))};
-        a.prototype.filteredDataIndicesChange=function(){var a=this.elem.filteredDataIndices;if(this.scene&&this.items){var c=[];if(a)for(var d=0;d<a.length;d++){var e=a[d];e<this.items.length&&(c[e]=!0)}for(var e=[],f=[],g=Date.now(),k=g+this.elem.tweenDuration,d=0;d<this.items.length;d++){var l=this.items[d];!a||c[d]?(e.push(l.data),f.push(l),l.sprite.opacity||(l.sprite.rebase(g),l.sprite.timestamp=k,l.sprite.opacity=1)):0<l.sprite.opacity&&(l.sprite.rebase(g),l.sprite.timestamp=k,l.sprite.opacity=0)}this.renderUntil(k);
-        this.stats=Yg(e);this.grid.items=f;this.updateGridFaceting();this.updateGridItemPositions()}else requestAnimationFrame(this.filteredDataIndicesChange.bind(this))};a.prototype.pickColorByField=function(){var a=null,c=Infinity,d;for(d in this.stats)if(this.stats.hasOwnProperty(d)){var e=this.stats[d],f=Math.abs(e.uniqueCount-dh.length);1<e.uniqueCount&&f<c&&(a=d,c=f)}isFinite(c)&&a in this.stats&&(this.autoColorBy=!0,this.elem.set("colorBy",a))};a.prototype.pickTextDrawingField=function(){var a="",
-        c=-Infinity,d;for(d in this.stats)if(this.stats.hasOwnProperty(d)){var e=this.stats[d],e=e.stringCount+e.stringLengthsCount-e.totalCount;e>c&&(a=d,c=e)}isFinite(c)&&a in this.stats&&this.elem.set("imageFieldName",a)};a.prototype.atlasUrlChange=function(){var a=this,c=this.elem.atlasUrl;c?this.spriteMesh?this.spriteMesh.spriteAtlas.setAtlasUrl(c,this.elem.crossOrigin,function(){for(var b=a.elem.data,c=Date.now(),f=c+a.elem.fadeDuration,g=0;b&&g<b.length;g++)a.spriteMesh.switchTextures(g,c,f);a.renderUntil(f);
-        a.elem.set("imageFieldName","");a.autoColorBy&&(a.autoColorBy=!1,a.elem.set("colorBy",""))}):requestAnimationFrame(this.atlasUrlChange.bind(this)):this.pickTextDrawingField()};a.prototype.spriteUrlChange=function(){var a=this,c=this.elem.spriteUrl;if(c)if(this.spriteMesh){var d=new Image;void 0!==this.elem.crossOrigin&&(d.crossOrigin=this.elem.crossOrigin);d.onload=function(){var b=a.spriteMesh.defaultTextureCanvas,c=b.getContext("2d");c.clearRect(0,0,b.width,b.height);c.drawImage(d,0,0,b.width,b.height);
-        a.spriteMesh.defaultTexture.needsUpdate=!0;a.queueRenderScene()};d.src=c}else requestAnimationFrame(this.spriteUrlChange.bind(this))};a.prototype.updateGridStacking=function(){"stacked"===this.elem.positionMode&&(this.grid.computeItemPosition=qf(this.elem.verticalFacet?"middle":"bottom",this.elem.horizontalFacet?"middle":"right"))};a.prototype.updateGridFaceting=function(){if(this.grid){this.updateGridStacking();var a=this.verticalFacetInfo=this.generateFacetingInfo(this.elem.verticalFacet,this.elem.verticalBuckets,
-        this.elem.verticalBagOfWords,!0);this.grid.verticalFacet=a.facetingFunction;this.grid.verticalKeyCompare=a.keyCompareFunction;a=this.horizontalFacetInfo=this.generateFacetingInfo(this.elem.horizontalFacet,this.elem.horizontalBuckets,this.elem.horizontalBagOfWords,!1);this.grid.horizontalFacet=a.facetingFunction;this.grid.horizontalKeyCompare=a.keyCompareFunction;this.grid.arrange();this.updateCellBackgrounds();this.updateAxes();this.updateLabels();this.fitToViewport()}};a.prototype.updateGridItemPositions=
-        function(){if(this.grid){this.updateGridStacking();var a=this.grid.cellPadding,c=vf.Tight,d=vf.Uniform,e=!1;if("stacked"===this.elem.positionMode)e=this.grid.verticalGridAlignment!==c||this.grid.horizontalGridAlignment!==c,this.grid.verticalGridAlignment=c,this.grid.horizontalGridAlignment=c,this.grid.cellPadding.top=0,this.grid.cellPadding.left=0,this.grid.cellPadding.right=0,this.grid.cellPadding.bottom=0,this.grid.minCellAspectRatio=0,this.grid.maxCellAspectRatio=Infinity;else{this.elem.verticalPosition?
-        (e=this.grid.verticalGridAlignment!==d,this.grid.verticalGridAlignment=d):(e=this.grid.verticalGridAlignment!==c,this.grid.verticalGridAlignment=c);this.elem.horizontalPosition?(e=e||this.grid.horizontalGridAlignment!==d,this.grid.horizontalGridAlignment=d):(e=e||this.grid.horizontalGridAlignment!==c,this.grid.horizontalGridAlignment=c);var f=this.generatePositionFunction(this.elem.horizontalPosition)||of,g=this.generatePositionFunction(this.elem.verticalPosition)||pf;this.grid.computeItemPosition=
-        function(a,b,c,d){return{x:f(a,b,c,d),y:g(a,b,c,d)}};c=this.elem.verticalPosition?8:0;d=this.elem.horizontalPosition?8:0;e=e||0!==a.top||c!==a.left||0!==a.right||d!==a.bottom;this.grid.cellPadding.top=0;this.grid.cellPadding.right=0;this.grid.cellPadding.left=c;this.grid.cellPadding.bottom=d;this.grid.minCellAspectRatio=1;this.grid.maxCellAspectRatio=2}e?(this.grid.arrange(),this.updateCellBackgrounds()):this.grid.positionItems();this.updateAxes();this.updateLabels();this.fitToViewport()}};a.prototype.getPaletteSource=
-        function(){switch(this.elem.paletteChoice){case "warm":return fh;case "cool":return eh;case "assist":return gh;default:return dh}};a.prototype.updateScalarPalette=function(){var a=this.elem.colorBy,c=this.stats[a],d=this.grid.items,e=d3.rgb("#A52714"),f=d3.scaleLinear();f.domain([c.numberMin,c.numberMax]).range(["white","#1C3AA9"]);for(var g=[],k=0;k<d.length;k++){var l=d[k],l=a in l.data?l.data[a]:NaN,l="number"!==typeof l||isNaN(l)?e:d3.rgb(f(l));g.push(l)}d=this.generateFacetingInfo(a,5,!1,!1).labelingFunction;
-        e=d3.scaleLinear();e.domain([0,4]).range(["white","#1C3AA9"]);f=[];for(k=4;0<=k;k--)l=d(k),f.push({key:k,color:e(k),content:l});(c.otherCount||c.stringCount||c.totalCount<this.grid.items.length)&&f.push({key:NaN,color:"#A52714",content:{label:"missing",special:!0}});this.elem.set("palette",f);this.grid.cellItemComparator=function(b,c){if(!(a in b.data||a in c.data))return 0;if(!(a in b.data))return-1;if(!(a in c.data))return 1;b=b.data[a];c=c.data[a];if(b===c)return 0;var d="number"!==typeof b||isNaN(b),
-        e="number"!==typeof c||isNaN(c);return d&&e?0:d?-1:e?1:b-c};return g};a.prototype.updateCategoricalPalette=function(a){var b=this.elem.colorBy,d=this.stats[b],e=this.grid.items,f=Object.keys(d.valueHash);f.sort(function(a,b){return d.valueHash[b].count-d.valueHash[a].count});for(var g=Math.min(a.length,f.length),k=f.slice(0,g).reduce(function(a,b,c){a[b]=c;return a},{}),l=d3.rgb("#F0F0F0"),m=a.map(function(a){return d3.rgb(a)}),n=!1,q=[],p=0;p<e.length;p++){var t=Ug(e[p].data[b]),n=n||!(t in k);q.push(m[k[t]]||
-        l)}a=a.slice(0,g).map(function(a,b){b=d.valueHash[f[b]].value;return{key:b,color:a,content:{label:b+"",special:"number"!==typeof b&&"string"!==typeof b||b in bh}}});n&&a.push({key:null,color:"#F0F0F0",content:{label:"other",special:!0}});this.elem.set("palette",a);this.grid.cellItemComparator=function(a,c){if(!(b in a.data||b in c.data))return 0;if(!(b in a.data))return 1;if(!(b in c.data))return-1;a=a.data[b];c=c.data[b];if(a===c)return 0;a=Ug(a);c=Ug(c);return a in k||c in k?a in k?c in k?k[a]-
-        k[c]:-1:1:0};return q};a.prototype.updateColors=function(){if(this.grid){var a=this.elem.colorBy;if(a in this.stats){for(var a=this.stats[a],c=this.getPaletteSource(),a=a.uniqueCount>c.length&&a.isNumeric()?this.updateScalarPalette():this.updateCategoricalPalette(c),c=this.grid.items,d=Date.now(),e=d+this.elem.tweenDuration,f=0;f<c.length;f++){var g=c[f],k=a[f];g.sprite.rebase(d);g.sprite.r=k.r;g.sprite.g=k.g;g.sprite.b=k.b;g.sprite.a=180;g.sprite.timestamp=e}this.renderUntil(e);this.updateGridItemPositionsAfterColorChange()}else this.clearColors()}};
-        a.prototype.updateGridItemPositionsAfterColorChange=function(){"stacked"!==this.elem.positionMode&&this.elem.verticalPosition&&this.elem.horizontalPosition||this.updateGridItemPositions()};a.prototype.clearColors=function(){for(var a=this.grid.items,c=Date.now(),d=c+this.elem.tweenDuration,e=0;e<a.length;e++){var f=a[e];f.sprite.rebase(c);f.sprite.r=0;f.sprite.g=0;f.sprite.b=0;f.sprite.a=0;f.sprite.timestamp=d}this.renderUntil(d);this.elem.set("palette",[]);this.grid.cellItemComparator&&(this.grid.cellItemComparator=
-        null,this.updateGridItemPositionsAfterColorChange())};a.prototype.updateImageFieldName=function(){var a=this;if(this.grid){var c=this.grid.items;this.spriteMesh.spriteAtlas.clearQueues();for(var d=Date.now(),e=d+this.elem.fadeDuration,f=0;f<c.length;f++){var g=c[f];0<g.sprite.textureIndex&&g.sprite.switchTextures(d,e)}this.renderUntil(e);var k=this.elem.imageFieldName;if(k in this.stats)for(d=function(b){b=c[b];var d=b.sprite;d.setSpriteImageData({type:"text",data:ch(b.data[k]).label},function(){var b=
-        Date.now();d.baseTextureTimestamp=b;d.baseTextureIndex=0;d.textureTimestamp=b+a.elem.tweenDuration;d.textureIndex=1;a.renderUntil(d.textureTimestamp)})},f=0;f<c.length;f++)d(f);else this.atlasUrlChange()}};a.prototype.generatePositionFunction=function(a){var b=this.stats[a];if(!b||!b.isNumeric())return null;var d=b.numberMax-b.numberMin;return function(c){return(c.data[a]-b.numberMin)/d}};a.prototype.generateFacetingInfo=function(a,c,d,e){if(!(a in this.stats))return{facetingFunction:function(){return null},
-        keyCompareFunction:function(){return 0},labelingFunction:ch};var b=this.stats[a];if(b.wordTree&&1<b.wordTree.highestLevel&&d)return this.generateBagOfWordsFacetingInfo(a,c,e);if(b.uniqueCount<=c)return{facetingFunction:function(b){return a in b.data?b.data[a]:null},keyCompareFunction:b.isNumeric()?nf:e?mf:lf,labelingFunction:ch};if(b.isNumeric()&&b.numberMax!==b.numberMin)return this.generateNumericFacetingInfo(a,c);d=Object.keys(b.valueHash);d.sort(function(a,c){return b.valueHash[c].count-b.valueHash[a].count});
-        var g=d.slice(0,c).reduce(function(a,b){a[b]=!0;return a},{});return{facetingFunction:function(b){if(!(a in b.data))return null;b=b.data[a];return Ug(b)in g?b:"\ufffcOTHER\ufffc"},keyCompareFunction:e?mf:lf,labelingFunction:ch}};a.prototype.generateBagOfWordsFacetingInfo=function(a,c,d){var b=this.stats[a].wordTree,f=b.levelHash;return{facetingFunction:function(d){if(!(a in d.data))return null;for(d=b.nodeHash[Ug(d.data[a])];d.parent&&d.level>c;)d=d.parent;return d.level},keyCompareFunction:function(a,
-        b){a=f[a];b=f[b];if(void 0===a&&void 0===b)return 0;if(void 0===a)return-1;if(void 0===b)return 1;if(a.nonValueCount&&b.nonValueCount)return 0;if(a.nonValueCount)return-1;if(b.nonValueCount)return 1;b=b.order-a.order;return d?b:-b},labelingFunction:function(a){a=f[+a];if(!a.parent&&!a.commonWords.length)return{label:"other",special:!0};if(a.nonValueCount)return{label:"non-words",special:!0};for(var b=" \u2022 "+a.commonWords.join(" "),d=0;d<a.children.length;d++)if(a.children[d].level>c){b+=" \u2026";
-        break}for(;a.parent;)a=a.parent,a.commonWords.length&&(b=" \u2022 "+a.commonWords.join(" ")+" "+b);return{label:b}}}};a.prototype.generateNumericFacetingInfo=function(a,c){var b=this,e=this.stats[a],f=e.numberMax-e.numberMin;return{facetingFunction:function(b){if(!(a in b.data))return null;b=b.data[a];return"number"!==typeof b?b:isNaN(b)?b:Math.min(Math.floor(c*(b-e.numberMin)/f),c-1)},keyCompareFunction:nf,labelingFunction:function(a){if("number"!==typeof a||isNaN(+a))return ch(a);var d=e.numberMax-
-        e.numberMin,f=a/c*d+e.numberMin;a=(1+a)/c*d+e.numberMin;return e.isInteger()?{label:b.formatRange(Math.ceil(f),Math.floor(a))}:{label:b.formatRange(f,a)}}}};a.prototype.formatNumber=function(a){if(null===a)return"null";a=parseFloat(a.toPrecision(3));return 1E3<=Math.abs(a)?d3.format("s")(a):""+a};a.prototype.formatRange=function(a,c){return this.formatNumber(a)+" \u2014 "+this.formatNumber(c)};a.prototype.getKeys=function(){var a;if((a=this.elem.data)&&a.length){for(var c={},d=0;d<a.length;d++)if(a[d])for(var e=
-        Object.keys(a[d]),f=0;f<e.length;f++)c[e[f]]=!0;a=Object.keys(c)}else a=[];return a.sort()};a.prototype.renderUntil=function(a){this.endTimestamp=Math.max(this.endTimestamp,a);this.queueRenderScene()};a.prototype.resizeHandler=function(){var a=this,c=this.elem.getBoundingClientRect();c.width&&c.height?(this.labelsAndAxesSVG.attr("width",c.width).attr("height",c.height),this.cellBackgroundSVG.attr("width",c.width).attr("height",c.height),this.renderer&&this.renderer.setSize(c.width,c.height),this.camera.right=
-        c.width/this.scale,this.camera.bottom=-c.height/this.scale,this.camera.updateProjectionMatrix(),this.queueRenderScene()):requestAnimationFrame(function(){return a.resizeHandler()})};a.prototype.queueRenderScene=function(){var a=this;this.renderQueued||(this.renderQueued=!0,requestAnimationFrame(function(){a.renderQueued&&a.renderScene()}))};a.prototype.renderScene=function(){this.renderQueued=!1;var a=Date.now();this.endTimestamp>a&&this.queueRenderScene();if(this.spriteMesh&&(this.spriteMesh.time=
-        a,81>+Z.REVISION&&this.spriteMesh.onBeforeRender))this.spriteMesh.onBeforeRender();this.renderer&&this.renderer.render(this.scene,this.camera);this.spriteMesh&&this.spriteMesh.spriteAtlas&&this.spriteMesh.spriteAtlas.postRender()};return a}();
-        Polymer({is:"facets-dive-vis",behaviors:[Polymer.IronResizableBehavior],properties:{data:{type:Array,value:null,observer:"_dataChange"},filteredDataIndices:{type:Array,value:null,observer:"_filteredDataIndicesChange"},atlasUrl:{type:String,value:null,observer:"_atlasUrlChange"},spriteUrl:{type:String,value:null,observer:"_spriteUrlChange"},crossOrigin:{type:String,value:null},keys:{type:Array,value:[],notify:!0,readOnly:!0},stats:{type:Object,value:{},notify:!0,readOnly:!0},scenePadding:{type:Number,
-        value:8},tweenDuration:{type:Number,value:600},fadeDuration:{type:Number,value:200},spriteImageWidth:{type:Number,value:64},spriteImageHeight:{type:Number,value:64},gridFacetingVerticalLabelColor:{type:String,value:"#666666"},gridFacetingHorizontalLabelColor:{type:String,value:"#dd6622"},itemPositioningVerticalLabelColor:{type:String,value:"#2255aa"},itemPositioningHorizontalLabelColor:{type:String,value:"#118844"},verticalFacet:{type:String,value:"",observer:"_updateGridFaceting"},verticalBuckets:{type:Number,
-        value:10,observer:"_updateGridFaceting"},verticalBagOfWords:{type:Boolean,value:!1,observer:"_updateGridFaceting"},horizontalFacet:{type:String,value:"",observer:"_updateGridFaceting"},horizontalBuckets:{type:Number,value:10,observer:"_updateGridFaceting"},horizontalBagOfWords:{type:Boolean,value:!1,observer:"_updateGridFaceting"},positionMode:{type:String,value:"",observer:"_updateGridItemPositions"},verticalPosition:{type:String,value:"",observer:"_updateGridItemPositions"},horizontalPosition:{type:String,
-        value:"",observer:"_updateGridItemPositions"},colorBy:{type:String,value:"",observer:"_updateColors",notify:!0},imageFieldName:{type:String,value:"",observer:"_updateImageFieldName",notify:!0},palette:{type:Array,value:[],notify:!0},paletteChoice:{type:String,value:"standard",observer:"_updateColors"},selectedData:{type:Array,value:[],notify:!0}},listeners:{"iron-resize":"_onIronResize"},created:function(){this._backing=new jh(this)},ready:function(){this._backing.ready()},_dataChange:function(){this._backing.dataChange();
-        this._setKeys(this._backing.getKeys());this._setStats(this._backing.stats)},_filteredDataIndicesChange:function(){this._backing.filteredDataIndicesChange();this._setKeys(this._backing.getKeys());this._setStats(this._backing.stats)},_atlasUrlChange:function(){this._backing.atlasUrlChange()},_spriteUrlChange:function(){this._backing.spriteUrlChange()},_updateGridFaceting:function(){this._backing.updateGridFaceting()},_updateGridItemPositions:function(){this._backing.updateGridItemPositions()},_updateColors:function(){this._backing.updateColors()},
-        _updateImageFieldName:function(){this._backing.updateImageFieldName()},_onIronResize:function(){this._backing.resizeHandler()},fitToViewport:function(){this._backing.fitToViewport()},zoomIn:function(){this._backing.zoomIn()},zoomOut:function(){this._backing.zoomOut()}});
-        </script>
-        
-        
-        <dom-module id="facets-dive-controls">
-          <template>
-            <style>
-              :host {
-                @apply(--paper-font-common-base);
-        
-                box-sizing: border-box;
-                display: flex;
-                flex-flow: column;
-                height: 100%;
-                overflow: visible;
-                width: 100%;
-              }
-        
-              .layout-row {
-                display: flex;
-              }
-        
-              /**
-               * Menus.
-               */
-              .menu {
-                box-sizing: border-box;
-                flex: 1;
-                overflow-y: scroll;
-              }
-              .menu-trigger {
-                border-bottom: 1px solid #ccc;
-                cursor: pointer;
-              }
-              paper-menu {
-                font-size: 14px;
-                margin: 6px;
-                padding: 0;
-                --paper-menu-focused-item: {
-                  color: rgba(0,0,0,0);
-                };
-              }
-              paper-submenu .menu-trigger {
-                --paper-item: {
-                  color: #44706e;
-                };
-                --paper-item-selected: {
-                  color: #183232;
-                };
-              }
-              paper-submenu .menu-trigger-text {
-                font-weight: normal;
-              }
-              paper-menu .menu-content {
-                margin: 0 8px;
-                padding: 0 0 24px 0;
-              }
-              paper-submenu iron-icon {
-                margin: 16px 8px 0 0;
-              }
-              .expand-button {
-                color: #9b9b9b;
-                --paper-icon-button-ink-color: #9b9b9b;
-              }
-              paper-menu paper-checkbox {
-                display: block;
-                font-weight: normal;
-                font-size: 12.5px;
-                text-align: center;
-              }
-        
-              paper-item {
-                padding: 0 14px;
-                --paper-item-min-height: 36px;
-              }
-              paper-dropdown-menu paper-item {
-                border-bottom: 1px solid #ccc;
-              }
-        
-              #verticalFacet {
-                --paper-input-container-input: {
-                  color: var(--grid-faceting-vertical-label-color);
-                };
-              }
-              #horizontalFacet {
-                --paper-input-container-input: {
-                  color: var(--grid-faceting-horizontal-label-color);
-                };
-              }
-              #verticalPosition {
-                --paper-input-container-input: {
-                  color: var(--item-positioning-vertical-label-color);
-                };
-              }
-              #horizontalPosition {
-                --paper-input-container-input: {
-                  color: var(--item-positioning-horizontal-label-color);
-                };
-              }
-        
-              /**
-               * Legend.
-               */
-              .legend {
-                background: #fefefe;
-                border-top: 6px solid #a09f9f;
-                box-sizing: border-box;
-                margin: 8px 0 0 0;
-                max-height: 50%;
-                overflow-y: scroll;
-                padding: 16px 8px 8px 8px;
-              }
-              .legend .layout-row {
-                margin: 0;
-              }
-              .legend .layout-row span {
-                margin: 2px 0 0 8px;
-              }
-        
-              /**
-               * Legend table shim. Polymer's dom-repeat feature has a known issue in
-               * which it doesn't work with <tr> elements inside of a <table>. So
-               * instead, we use CSS with classed divs to achieve table behavior.
-               */
-              .legend-table {
-                display: table;
-                margin-left: 2px;
-              }
-              .legend-row {
-                display: table-row;
-              }
-              .legend-cell {
-                display: table-cell;
-              }
-        
-              /**
-               * Color legend.
-               */
-              .legend .color {
-                font-size: 14px;
-              }
-              .legend .color iron-icon {
-                --iron-icon-width: 16px;
-                --iron-icon-height: 16px;
-                margin: 0 2px;
-              }
-              .legend .color iron-icon[fill="#ffffff"] {
-                background: #dddddd;
-              }
-              .legend .color span {
-                margin: 0;
-              }
-              .legend .special {
-                font-style: italic;
-              }
-        
-              .legend h2 {
-                @apply(--paper-font-subhead);
-                color: #4f423e;
-                font-weight: bold;
-                line-height: 1;
-                margin: 0;
-              }
-              .legend .color-by-field {
-                color: #968e8c;
-                display: block;
-                font-size: 12.5px;
-                font-weight: normal;
-                margin: 2px 0 4px 20px;
-              }
-        
-              .vertical-facet {
-                color: var(--grid-faceting-vertical-label-color);
-              }
-              .vertical-facet iron-icon {
-                fill: var(--grid-faceting-vertical-label-color);
-                transform: rotate(-90deg) scale(0.9, 1.1);
-              }
-              .horizontal-facet {
-                color: var(--grid-faceting-horizontal-label-color);
-              }
-              .horizontal-facet iron-icon {
-                fill: var(--grid-faceting-horizontal-label-color);
-              }
-              .vertical-position {
-                color: var(--item-positioning-vertical-label-color);
-              }
-              .vertical-position iron-icon {
-                fill: var(--item-positioning-vertical-label-color);
-                transform: rotate(-90deg);
-              }
-              .horizontal-position {
-                color: var(--item-positioning-horizontal-label-color);
-              }
-              .horizontal-position iron-icon {
-                fill: var(--item-positioning-horizontal-label-color);
-              }
-            </style>
-        
-            <div class="menu">
-        
-              <paper-menu multi="true">
-        
-                <paper-submenu>
-        
-                  <paper-item class="menu-trigger">
-                    <span class="menu-trigger-text">Faceting</span>
-                    <span style="flex:1"></span>
-                    <paper-icon-button icon="image:view-comfy" class="expand-button">
-                    </paper-icon-button>
-                  </paper-item>
-        
-                  <paper-menu class="menu-content" opened="{{_anyFacet(verticalFacet, horizontalFacet)}}">
-        
-                    <div class="layout-row vertical-facet">
-                      <iron-icon icon="av:equalizer"></iron-icon>
-                      <paper-dropdown-menu id="verticalFacet" label="Row-Based Faceting" class="facet-selector">
-                        <paper-listbox class="dropdown-content" selected="{{verticalFacet}}" attr-for-selected="value">
-                          <paper-item value="">&lt;NONE&gt;</paper-item>
-                          <template is="dom-repeat" items="[[keys]]">
-                            <paper-item value="[[item]]">[[_breakUpAndTruncate(item)]]</paper-item>
-                          </template>
-                        </paper-listbox>
-                      </paper-dropdown-menu>
-                    </div>
-        
-                    <template is="dom-if" if="[[verticalFacet]]">
-                      <paper-slider pin snaps editable min="1" max="[[_maxBuckets(verticalFacet,verticalBagOfWords)]]" step="1" value="{{verticalBuckets}}" immediate-value="{{verticalBuckets}}"></paper-slider>
+    /*
+    
+     Copyright 2018 Google Inc.
+    
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+    
+         http://www.apache.org/licenses/LICENSE-2.0
+    
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+    */
+    const rn={bottom:6,left:6,right:6,top:6},sn={"\ufffcOTHER\ufffc":"other","\ufffcNO_WORDS\ufffc":"non-words","\ufffcALL_WORDS\ufffc":"other"},tn=b=>null!==b&&b in sn?{label:sn[b],special:!0}:"number"!==typeof b&&"string"!==typeof b?{label:""+b,special:!0}:{label:qn(""+b),special:!1},un="#4285F4 #DB4437 #F4B400 #0F9D58 #AB47BC #00ACC1 #FF7043 #9E9D24 #5C6BC0 #F06292 #00796B #C2185B".split(" "),vn="#4285F4 #0F9D58 #00ACC1 #9E9D24 #5C6BC0 #00796B #607D8B".split(" "),wn="#DB4437 #F4B400 #AB47BC #F06292 #AB47BC #795548 #FF7043 #C2185B".split(" "),
+    xn="#4285F4 #C53929 #F7CB4D #0B8043 #5E35B1 #80DEEA #FF7043 #C0CA33".split(" "),yn={"alignment-baseline":"middle",fill:"#444444","font-size":18,"font-style":"normal","text-anchor":"middle",x:0,y:0};class zn extends am{}
+    function An(b){const d=-b.camera.position.x*b.scale,f=b.camera.position.y*b.scale;b.cellBackgroundSVGRoot.attr("transform",`translate(${d},${f}) scale(${b.scale},${-b.scale})`);b.labelsAndAxesSVGRoot.attr("transform",`translate(${d},${f}) scale(${b.scale},${-b.scale})`);b.labelsAndAxesSVGRoot.selectAll(".unscale").attr("transform",`scale(${1/b.scale})`);b.axesLayer.selectAll(".axis").select("path").attr("d",h=>h.path(b.scale)).attr("stroke-width",()=>1.2/b.scale)}
+    function Bn(b){var d=b.labelsLayer.selectAll(".label");const f=d.filter(function(m){return(void 0===m.visible||!m.visible)&&b.isVisible(m,this)}).each(m=>m.visible=!0),h=d.filter(function(m){return(void 0===m.visible||m.visible)&&!b.isVisible(m,this)}).each(m=>m.visible=!1);f.selectAll(".opacity").transition().duration(b.elem.tweenDuration).attr("opacity",1);h.selectAll(".opacity").transition().duration(b.elem.tweenDuration).attr("opacity",0);d.filter(m=>!!m.scaleDown).selectAll(".scale").attr("transform",
+    m=>`scale(${b.scale<m.minScale?b.scale/m.minScale:1})`);d=b.axesLayer.selectAll(".axis").each(function(m){m.visible=b.isVisible(m,this)});d.filter(m=>!!m.visible).select("path").transition().duration(b.elem.tweenDuration).attr("stroke-opacity",1);d.filter(m=>!m.visible).select("path").transition().duration(b.elem.tweenDuration).attr("stroke-opacity",0)}
+    function Cn(b){b.renderQueued||(b.renderQueued=!0,requestAnimationFrame(()=>{if(b.renderQueued){b.renderQueued=!1;var d=Date.now();b.endTimestamp>d&&Cn(b);if(b.spriteMesh&&(b.spriteMesh.time=d,81>+THREE.REVISION&&b.spriteMesh.onBeforeRender))b.spriteMesh.onBeforeRender();b.renderer&&b.renderer.render(b.scene,b.camera);if(b.spriteMesh&&b.spriteMesh.spriteAtlas&&(d=b.spriteMesh.spriteAtlas,!(d.drawQueue.length||0<d.pendingImageCount)))for(;d.callbackQueue.length;){const {callback:f,args:h}=d.callbackQueue.shift();
+    f.apply(null,h)}}}))}
+    function Dn(b){var d=b.elem.selectedIndices.map(h=>({x:b.spriteMesh.getX(h),y:b.spriteMesh.getY(h)}));d=b.selectedLayer.selectAll(".selected").data(d);var f=d.enter().append("g").classed("selected",!0).attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${3})`).style("opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#483d06").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",
+    .3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#fad411").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",0);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",0);d.exit().transition().style("opacity",0).remove()}
+    function En(b){var d=b.elem.comparedIndices.map(h=>({x:b.spriteMesh.getX(h),y:b.spriteMesh.getY(h)}));d=b.comparedLayer.selectAll(".compared").data(d);var f=d.enter().append("g").classed("compared",!0).attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${3})`).style("opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#44ff44").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",
+    .3).attr("fill-opacity",0);f.append("rect").attr("x",-.5).attr("y",-.5).attr("width",1).attr("height",1).attr("stroke","#1d6b1d").attr("stroke-linecap","round").attr("stroke-linejoin","round").attr("stroke-opacity",0).attr("stroke-width",.15).attr("fill-opacity",0);f=f.merge(d);f.transition().attr("transform",h=>`translate(${.5+(h.x||0)},${.5+(h.y||0)}) scale(${.8})`).style("opacity",0);f.selectAll("rect").classed("rotate",!0).attr("stroke-opacity",0);d.exit().transition().style("opacity",0).remove()}
+    function Fn(b,d){b.elem.verticalFacet in b.stats&&vm(b.grid,b.grid.horizontalKeys[b.grid.horizontalKeys.length-1]).forEach(f=>{const h=b.verticalFacetInfo.labelingFunction(f.verticalKey),m=new zn;m.text=h.label;m.x=f.x+f.width;m.y=f.contentY+f.innerHeight/2;m.side=Zl.Right;m.cell=f;m.attributes={"alignment-baseline":"middle",fill:"#666666","font-size":yn["font-size"],"text-anchor":"start","font-style":h.special?"italic":"normal"};m.offsetPosition={x:8};m.minScale=yn["font-size"]/(f.height+b.grid.cellMargin);
+    m.scaleDown=!0;d.push(m)})}
+    function Gn(b,d){b.elem.horizontalFacet in b.stats&&um(b.grid,b.grid.verticalKeys[b.grid.verticalKeys.length-1]).forEach(f=>{const h=b.horizontalFacetInfo.labelingFunction(f.horizontalKey),m=new zn;m.text=h.label;m.x=f.contentX+f.innerWidth/2;m.y=f.y+f.height;m.side=Zl.Top;m.cell=f;m.rotate=-45;m.attributes={"alignment-baseline":"ideographic",fill:"#dd6622","font-size":yn["font-size"],"text-anchor":"start","font-style":h.special?"italic":"normal"};m.offsetPosition={x:8,y:-8};m.minScale=yn["font-size"]/
+    (f.width+b.grid.cellMargin/2);m.scaleDown=!0;d.push(m)})}function Hn(b,d=3){if(null===b)return"null";b=parseFloat(b.toPrecision(d));return 1E3<=Math.abs(b)?d3.format(`.${d}s`)(b):`${b}`}
+    function dp(b,d){if("scatter"===b.elem.positionMode&&b.elem.verticalPosition in b.stats){var f=b.stats[b.elem.verticalPosition],[h,m]=d3.scaleLinear().domain([f.numberMin,f.numberMax]).nice().domain(),w=Hn(h),l=Hn(m),p=(w.length+3)/(w.length+l.length+6);qm(b.grid,n=>{if(n.items.length){for(var q=n.siblings.left;!(!q||q.items.length||q.siblings.above&&q.siblings.above.items.length);)q=q.siblings.left;q=q?q.contentX+q.innerWidth:-Infinity;var t=n.x+8,v=n.contentY,z=n.contentY+n.innerHeight,y=new zn;
+    y.id=`${n.compoundKey}-left-start`;y.text=w;y.x=n.x+8;y.y=n.y+(b.elem.horizontalPosition?8:0);y.side=Zl.Left;y.cell=n;y.rotate=-90;y.attributes={"alignment-baseline":"ideographic",fill:"#2255aa","font-size":16,"text-anchor":"start"};y.offsetPosition={x:rn.bottom,y:-rn.right};y.boundingBox={bottom:v,left:q,right:t,top:v+n.innerHeight*(Math.max(p,.1)-.05)};y.elementMargin=rn;d.push(y);y=new zn;y.id=`${n.compoundKey}-left-end`;y.text=l;y.x=n.x+8;y.y=n.y+n.height;y.side=Zl.Left;y.cell=n;y.rotate=-90;
+    y.attributes={"alignment-baseline":"ideographic",fill:"#2255aa","font-size":16,"text-anchor":"end"};y.offsetPosition={x:-rn.top,y:-rn.right};y.boundingBox={bottom:v+n.innerHeight*(Math.min(p,.9)+.05),left:q,right:t,top:z};y.elementMargin=rn;d.push(y)}})}}
+    function ep(b,d){if("scatter"===b.elem.positionMode&&b.elem.horizontalPosition in b.stats){var f=b.stats[b.elem.horizontalPosition],[h,m]=d3.scaleLinear().domain([f.numberMin,f.numberMax]).nice().domain(),w=Hn(h),l=Hn(m),p=(w.length+3)/(w.length+l.length+6);qm(b.grid,n=>{if(n.items.length){for(var q=n.siblings.below;!(!q||q.items.length||q.siblings.right&&q.siblings.right.items.length);)q=q.siblings.below;q=q?q.contentY+q.innerHeight:-Infinity;var t=n.contentY,v=n.contentX,z=v+n.innerWidth,y=new zn;
+    y.id=`${n.compoundKey}-bottom-start`;y.text=w;y.x=n.x+(b.elem.verticalPosition?8:0);y.y=n.y+8;y.side=Zl.Bottom;y.cell=n;y.attributes={"alignment-baseline":"hanging",fill:"#118844","font-size":16,"text-anchor":"start"};y.offsetPosition={x:rn.left,y:rn.top};y.boundingBox={bottom:q,left:v,right:v+n.innerWidth*(Math.max(p,.1)-.05),top:t};y.elementMargin=rn;d.push(y);y=new zn;y.id=`${n.compoundKey}-bottom-end`;y.text=l;y.x=n.x+n.width;y.y=n.y+8;y.side=Zl.Bottom;y.cell=n;y.attributes={"alignment-baseline":"hanging",
+    fill:"#118844","font-size":16,"text-anchor":"end"};y.offsetPosition={x:-rn.right,y:rn.top};y.boundingBox={bottom:q,left:v+n.innerWidth*(Math.min(p,.9)+.05),right:z,top:t};y.elementMargin=rn;d.push(y)}})}}function fp(b){const d=[];Fn(b,d);Gn(b,d);dp(b,d);ep(b,d);return d}
+    function gp(b){var d=tm(b.grid).filter(f=>f.items.length);d=b.cellBackgroundLayer.selectAll(".cell").data(d,f=>f.compoundKey);d.enter().append("rect").attr("class","cell").attr("x",f=>f.contentX||0).attr("y",f=>f.contentY||0).attr("width",f=>f.innerWidth||0).attr("height",f=>f.innerHeight||0).attr("fill","#f8f8f9").attr("fill-opacity",0).merge(d).transition().duration(b.elem.tweenDuration).attr("x",f=>f.contentX||0).attr("y",f=>f.contentY||0).attr("width",f=>f.innerWidth||0).attr("height",f=>f.innerHeight||
+    0).attr("fill-opacity",1);d.exit().transition().duration(b.elem.tweenDuration).remove().attr("fill-opacity",0)}
+    function hp(b){const d=[];"stacked"!==b.elem.positionMode&&qm(b.grid,m=>{if(m.items.length){if(b.elem.verticalPosition){const w=new xm(Zl.Left,m);d.push(w)}b.elem.horizontalPosition&&(m=new xm(Zl.Bottom,m),d.push(m))}});const f=b.axesLayer.selectAll(".axis").data(d,m=>m.key()),h=f.enter().append("g").attr("class","axis").attr("opacity",0);h.append("path").attr("d",m=>m.path(b.scale)).attr("stroke",m=>m.side===Zl.Left?"#2255aa":"#118844").attr("stroke-width",()=>1.2/b.scale).attr("stroke-opacity",
+    0).attr("fill","none");h.merge(f).transition().duration(b.elem.tweenDuration).attr("opacity",1);h.merge(f).select("path").transition().duration(b.elem.tweenDuration).attr("d",m=>m.path(b.scale));f.exit().transition().duration(b.elem.tweenDuration).remove().attr("opacity",0)}
+    function ip(b){if(b.scale){b.labels=fp(b);var d=b.labelsLayer.selectAll(".label").data(b.labels,l=>l.id||`${l.side}-${l.text}`);d.each(function(l){const p=d3.select(this),n=p.select(".current");l.text!==n.text()&&(n.attr("fill-opacity",0),p.select(".old").attr("fill-opacity",1).text(n.text()))}).select(".current").text(l=>l.text);var f=l=>p=>void 0===p.attributes||void 0===p.attributes[l]?yn[l]:p.attributes[l],h=d.enter().append("g").attr("class","label").attr("transform",l=>`translate(${l.x},${l.y})`),
+    m=h.append("g").attr("class","flip").attr("transform","scale(1,-1)").append("g").attr("class","rotate").attr("transform",l=>"rotate("+("rotate"in l?l.rotate:0)+")").append("g").attr("class","unscale").attr("transform",`scale(${1/b.scale})`).append("g").attr("class","position").append("g").attr("class","opacity scale"),w=m.append("text").attr("class","old").attr("fill-opacity",0);m=m.append("text").attr("class","current").attr("fill-opacity",0).text(l=>l.text);for(const l in yn)yn.hasOwnProperty(l)&&
+    (w.attr(l,f(l)),m.attr(l,f(l)));w=h.merge(d).transition().duration(b.elem.tweenDuration).attr("transform",l=>`translate(${l.x},${l.y})`);w.select(".rotate").attr("transform",l=>"rotate("+("rotate"in l?l.rotate:0)+")");w.filter(l=>!!l.offsetPosition).select(".position").attr("transform",l=>`translate(${l.offsetPosition.x||0},${l.offsetPosition.y||0})`);h=w.select(".old").attr("fill-opacity",0);w=w.select(".current").attr("fill-opacity",1);for(const l in yn)yn.hasOwnProperty(l)&&(h.attr(l,f(l)),w.attr(l,
+    f(l)));d.exit().transition().duration(b.elem.tweenDuration).remove().select(".current").attr("fill-opacity",0)}}
+    function jp(b){const d=b.elem.getBoundingClientRect();d.width&&d.height?(b.labelsAndAxesSVG.attr("width",d.width).attr("height",d.height),b.cellBackgroundSVG.attr("width",d.width).attr("height",d.height),b.renderer&&b.renderer.setSize(d.width,d.height),b.camera.right=d.width/b.scale,b.camera.bottom=-d.height/b.scale,b.camera.updateProjectionMatrix(),Cn(b)):requestAnimationFrame(()=>jp(b))}
+    function kp(b){b.spriteMesh&&(b.scene.remove(b.spriteMesh),Lm(b.spriteMesh.spriteAtlas),delete b.spriteMesh);const d=b.elem.data,f=d.length;var h=b.elem.spriteImageWidth,m=b.elem.spriteImageHeight;const w=h/m;b.spriteMesh=new hn(f,h,m);b.scene.add(b.spriteMesh);b.spriteMesh.spriteAtlas.onDrawFinished=()=>Cn(b);b.items=[];h=Math.ceil(Math.sqrt(f));m=Math.ceil(f/h);for(let l=0;l<f;l++){const p=fn(b.spriteMesh);p.x=h/2;p.y=m/2;p.opacity=0;p.timestamp=Date.now();p.rebase(p.timestamp);b.items.push({sprite:p,
+    data:d[l]})}b.grid=new wm(b.items);b.grid.cellMargin=1;b.grid.itemAspectRatio=w;b.grid.itemPositionSetter=(l,p,n)=>{const q=Date.now();l.sprite.rebase(q);l.sprite.x=p;l.sprite.y=n;l.sprite.opacity=1;l.sprite.timestamp=q+b.elem.tweenDuration;lp(b,l.sprite.timestamp)}}
+    function mp(b){if(!b.ignoreChange&&b.grid){np(b);var d=b.elem.imageFieldName;if(d in b.stats){var f=b.grid.items;for(let h=0;h<f.length;h++){const {sprite:m,data:w}=f[h];m.setSpriteImageData({type:"text",data:tn(w[d]).label},()=>{const l=Date.now();m.baseTextureTimestamp=l;m.baseTextureIndex=0;m.textureTimestamp=l+b.elem.tweenDuration;m.textureIndex=1;lp(b,m.textureTimestamp)})}}else delete b.lastAtlasUrl,op(b)}}
+    function pp(b){if(b.grid){qp(b);var d=b.verticalFacetInfo=rp(b,b.elem.verticalFacet,b.elem.verticalBuckets,b.elem.verticalBagOfWords,!0);b.grid.verticalFacet=d.facetingFunction;b.grid.verticalKeyCompare=d.keyCompareFunction;d=b.horizontalFacetInfo=rp(b,b.elem.horizontalFacet,b.elem.horizontalBuckets,b.elem.horizontalBagOfWords,!1);b.grid.horizontalFacet=d.facetingFunction;b.grid.horizontalKeyCompare=d.keyCompareFunction;b.elem.fitGridAspectRatioToViewport?(d=b.elem.getBoundingClientRect(),b.grid.targetGridAspectRatio=
+    d&&d.width&&d.height?d.width/d.height||1:1):b.grid.targetGridAspectRatio=1;sm(b.grid);gp(b);hp(b);ip(b);Dn(b);En(b);b.fitToViewport()}}
+    function sp(b){if(b.grid){qp(b);var d=b.grid.cellPadding,f=im.Tight,h=im.Uniform,m=!1;if("stacked"===b.elem.positionMode)m=b.grid.verticalGridAlignment!==f||b.grid.horizontalGridAlignment!==f,b.grid.verticalGridAlignment=f,b.grid.horizontalGridAlignment=f,b.grid.cellPadding.top=0,b.grid.cellPadding.left=0,b.grid.cellPadding.right=0,b.grid.cellPadding.bottom=0,b.grid.minCellAspectRatio=0,b.grid.maxCellAspectRatio=Infinity;else{b.elem.verticalPosition?(m=b.grid.verticalGridAlignment!==h,b.grid.verticalGridAlignment=
+    h):(m=b.grid.verticalGridAlignment!==f,b.grid.verticalGridAlignment=f);b.elem.horizontalPosition?(m=m||b.grid.horizontalGridAlignment!==h,b.grid.horizontalGridAlignment=h):(m=m||b.grid.horizontalGridAlignment!==f,b.grid.horizontalGridAlignment=f);const w=tp(b,b.elem.horizontalPosition)||em,l=tp(b,b.elem.verticalPosition)||fm;b.grid.computeItemPosition=(p,n,q,t)=>({x:w(p,n,q,t),y:l(p,n,q,t)});f=b.elem.verticalPosition?8:0;h=b.elem.horizontalPosition?8:0;m=m||0!==d.top||f!==d.left||0!==d.right||h!==
+    d.bottom;b.grid.cellPadding.top=0;b.grid.cellPadding.right=0;b.grid.cellPadding.left=f;b.grid.cellPadding.bottom=h;b.grid.minCellAspectRatio=1;b.grid.maxCellAspectRatio=2}m?(sm(b.grid),gp(b)):rm(b.grid);hp(b);ip(b);Dn(b);En(b);b.fitToViewport()}}
+    function up(b){if(b.grid){var d=b.elem.colorBy;if(d in b.stats){d=b.stats[d];var f=vp(b);d=d.uniqueCount>f.length&&nn(d)?wp(b):xp(b,f);f=b.grid.items;var h=Date.now(),m=h+b.elem.tweenDuration;for(var w=0;w<f.length;w++){const l=f[w],p=d[w];l.sprite.rebase(h);l.sprite.r=p.r;l.sprite.g=p.g;l.sprite.b=p.b;l.sprite.a=180;l.sprite.timestamp=m}lp(b,m);yp(b)}else{d=b.grid.items;f=Date.now();h=f+b.elem.tweenDuration;for(m=0;m<d.length;m++)w=d[m],w.sprite.rebase(f),w.sprite.r=0,w.sprite.g=0,w.sprite.b=0,w.sprite.a=
+    0,w.sprite.timestamp=h;lp(b,h);b.elem.set("palette",[]);b.grid.cellItemComparator&&(b.grid.cellItemComparator=null,yp(b))}}}function lp(b,d){b.endTimestamp=Math.max(b.endTimestamp,d);Cn(b)}function op(b){b.atlasUrlChangeTimer&&clearTimeout(b.atlasUrlChangeTimer);b.atlasUrlChangeTimer=setTimeout(()=>{b.atlasUrlChangeTimer&&b.atlasUrlChange()},100)}
+    function np(b){const d=b.grid.items;Lm(b.spriteMesh.spriteAtlas);const f=Date.now(),h=f+b.elem.fadeDuration;for(let m=0;m<d.length;m++){const w=d[m];0<w.sprite.textureIndex&&w.sprite.switchTextures(f,h)}lp(b,h)}function qp(b){"stacked"===b.elem.positionMode&&(b.grid.computeItemPosition=gm(b.elem.verticalFacet?"middle":"bottom",b.elem.horizontalFacet?"middle":"right"))}
+    function rp(b,d,f,h,m){if(!(d in b.stats)||isNaN(+f)||1>+f)return{facetingFunction:()=>"",keyCompareFunction:()=>0,labelingFunction:tn};const w=b.stats[d];if(w.wordTree&&1<w.wordTree.highestLevel&&h)return zp(b,d,f,m);if(w.uniqueCount<=f)return{facetingFunction:p=>d in p.data?p.data[d]:null,keyCompareFunction:nn(w)?dm:m?cm:bm,labelingFunction:tn};if(nn(w)&&w.numberMax!==w.numberMin)return Ap(b,d,f);b=Object.keys(w.valueHash);b.sort((p,n)=>w.valueHash[n].count-w.valueHash[p].count);const l=b.slice(0,
+    f).reduce((p,n)=>{p[n]=!0;return p},{});return{facetingFunction:p=>{if(!(d in p.data))return null;p=p.data[d];return kn(p)in l?p:"\ufffcOTHER\ufffc"},keyCompareFunction:m?cm:bm,labelingFunction:tn}}function tp(b,d){b=b.stats[d];if(!b||!nn(b))return null;const f=d3.scaleLinear().domain([b.numberMin,b.numberMax]).nice();return h=>f(h.data[d])}function vp(b){switch(b.elem.paletteChoice){case "warm":return wn;case "cool":return vn;case "assist":return xn;default:return un}}
+    function wp(b){const d=b.elem.colorBy,f=b.stats[d];var h=b.grid.items,m=d3.rgb("#A52714"),w=d3.scaleLinear();w.domain([f.numberMin,f.numberMax]).range(["white","#1C3AA9"]).nice();const l=[];for(var p=0;p<h.length;p++){var n=h[p];n=d in n.data?n.data[d]:NaN;n="number"!==typeof n||isNaN(n)?m:d3.rgb(w(n));l.push(n)}h=rp(b,d,5,!1,!1).labelingFunction;m=d3.scaleLinear();m.domain([0,4]).range(["white","#1C3AA9"]);w=[];for(p=4;0<=p;p--)n=h(p),w.push({key:p,color:m(p),content:n});(f.otherCount||f.stringCount||
+    f.totalCount<b.grid.items.length)&&w.push({key:NaN,color:"#A52714",content:{label:"missing",special:!0}});b.elem.set("palette",w);b.grid.cellItemComparator=(q,t)=>{if(!(d in q.data||d in t.data))return 0;if(!(d in q.data))return-1;if(!(d in t.data))return 1;q=q.data[d];t=t.data[d];if(q===t)return 0;const v="number"!==typeof q||isNaN(q),z="number"!==typeof t||isNaN(t);return v&&z?0:v?-1:z?1:q-t};return l}
+    function xp(b,d){const f=b.elem.colorBy,h=b.stats[f],m=b.grid.items,w=Object.keys(h.valueHash);b.elem.stableColors?w.sort():w.sort((z,y)=>h.valueHash[y].count-h.valueHash[z].count);const l=Math.min(d.length,w.length),p=w.slice(0,l).reduce((z,y,x)=>{z[y]=x;return z},{}),n=d3.rgb("#F0F0F0"),q=d.map(z=>d3.rgb(z));let t=!1;const v=[];for(let z=0;z<m.length;z++){const y=kn(m[z].data[f]);t=t||!(y in p);v.push(q[p[y]]||n)}d=d.slice(0,l).map((z,y)=>{y=h.valueHash[w[y]].value;return{key:y,color:z,content:{label:y+
+    "",special:"number"!==typeof y&&"string"!==typeof y||y in sn}}});t&&d.push({key:null,color:"#F0F0F0",content:{label:"other",special:!0}});b.elem.set("palette",d);b.grid.cellItemComparator=(z,y)=>{if(!(f in z.data||f in y.data))return 0;if(!(f in z.data))return 1;if(!(f in y.data))return-1;z=z.data[f];y=y.data[f];if(z===y)return 0;z=kn(z);y=kn(y);return z in p||y in p?z in p?y in p?p[z]-p[y]:-1:1:0};return v}
+    function yp(b){"stacked"!==b.elem.positionMode&&b.elem.verticalPosition&&b.elem.horizontalPosition||sp(b)}
+    function zp(b,d,f,h){const m=b.stats[d].wordTree,w=m.levelHash;return{facetingFunction:l=>{if(!(d in l.data))return null;for(l=m.nodeHash[kn(l.data[d])];l.parent&&l.level>f;)l=l.parent;return l.level},keyCompareFunction:(l,p)=>{l=w[l];p=w[p];if(void 0===l&&void 0===p)return 0;if(void 0===l)return-1;if(void 0===p)return 1;if(l.nonValueCount&&p.nonValueCount)return 0;if(l.nonValueCount)return-1;if(p.nonValueCount)return 1;p=p.order-l.order;return h?p:-p},labelingFunction:l=>{l=w[+l];if(!l.parent&&!l.commonWords.length)return{label:"other",
+    special:!0};if(l.nonValueCount)return{label:"non-words",special:!0};let p=` ${"\u2022"} ${l.commonWords.join(" ")}`;for(let n=0;n<l.children.length;n++)if(l.children[n].level>f){p+=" \u2026";break}for(;l.parent;)l=l.parent,l.commonWords.length&&(p=` ${"\u2022"} ${l.commonWords.join(" ")} `+p);return{label:p}}}}
+    function Ap(b,d,f){const h=b.stats[d],[m,w]=d3.scaleLinear().domain([h.numberMin,h.numberMax]).nice().domain(),l=w-m;let p=1;for(b=0;b<f;b++){var n=b;const q=n/f*l+m;n=(1+n)/f*l+m;q!==n&&(p=Math.max(p,Bp(q,n,p)))}return{facetingFunction:q=>{if(!(d in q.data))return null;q=q.data[d];return"number"!==typeof q?q:isNaN(q)?q:Math.min(Math.floor(f*(q-m)/l),f-1)},keyCompareFunction:dm,labelingFunction:q=>{if("number"!==typeof q||isNaN(+q))return tn(q);const t=q/f*l+m;q=(1+q)/f*l+m;return h.isInteger()?{label:Cp(Math.ceil(t),
+    Math.floor(q),p)}:{label:Cp(t,q,p)}}}}function Bp(b,d,f=1){for(;100>=f&&b.toPrecision(f)===d.toPrecision(f);)f++;return f}function Cp(b,d,f=3){if(b===d)return Hn(b,f);f=Bp(b,d,f);return`${Hn(b,f)} \u2014 ${Hn(d,f)}`}
+    class Dp{constructor(b){this.elem=b;this.endTimestamp=0;this.renderQueued=!1;this.labels=[];this.autoColorBy=!1;this.horizontalFacetInfo=this.verticalFacetInfo=null}ready(){this.layout=new Cm;this.holder=this.elem.$.holder;this.elem.scopeSubtree(this.holder,!0);this.cellBackgroundSVG=d3.select(this.holder).append("svg").style("left",0).style("position","absolute").style("top",0);this.cellBackgroundSVGRoot=this.cellBackgroundSVG.append("g").attr("class","root");this.cellBackgroundLayer=this.cellBackgroundSVGRoot.append("g").attr("class",
+    "labels");this.scene=new THREE.Scene;this.camera=new THREE.OrthographicCamera(0,100,0,100,.1,1E3);try{this.renderer=new THREE.WebGLRenderer({alpha:!0}),this.renderer.setPixelRatio(),d3.select(this.renderer.domElement).style("left",0).style("pointer-events","none").style("position","absolute").style("top",0),this.holder.appendChild(this.renderer.domElement)}catch(b){}this.zoom=d3.zoom().scaleExtent([1,500]).on("zoom",this.zoomed.bind(this));d3.select(this.elem).call(this.zoom);this.labelsAndAxesSVG=
+    d3.select(this.holder).append("svg").style("left",0).style("position","absolute").style("top",0);this.labelsAndAxesSVGRoot=this.labelsAndAxesSVG.append("g").attr("class","root");this.labelsLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","labels");this.axesLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","axes");this.comparedLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","comparedboxes");this.selectedLayer=this.labelsAndAxesSVGRoot.append("g").attr("class","selectedboxes");
+    this.labelsAndAxesSVG.on("click",this.clicked.bind(this));this.renderer||(this.labelsAndAxesSVG.style("display","none"),this.cellBackgroundSVG.style("display","none"),d3.select(this.holder).append("p").attr("class","error").style("color","darkred").html('\n            \x3cstrong\x3eERROR\x3c/strong\x3e: Facets Dive requires WebGL, and it is not\n            enabled in your browser. See\n            \x3ca rel\x3d"noreferrer" href\x3d"http://webglreport.com/"\x3e\n            WebGL Report\x3c/a\x3e for details.\n          '))}zoomed(){const {x:b,
+    y:d,k:f}=d3.event.transform,h=this.scale/f;this.camera.top*=h;this.camera.left*=h;this.camera.right*=h;this.camera.bottom*=h;this.camera.position.set(-b/f,d/f,this.camera.position.z);this.camera.updateProjectionMatrix();this.scale=f;An(this);Bn(this);Cn(this)}clicked(){var b=this.elem.getBoundingClientRect(),d=d3.event;b=gn(this.spriteMesh,this.camera.position.x+(d.clientX-b.left)/this.scale,this.camera.position.y-(d.clientY-b.top)/this.scale);var f={};if(d.ctrlKey)for(d=0;d<this.elem.selectedIndices.length;d++)f[this.elem.selectedIndices[d]]=
+    !0;for(d=0;d<b.length;d++)f[b[d]]=!0;this.elem.set("selectedIndices",Array.from(Object.keys(f).map(h=>+h)));b=[];for(f=0;f<this.elem.selectedIndices.length;f++)b.push(this.elem.data[this.elem.selectedIndices[f]]);this.elem.set("selectedData",b)}fitToViewport(){const b=this.elem.getBoundingClientRect();if(b.width&&b.height){this.layout.viewport.width=b.width;this.layout.viewport.height=b.height;this.layout.padding.bottom=this.elem.scenePadding;this.layout.padding.left=this.elem.scenePadding;this.layout.padding.right=
+    this.elem.scenePadding;this.layout.padding.top=this.elem.scenePadding;this.layout.grid={bottom:0,left:0,right:this.grid.width,top:this.grid.height};if(this.labels.length){var d=0,f=0,h=0,m=0;this.labelsLayer.selectAll(".label").each(function(p){var n=d3.select(this).select(".current").node().getBoundingClientRect();const q=p.elementMargin||{bottom:0,left:0,right:0,top:0},t=n.height+q.top+q.bottom;n=n.width+q.left+q.right;switch(p.side){case Zl.Bottom:d=Math.max(d,t);break;case Zl.Top:m=Math.max(m,
+    t);break;case Zl.Left:f=Math.max(f,n);break;case Zl.Right:h=Math.max(h,n);break;default:throw Error("Unrecognized Side.");}});this.layout.padding.bottom+=d;this.layout.padding.left+=f;this.layout.padding.right+=h;this.layout.padding.top+=m}Am(this.layout,b.width);Bm(this.layout,b.height);this.scale=ym(this.layout);var {position:w,frustum:l}=zm(this.layout);this.camera.left=l.left;this.camera.right=l.right;this.camera.top=l.top;this.camera.bottom=l.bottom;this.camera.position.set(w.x,w.y,100);this.camera.updateProjectionMatrix();
+    d3.select(this.elem).call(this.zoom.transform,d3.zoomIdentity.scale(this.scale).translate(-this.camera.position.x,this.camera.position.y));An(this);Bn(this);Cn(this)}else setTimeout(()=>this.fitToViewport(),100)}zoomIn(){this.zoom.scaleBy(d3.select(this.elem),1.1)}zoomOut(){this.zoom.scaleBy(d3.select(this.elem),1/1.1)}isVisible(b,d){var f=this.scale;var h=this.camera.position,m=this.camera;if(void 0!==b.minScale)f=b.scaleDown||f>=b.minScale;else if(b.boundingBox){var w=b.boundingBox;w.left>h.x+m.right||
+    w.right<h.x+m.left||w.bottom>h.y+m.top||w.top<h.y+m.bottom?f=!1:(m=b.elementMargin||{bottom:0,left:0,right:0,top:0},h=void 0===b.width?d.getBoundingClientRect().width+m.left+m.right:b.width,b=void 0===b.height?d.getBoundingClientRect().height+m.top+m.bottom:b.height,d=isFinite(w.top)&&isFinite(w.bottom)?w.top-w.bottom:Infinity,f=(isFinite(w.left)&&isFinite(w.right)?w.right-w.left:Infinity)*f>=h&&d*f>=b)}else f=!0;return f}atlasUrlChange(){clearTimeout(this.atlasUrlChangeTimer);delete this.atlasUrlChangeTimer;
+    if(this.spriteMesh){var b=this.elem.atlasUrl;b&&b.length&&b!==this.lastAtlasUrl&&(this.lastAtlasUrl=b,np(this),Om(this.spriteMesh.spriteAtlas,b,this.elem.crossOrigin,()=>{const d=this.elem.data,f=Date.now(),h=f+this.elem.fadeDuration;for(let m=0;d&&m<d.length;m++)this.spriteMesh.switchTextures(m,f,h);lp(this,h);this.ignoreChange=!0;this.elem.set("imageFieldName","");delete this.ignoreChange;this.autoColorBy&&(this.autoColorBy=!1,this.elem.set("colorBy",""))}))}else requestAnimationFrame(this.atlasUrlChange.bind(this))}spriteUrlChange(){const b=
+    this.elem.spriteUrl;if(b)if(this.spriteMesh){const d=new Image;void 0!==this.elem.crossOrigin&&(d.crossOrigin=this.elem.crossOrigin);d.onload=()=>{const f=this.spriteMesh.defaultTextureCanvas,h=f.getContext("2d");h.clearRect(0,0,f.width,f.height);h.drawImage(d,0,0,f.width,f.height);this.spriteMesh.defaultTexture.needsUpdate=!0;Cn(this)};d.src=b}else requestAnimationFrame(this.spriteUrlChange.bind(this))}getKeys(){var b;if((b=this.elem.data)&&b.length){var d={};for(let f=0;f<b.length;f++)if(b[f]){const h=
+    Object.keys(b[f]);for(let m=0;m<h.length;m++)d[h[m]]=!0}b=Object.keys(d)}else b=[];return b.sort()}}
+    Polymer({is:"facets-dive-vis",behaviors:[Polymer.IronResizableBehavior],properties:{data:{type:Array,value:null,observer:"_dataChange"},filteredDataIndices:{type:Array,value:null,observer:"_filteredDataIndicesChange"},atlasUrl:{type:String,value:null,observer:"_queueAtlasUrlChange"},spriteUrl:{type:String,value:null,observer:"_spriteUrlChange"},crossOrigin:{type:String,value:null},keys:{type:Array,value:[],notify:!0,readOnly:!0},stats:{type:Object,value:{},notify:!0,readOnly:!0},scenePadding:{type:Number,
+    value:8},tweenDuration:{type:Number,value:600},fadeDuration:{type:Number,value:200},spriteImageWidth:{type:Number,value:64},spriteImageHeight:{type:Number,value:64},gridFacetingVerticalLabelColor:{type:String,value:"#666666"},gridFacetingHorizontalLabelColor:{type:String,value:"#dd6622"},itemPositioningVerticalLabelColor:{type:String,value:"#2255aa"},itemPositioningHorizontalLabelColor:{type:String,value:"#118844"},fitGridAspectRatioToViewport:{type:Boolean,value:!1},verticalFacet:{type:String,value:"",
+    observer:"_updateGridFaceting"},verticalBuckets:{type:Number,value:10,observer:"_updateGridFaceting"},verticalBagOfWords:{type:Boolean,value:!1,observer:"_updateGridFaceting"},horizontalFacet:{type:String,value:"",observer:"_updateGridFaceting"},horizontalBuckets:{type:Number,value:10,observer:"_updateGridFaceting"},horizontalBagOfWords:{type:Boolean,value:!1,observer:"_updateGridFaceting"},positionMode:{type:String,value:"",observer:"_updateGridItemPositions"},verticalPosition:{type:String,value:"",
+    observer:"_updateGridItemPositions"},horizontalPosition:{type:String,value:"",observer:"_updateGridItemPositions"},colorBy:{type:String,value:"",observer:"_updateColors",notify:!0},imageFieldName:{type:String,value:"",observer:"_updateImageFieldName",notify:!0},palette:{type:Array,value:[],notify:!0},paletteChoice:{type:String,value:"standard",observer:"_updateColors"},selectedData:{type:Array,value:[],notify:!0},selectedIndices:{type:Array,value:[],notify:!0,observer:"_selectedIndicesUpdated"},comparedData:{type:Array,
+    value:[],notify:!0},comparedIndices:{type:Array,value:[],notify:!0,observer:"_comparedIndicesUpdated"},stableColors:{type:Boolean,value:!1,observer:"_updateColors"}},listeners:{"iron-resize":"_onIronResize"},created(){this._backing=new Dp(this)},ready(){this._backing.ready()},_dataChange(b){if(this._backing.scene){b=this._backing;var d=b.elem.data;if(d&&d.length){jp(b);b.stats=pn(d);if(b.items)if(b.items.length!==d.length)kp(b),mp(b);else for(var f=0;f<d.length;f++)b.items[f].data=d[f];else{kp(b);
+    d=null;var h=Infinity;for(var m in b.stats)if(b.stats.hasOwnProperty(m)){const w=b.stats[m],l=Math.abs(w.uniqueCount-un.length);1<w.uniqueCount&&l<h&&(d=m,h=l)}isFinite(h)&&d in b.stats&&(b.autoColorBy=!0,b.elem.set("colorBy",d));m="";d=-Infinity;for(f in b.stats)b.stats.hasOwnProperty(f)&&(h=b.stats[f],h=h.stringCount+h.stringLengthsCount-h.totalCount,h>d&&(m=f,d=h));isFinite(d)&&m in b.stats&&b.elem.set("imageFieldName",m)}pp(b);sp(b);up(b)}this._setKeys(this._backing.getKeys());this._setStats(this._backing.stats)}else requestAnimationFrame(this._dataChange.bind(this,
+    b))},_filteredDataIndicesChange(b){if(this._backing.scene&&this._backing.items){{b=this._backing;const h=b.elem.filteredDataIndices,m=[];if(h)for(var d=0;d<h.length;d++){var f=h[d];f<b.items.length&&(m[f]=!0)}d=[];f=[];const w=Date.now(),l=w+b.elem.tweenDuration;for(let p=0;p<b.items.length;p++){const n=b.items[p];!h||m[p]?(d.push(n.data),f.push(n),n.sprite.opacity||(n.sprite.rebase(w),n.sprite.timestamp=l,n.sprite.opacity=1)):0<n.sprite.opacity&&(n.sprite.rebase(w),n.sprite.timestamp=l,n.sprite.opacity=
+    0)}lp(b,l);b.stats=pn(d);b.grid.items=f;pp(b);sp(b)}this._setKeys(this._backing.getKeys());this._setStats(this._backing.stats)}else requestAnimationFrame(this._filteredDataIndicesChange.bind(this,b))},_queueAtlasUrlChange(){op(this._backing)},_spriteUrlChange(){this._backing.spriteUrlChange()},_updateGridFaceting(){pp(this._backing)},_updateGridItemPositions(){sp(this._backing)},_updateColors(){up(this._backing)},_updateImageFieldName(){mp(this._backing)},_onIronResize(){jp(this._backing)},_selectedIndicesUpdated(){var b=
+    this._backing;b.spriteMesh&&Dn(b)},_comparedIndicesUpdated(){var b=this._backing;if(b.spriteMesh){var d=[];for(let f=0;f<b.elem.comparedIndices.length;f++)d.push(b.elem.data[b.elem.comparedIndices[f]]);b.elem.set("comparedData",d);En(b)}},fitToViewport(){this._backing.fitToViewport()},zoomIn(){this._backing.zoomIn()},zoomOut(){this._backing.zoomOut()}});
+    </script>
+    
+    
+    <dom-module id="facets-dive-controls">
+      <template>
+        <style>
+          :host {
+            @apply --paper-font-common-base;
+            display: flex;
+            overflow: visible;
+          }
+    
+          .main-controls {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 60px;
+            display: flex;
+            height: 100%;
+            overflow: visible;
+          }
+    
+          .overflow-holder {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            right: 0;
+            overflow: visible;
+          }
+    
+          #overflowmenu {
+            margin: 0 40px;
+          }
+    
+          .overflow-div {
+            display: flex;
+            flex-direction: column;
+          }
+    
+          .overflow-checkbox {
+            margin: 8px 0;
+            
+          }
+    
+          .dropdown-holder {
+            display: flex;
+            width: 150px;
+            margin: 0 10px;
+          }
+    
+          .dropdown-trigger {
+            margin-top: 10px;
+          }
+    
+          .expand-button {
+            color: #9b9b9b;
+            --paper-icon-button-ink-color: #9b9b9b;
+          }
+          paper-menu paper-checkbox {
+            display: block;
+            font-weight: normal;
+            font-size: 12.5px;
+            text-align: center;
+          }
+    
+          paper-item {
+            padding: 0 14px;
+            --paper-item-min-height: 36px;
+          }
+          paper-dropdown-menu paper-item {
+            border-bottom: 1px solid #ccc;
+          }
+    
+          #verticalFacet {
+            --paper-input-container-input: {
+              color: var(--grid-faceting-vertical-label-color);
+            };
+          }
+          #horizontalFacet {
+            --paper-input-container-input: {
+              color: var(--grid-faceting-horizontal-label-color);
+            };
+          }
+          #verticalPosition {
+            --paper-input-container-input: {
+              color: var(--item-positioning-vertical-label-color);
+            };
+          }
+          #horizontalPosition {
+            --paper-input-container-input: {
+              color: var(--item-positioning-horizontal-label-color);
+            };
+          }
+          .vertical-facet {
+            color: var(--grid-faceting-vertical-label-color);
+          }
+          .horizontal-facet {
+            color: var(--grid-faceting-horizontal-label-color);
+          }
+          .vertical-position {
+            color: var(--item-positioning-vertical-label-color);
+          }
+          .horizontal-position {
+            color: var(--item-positioning-horizontal-label-color);
+          }
+        </style>
+    
+        <div class="main-controls">
+            <div class="dropdown-holder horizontal-facet">
+                <paper-dropdown-menu id="horizontalFacet" label="Binning | X-Axis" class="facet-selector">
+                  <paper-listbox class="dropdown-content" selected="{{horizontalFacet}}" attr-for-selected="value" slot="dropdown-content">
+                    <paper-item value="">(none)</paper-item>
+                    <template is="dom-repeat" items="[[keys]]">
+                      <paper-item value="[[item]]">[[_breakUpAndTruncate(item)]]</paper-item>
                     </template>
-        
-                    <template is="dom-if" if="[[_hasWordTree(verticalFacet)]]">
-                      <paper-checkbox checked="{{verticalBagOfWords}}">
-                        Bag of words
-                      </paper-checkbox>
-                    </template>
-        
-                    <div class="layout-row horizontal-facet">
-                      <iron-icon icon="av:equalizer"></iron-icon>
-                      <paper-dropdown-menu id="horizontalFacet" label="Column-Based Faceting" class="facet-selector">
-                        <paper-listbox class="dropdown-content" selected="{{horizontalFacet}}" attr-for-selected="value">
-                          <paper-item value="">&lt;NONE&gt;</paper-item>
-                          <template is="dom-repeat" items="[[keys]]">
-                            <paper-item value="[[item]]">[[_breakUpAndTruncate(item)]]</paper-item>
-                          </template>
-                        </paper-listbox>
-                      </paper-dropdown-menu>
-                    </div>
-        
-                    <template is="dom-if" if="[[horizontalFacet]]">
-                      <paper-slider pin snaps editable min="1" max="[[_maxBuckets(horizontalFacet,horizontalBagOfWords)]]" step="1" value="{{horizontalBuckets}}" immediate-value="{{horizontalBuckets}}"></paper-slider>
-                    </template>
-        
-                    <template is="dom-if" if="[[_hasWordTree(horizontalFacet)]]">
-                      <paper-checkbox checked="{{horizontalBagOfWords}}">
-                        Bag of words
-                      </paper-checkbox>
-                    </template>
-        
-                  </paper-menu>
-        
-                </paper-submenu>
-        
-              </paper-menu>
-        
-              <paper-menu multi="true">
-        
-                <paper-submenu>
-        
-                  <paper-item class="menu-trigger">
-                    <span class="menu-trigger-text">Positioning</span>
-                    <span style="flex:1"></span>
-                    <paper-icon-button icon="image:grain" class="expand-button">
-                    </paper-icon-button>
-                  </paper-item>
-        
-                  <paper-menu class="menu-content" opened="{{_anyPosition(verticalPosition,horizontalPosition,positionMode)}}">
-        
-                    <paper-radio-group selected="{{positionMode}}">
-                      <paper-radio-button name="stacked">Stacked</paper-radio-button>
-                      <paper-radio-button name="scatter">Scatter</paper-radio-button>
-                    </paper-radio-group>
-        
-                    <template is="dom-if" if="[[_isModeScatter(positionMode)]]">
-        
-                      <div class="layout-row vertical-position">
-                        <iron-icon icon="icons:trending-flat"></iron-icon>
-                        <paper-dropdown-menu id="verticalPosition" label="Vertical Position" class="position-selector">
-                          <paper-listbox class="dropdown-content" selected="{{verticalPosition}}" attr-for-selected="value">
-                            <paper-item value="">&lt;DEFAULT&gt;</paper-item>
-                            <template is="dom-repeat" items="[[keys]]" filter="_isKeyNumeric">
-                              <paper-item value="[[item]]">[[item]]</paper-item>
-                            </template>
-                          </paper-listbox>
-                        </paper-dropdown-menu>
-                      </div>
-        
-                      <div class="layout-row horizontal-position">
-                        <iron-icon icon="icons:trending-flat"></iron-icon>
-                        <paper-dropdown-menu id="horizontalPosition" label="Horizontal Position" class="position-selector">
-                          <paper-listbox class="dropdown-content" selected="{{horizontalPosition}}" attr-for-selected="value">
-                            <paper-item value="">&lt;DEFAULT&gt;</paper-item>
-                            <template is="dom-repeat" items="[[keys]]" filter="_isKeyNumeric">
-                              <paper-item value="[[item]]">[[item]]</paper-item>
-                            </template>
-                          </paper-listbox>
-                        </paper-dropdown-menu>
-                      </div>
-        
-                    </template>
-        
-                  </paper-menu>
-        
-                </paper-submenu>
-        
-              </paper-menu>
-        
-              <paper-menu multi="true">
-        
-                <paper-submenu>
-        
-                  <paper-item class="menu-trigger">
-                    <span class="menu-trigger-text">Color</span>
-                    <span style="flex:1"></span>
-                    <paper-icon-button icon="image:palette" class="expand-button">
-                    </paper-icon-button>
-                  </paper-item>
-        
-                  <paper-menu class="menu-content" opened="{{_anyColor(colorBy)}}">
-        
-                    <paper-dropdown-menu id="colorBy" label="Color By">
-                      <paper-listbox class="dropdown-content" selected="{{colorBy}}" attr-for-selected="value">
-                        <paper-item value="">&lt;NONE&gt;</paper-item>
-                        <template is="dom-repeat" items="[[keys]]">
-                          <paper-item value="[[item]]">[[item]]</paper-item>
-                        </template>
-                      </paper-listbox>
-                    </paper-dropdown-menu>
-        
-                    <template is="dom-if" if="{{_isKeyCategorical(colorBy)}}">
-                      <paper-dropdown-menu id="paletteChoice" label="Palette">
-                        <paper-listbox class="dropdown-content" selected="{{paletteChoice}}" attr-for-selected="value">
-                          <paper-item value="standard">standard</paper-item>
-                          <paper-item value="warm">warm</paper-item>
-                          <paper-item value="cool">cool</paper-item>
-                          <paper-item value="assist">assist</paper-item>
-                        </paper-listbox>
-                      </paper-dropdown-menu>
-                    </template>
-        
-                  </paper-menu>
-        
-                </paper-submenu>
-        
-              </paper-menu>
-        
-              <paper-menu multi="true">
-        
-                <paper-submenu>
-        
-                  <paper-item class="menu-trigger">
-                    <span class="menu-trigger-text">Display</span>
-                    <span style="flex:1"></span>
-                    <paper-icon-button icon="image:image" class="expand-button">
-                    </paper-icon-button>
-                  </paper-item>
-        
-                  <paper-menu class="menu-content" opened="">
-        
-                    <paper-dropdown-menu id="imageFieldName" label="Show for each Datapoint">
-                      <paper-listbox class="dropdown-content" selected="{{imageFieldName}}" attr-for-selected="value">
-                        <paper-item value="">
-                          [[_getImageFieldNameDefaultLabel(atlasUrl)]]
-                        </paper-item>
-                        <template is="dom-repeat" items="[[keys]]">
-                          <paper-item value="[[item]]">[[item]]</paper-item>
-                        </template>
-                      </paper-listbox>
-                    </paper-dropdown-menu>
-        
-                  </paper-menu>
-        
-                </paper-submenu>
-        
-              </paper-menu>
-        
-            </div>
-        
-            <template is="dom-if" if="{{_anySettings(verticalFacet,horizontalFacet,verticalPosition,horizontalPosition,colorBy,palette)}}">
-        
-              <div class="legend">
-        
-                <template is="dom-if" if="{{_anyFacetOrPosition(verticalFacet, horizontalFacet, verticalPosition, horizontalPosition)}}">
-        
-                  <h2>Legend</h2>
-        
-                  <template is="dom-if" if="[[verticalFacet]]">
-                    <div class="layout-row vertical-facet">
-                      <iron-icon icon="av:equalizer"></iron-icon>
-                      <span>[[_breakUpAndTruncate(verticalFacet)]]</span>
-                    </div>
-                  </template>
-                  <template is="dom-if" if="[[horizontalFacet]]">
-                    <div class="layout-row horizontal-facet">
-                      <iron-icon icon="av:equalizer"></iron-icon>
-                      <span>[[_breakUpAndTruncate(horizontalFacet)]]</span>
-                    </div>
-                  </template>
-                  <template is="dom-if" if="[[_isModeScatter(positionMode)]]">
-                    <template is="dom-if" if="[[verticalPosition]]">
-                      <div class="layout-row vertical-position">
-                        <iron-icon icon="icons:trending-flat"></iron-icon>
-                        <span>[[_breakUpAndTruncate(verticalPosition)]]</span>
-                      </div>
-                    </template>
-                    <template is="dom-if" if="[[horizontalPosition]]">
-                      <div class="layout-row horizontal-position">
-                        <iron-icon icon="icons:trending-flat"></iron-icon>
-                        <span>[[_breakUpAndTruncate(horizontalPosition)]]</span>
-                      </div>
-                    </template>
-                  </template>
-        
+                  </paper-listbox>
+                </paper-dropdown-menu>
+              </div>
+    
+              <template is="dom-if" if="[[horizontalFacet]]">
+              <paper-input type="number" min="1" max="[[_maxBuckets(horizontalFacet, horizontalBagOfWords)]]" value="{{horizontalBuckets}}" label="Count">
+                </paper-input>
+              </template>
+    
+          <div class="dropdown-holder vertical-facet">
+            <paper-dropdown-menu id="verticalFacet" label="Binning | Y-Axis" class="facet-selector">
+              <paper-listbox class="dropdown-content" selected="{{verticalFacet}}" attr-for-selected="value" slot="dropdown-content">
+                <paper-item value="">(none)</paper-item>
+                <template is="dom-repeat" items="[[keys]]">
+                  <paper-item value="[[item]]">[[_breakUpAndTruncate(item)]]</paper-item>
                 </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
+    
+          <template is="dom-if" if="[[verticalFacet]]">
+            <paper-input type="number" min="1" max="[[_maxBuckets(verticalFacet,verticalBagOfWords)]]" value="{{verticalBuckets}}" label="Count">
+            </paper-input>
+          </template>
+    
+          <div class="dropdown-holder">
+            <paper-dropdown-menu id="colorBy" label="Color By">
+              <paper-listbox class="dropdown-content" selected="{{colorBy}}" attr-for-selected="value" slot="dropdown-content">
+                <paper-item value="">(none)</paper-item>
+                <template is="dom-repeat" items="[[keys]]">
+                  <paper-item value="[[item]]">[[item]]</paper-item>
+                </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
+    
+          <div class="dropdown-holder">
+            <paper-dropdown-menu id="imageFieldName" label="Label By">
+              <paper-listbox class="dropdown-content" selected="{{imageFieldName}}" attr-for-selected="value" slot="dropdown-content">
+                <paper-item value="">
+                  [[_getImageFieldNameDefaultLabel(atlasUrl)]]
+                </paper-item>
+                <template is="dom-repeat" items="[[keys]]">
+                  <paper-item value="[[item]]">[[item]]</paper-item>
+                </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
+    
+          <div class="dropdown-holder horizontal-position">
+            <paper-dropdown-menu id="horizontalPosition" label="Scatter | X-Axis" class="position-selector">
+              <paper-listbox class="dropdown-content" selected="{{horizontalPosition}}" attr-for-selected="value" slot="dropdown-content">
+                <paper-item value="">(default)</paper-item>
+                <template is="dom-repeat" items="[[keys]]" filter="_isKeyNumeric">
+                  <paper-item value="[[item]]">[[item]]</paper-item>
+                </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
+    
+          <div class="dropdown-holder vertical-position">
+            <paper-dropdown-menu id="verticalPosition" label="Scatter | Y-Axis" class="position-selector">
+              <paper-listbox class="dropdown-content" selected="{{verticalPosition}}" attr-for-selected="value" slot="dropdown-content">
+                <paper-item value="">(default)</paper-item>
+                <template is="dom-repeat" items="[[keys]]" filter="_isKeyNumeric">
+                  <paper-item value="[[item]]">[[item]]</paper-item>
+                </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+          </div>
+        </div>
+        <div class="overflow-holder">
+          <template is="dom-if" if="[[_shouldShowOverflowMenu(colorBy, verticalFacet, horizontalFacet)]]">
+            <paper-icon-button class="dropdown-trigger" icon="more-vert" alt="more-vert" id="overflowbtn" on-click="_openOverflow">
+            </paper-icon-button>
+          </template>
+          <paper-dialog id="overflowmenu" no-overlap horizontal-align="right" vertical-align="top">
+            <div class="overflow-div">
+              <template is="dom-if" if="{{_isKeyCategorical(colorBy)}}">
+                <div class="dropdown-holder">
+                  <paper-dropdown-menu id="paletteChoice" label="Display | Color Palette">
+                    <paper-listbox class="dropdown-content" selected="{{paletteChoice}}" attr-for-selected="value" slot="dropdown-content">
+                      <paper-item value="standard">standard</paper-item>
+                      <paper-item value="warm">warm</paper-item>
+                      <paper-item value="cool">cool</paper-item>
+                      <paper-item value="assist">assist</paper-item>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+              </template>
+              <template is="dom-if" if="[[_hasWordTree(verticalFacet)]]">
+                <paper-checkbox class="overflow-checkbox" checked="{{verticalBagOfWords}}">
+                  X-Axis Bag of words
+                </paper-checkbox>
+              </template>
+    
+              <template is="dom-if" if="[[_hasWordTree(horizontalFacet)]]">
+                <paper-checkbox class="overflow-checkbox" checked="{{horizontalBagOfWords}}">
+                  Y-Axis Bag of words
+                </paper-checkbox>
+              </template>
+            </div>
+          </paper-dialog>
+        </div>
+      </template>
+    </dom-module>
+    
+    <script>//~~WEBPATH~~/facets-dive/components/facets-dive-controls/facets-dive-controls.js
+    Polymer({is:"facets-dive-controls",properties:{atlasUrl:{type:String,value:""},keys:{type:Array,value:[]},stats:{type:Object,value:{}},verticalFacet:{type:String,value:"",notify:!0},verticalBuckets:{type:Number,value:10,notify:!0},verticalBagOfWords:{type:Boolean,value:!1,notify:!0},horizontalFacet:{type:String,value:"",notify:!0},horizontalBuckets:{type:Number,value:10,notify:!0},horizontalBagOfWords:{type:Boolean,value:!1,notify:!0},positionMode:{type:String,computed:"_getPositionMode(verticalPosition, horizontalPosition)",
+    notify:!0},verticalPosition:{type:String,value:"",notify:!0},horizontalPosition:{type:String,value:"",notify:!0},colorBy:{type:String,value:"",notify:!0},imageFieldName:{type:String,value:"",notify:!0},palette:{type:Array,value:[]},paletteChoice:{type:String,value:"standard",notify:!0},gridFacetingVerticalLabelColor:{type:String,value:"#666666",observer:"_updateCSSVars"},gridFacetingHorizontalLabelColor:{type:String,value:"#dd6622",observer:"_updateCSSVars"},itemPositioningVerticalLabelColor:{type:String,
+    value:"#2255aa",observer:"_updateCSSVars"},itemPositioningHorizontalLabelColor:{type:String,value:"#118844",observer:"_updateCSSVars"}},_getImageFieldNameDefaultLabel(b){return b?"(image)":"(default)"},_isModeScatter(b){return"scatter"===b},_isKeyNumeric:function(b){return this.stats&&b in this.stats&&nn(this.stats[b])},_isKeyCategorical:function(b){return this.stats&&b in this.stats&&!nn(this.stats[b])},_updateCSSVars(){this.updateStyles({"--grid-faceting-vertical-label-color":this.gridFacetingVerticalLabelColor,
+    "--grid-faceting-horizontal-label-color":this.gridFacetingHorizontalLabelColor,"--item-positioning-vertical-label-color":this.itemPositioningVerticalLabelColor,"--item-positioning-horizontal-label-color":this.itemPositioningHorizontalLabelColor})},_breakUpAndTruncate(b){return qn(""+b).replace(/([\W_])/g,"$1\u200b")},_maxBuckets(b,d){const f=this.stats?this.stats[b]:null;return f?d&&this._hasWordTree(b)?Math.min(100,f.wordTree.highestLevel):Math.min(100,f.uniqueCount+1):100},_hasWordTree:function(b){b=
+    this.stats?this.stats[b]:null;return!!b&&!!b.wordTree&&1<b.wordTree.highestLevel},_getPositionMode(b,d){return""==b&&""==d?"stacked":"scatter"},_openOverflow(){this.$.overflowmenu.positionElement=this.$.overflowbtn;this.$.overflowmenu.open()},_shouldShowOverflowMenu(b,d,f){return this._isKeyCategorical(b)||this._hasWordTree(d)||this._hasWordTree(f)}});
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    <dom-module id="iron-image">
+      <template>
+        <style>
+          :host {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+          }
+    
+          #baseURIAnchor {
+            display: none;
+          }
+    
+          #sizedImgDiv {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+    
+            display: none;
+          }
+    
+          #img {
+            display: block;
+            width: var(--iron-image-width, auto);
+            height: var(--iron-image-height, auto);
+          }
+    
+          :host([sizing]) #sizedImgDiv {
+            display: block;
+          }
+    
+          :host([sizing]) #img {
+            display: none;
+          }
+    
+          #placeholder {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+    
+            background-color: inherit;
+            opacity: 1;
+    
+            @apply --iron-image-placeholder;
+          }
+    
+          #placeholder.faded-out {
+            transition: opacity 0.5s linear;
+            opacity: 0;
+          }
+        </style>
+    
+        <a id="baseURIAnchor" href="#"></a>
+        <div id="sizedImgDiv" role="img" hidden$="[[_computeImgDivHidden(sizing)]]" aria-hidden$="[[_computeImgDivARIAHidden(alt)]]" aria-label$="[[_computeImgDivARIALabel(alt, src)]]"></div>
+        <img id="img" alt$="[[alt]]" hidden$="[[_computeImgHidden(sizing)]]" on-load="_imgOnLoad" on-error="_imgOnError">
+        <div id="placeholder" hidden$="[[_computePlaceholderHidden(preload, fade, loading, loaded)]]" class$="[[_computePlaceholderClassName(preload, fade, loading, loaded)]]"></div>
+      </template>
+    
+      <script>//~~WEBPATH~~/iron-image/iron-image.html.js
+    Polymer({is:"iron-image",properties:{src:{type:String,value:""},alt:{type:String,value:null},preventLoad:{type:Boolean,value:!1},sizing:{type:String,value:null,reflectToAttribute:!0},position:{type:String,value:"center"},preload:{type:Boolean,value:!1},placeholder:{type:String,value:null,observer:"_placeholderChanged"},fade:{type:Boolean,value:!1},loaded:{notify:!0,readOnly:!0,type:Boolean,value:!1},loading:{notify:!0,readOnly:!0,type:Boolean,value:!1},error:{notify:!0,readOnly:!0,type:Boolean,value:!1},
+    width:{observer:"_widthChanged",type:Number,value:null},height:{observer:"_heightChanged",type:Number,value:null}},observers:["_transformChanged(sizing, position)","_loadStateObserver(src, preventLoad)"],created:function(){this._resolvedSrc=""},_imgOnLoad:function(){this.$.img.src===this._resolveSrc(this.src)&&(this._setLoading(!1),this._setLoaded(!0),this._setError(!1))},_imgOnError:function(){this.$.img.src===this._resolveSrc(this.src)&&(this.$.img.removeAttribute("src"),this.$.sizedImgDiv.style.backgroundImage=
+    "",this._setLoading(!1),this._setLoaded(!1),this._setError(!0))},_computePlaceholderHidden:function(){return!this.preload||!this.fade&&!this.loading&&this.loaded},_computePlaceholderClassName:function(){return this.preload&&this.fade&&!this.loading&&this.loaded?"faded-out":""},_computeImgDivHidden:function(){return!this.sizing},_computeImgDivARIAHidden:function(){return""===this.alt?"true":void 0},_computeImgDivARIALabel:function(){return null!==this.alt?this.alt:""===this.src?"":this._resolveSrc(this.src).replace(/[?|#].*/g,
+    "").split("/").pop()},_computeImgHidden:function(){return!!this.sizing},_widthChanged:function(){this.style.width=isNaN(this.width)?this.width:this.width+"px"},_heightChanged:function(){this.style.height=isNaN(this.height)?this.height:this.height+"px"},_loadStateObserver:function(b,d){var f=this._resolveSrc(b);f!==this._resolvedSrc&&(this._resolvedSrc=f,this.$.img.removeAttribute("src"),this.$.sizedImgDiv.style.backgroundImage="",""===b||d?this._setLoading(!1):(this.$.img.src=this._resolvedSrc,this.$.sizedImgDiv.style.backgroundImage=
+    'url("'+this._resolvedSrc+'")',this._setLoading(!0)),this._setLoaded(!1),this._setError(!1))},_placeholderChanged:function(){this.$.placeholder.style.backgroundImage=this.placeholder?'url("'+this.placeholder+'")':""},_transformChanged:function(){var b=this.$.sizedImgDiv.style,d=this.$.placeholder.style;b.backgroundSize=d.backgroundSize=this.sizing;b.backgroundPosition=d.backgroundPosition=this.sizing?this.position:"";b.backgroundRepeat=d.backgroundRepeat=this.sizing?"no-repeat":""},_resolveSrc:function(b){b=
+    Polymer.ResolveUrl.resolveUrl(b,this.$.baseURIAnchor.href);"/"===b[0]&&(b=(location.origin||location.protocol+"//"+location.host)+b);return b}});
+    </script>
+    </dom-module>
+    
+    
+    
+    
+    
+    
+    <dom-module id="paper-card">
+      <template>
+        <style include="paper-material-styles">
+          :host {
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            background-color: var(--paper-card-background-color, var(--primary-background-color));
+            border-radius: 2px;
+    
+            @apply --paper-font-common-base;
+            @apply --paper-card;
+          }
+    
+          /* IE 10 support for HTML5 hidden attr */
+          [hidden] {
+            display: none !important;
+          }
+    
+          .header {
+            position: relative;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            overflow: hidden;
+    
+            @apply --paper-card-header;
+          }
+    
+          .header iron-image {
+            display: block;
+            width: 100%;
+            --iron-image-width: 100%;
+            pointer-events: none;
+    
+            @apply --paper-card-header-image;
+          }
+    
+          .header .title-text {
+            padding: 16px;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--paper-card-header-color, #000);
+    
+            @apply --paper-card-header-text;
+          }
+    
+          .header .title-text.over-image {
+            position: absolute;
+            bottom: 0px;
+    
+            @apply --paper-card-header-image-text;
+          }
+    
+          :host ::slotted(.card-content) {
+            padding: 16px;
+            position:relative;
+    
+            @apply --paper-card-content;
+          }
+    
+          :host ::slotted(.card-actions) {
+            border-top: 1px solid #e8e8e8;
+            padding: 5px 16px;
+            position:relative;
+    
+            @apply --paper-card-actions;
+          }
+    
+          :host([elevation="1"]) {
+            @apply --paper-material-elevation-1;
+          }
+    
+          :host([elevation="2"]) {
+            @apply --paper-material-elevation-2;
+          }
+    
+          :host([elevation="3"]) {
+            @apply --paper-material-elevation-3;
+          }
+    
+          :host([elevation="4"]) {
+            @apply --paper-material-elevation-4;
+          }
+    
+          :host([elevation="5"]) {
+            @apply --paper-material-elevation-5;
+          }
+        </style>
+    
+        <div class="header">
+          <iron-image hidden$="[[!image]]" aria-hidden$="[[_isHidden(image)]]" src="[[image]]" alt="[[alt]]" placeholder="[[placeholderImage]]" preload="[[preloadImage]]" fade="[[fadeImage]]"></iron-image>
+          <div hidden$="[[!heading]]" class$="title-text [[_computeHeadingClass(image)]]">[[heading]]</div>
+        </div>
+    
+        <slot></slot>
+      </template>
+    
+      <script>//~~WEBPATH~~/paper-card/paper-card.html.js
+    Polymer({is:"paper-card",properties:{heading:{type:String,value:"",observer:"_headingChanged"},image:{type:String,value:""},alt:{type:String},preloadImage:{type:Boolean,value:!1},fadeImage:{type:Boolean,value:!1},placeholderImage:{type:String,value:null},elevation:{type:Number,value:1,reflectToAttribute:!0},animatedShadow:{type:Boolean,value:!1},animated:{type:Boolean,reflectToAttribute:!0,readOnly:!0,computed:"_computeAnimated(animatedShadow)"}},_isHidden:function(b){return b?"false":"true"},_headingChanged:function(b){var d=
+    this.getAttribute("heading"),f=this.getAttribute("aria-label");"string"===typeof f&&f!==d||this.setAttribute("aria-label",b)},_computeHeadingClass:function(b){return b?" over-image":""},_computeAnimated:function(b){return b}});
+    </script>
+    </dom-module>
+    
+    
+    <script>//~~WEBPATH~~/facets-dive/lib/info-renderers.js
+    const Ep=(b,d)=>{const f=document.createElement("dl");for(const m in b)if(b.hasOwnProperty(m)){var h=document.createElement("dt");h.textContent=m;f.appendChild(h);h=document.createElement("dd");h.textContent=b[m];f.appendChild(h)}d.appendChild(f)};
+    </script>
+    
+    
+    <dom-module id="facets-dive-info-card">
+      <template>
+        <style>
+          :host {
+            @apply --paper-font-common-base;
+            box-sizing: border-box;
+            max-height: 100%;
+            max-width: 100%;
+            overflow: auto;
+            padding: 8px;
+          }
+          dt {
+            color: #9e7c65;
+            font-size: 14px;
+          }
+          dd {
+            @apply --paper-font-common-code;
+            color: #513726;
+            margin: 0 0 16px 0;
+          }
+        </style>
+        <div id="holder"></div>
         
-                <template is="dom-if" if="{{_anyColor(colorBy, palette)}}">
-        
-                  <h2>Colors</h2>
-                  <span class="color-by-field">
-                    by [[_breakUpAndTruncate(colorBy)]]
-                    <paper-tooltip position="top">[[colorBy]]</paper-tooltip>
-                  </span>
-        
-                  <div class="legend-table">
+      </template>
+    </dom-module>
+    
+    <script>//~~WEBPATH~~/facets-dive/components/facets-dive-info-card/facets-dive-info-card.js
+    Polymer({is:"facets-dive-info-card",properties:{infoRenderer:{type:Object},selectedData:{type:Array,value:[],observer:"_updateSelected"}},ready(){this.scopeSubtree(this.$.holder,!0)},_updateSelected(b){this.$.holder.innerHTML="";if(b){var d=this.infoRenderer||Ep;for(let f=0;f<b.length;f++){const h=b[f],m=document.createElement("div");m.style.width="100%";this.$.holder.appendChild(m);d(h,m)}}}});
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    <dom-module id="iron-collapse">
+    
+      <template>
+    
+        <style>
+          :host {
+            display: block;
+            transition-duration: var(--iron-collapse-transition-duration, 300ms);
+            /* Safari 10 needs this property prefixed to correctly apply the custom property */
+            -webkit-transition-duration: var(--iron-collapse-transition-duration, 300ms);
+            overflow: visible;
+          }
+    
+          :host(.iron-collapse-closed) {
+            display: none;
+          }
+    
+          :host(:not(.iron-collapse-opened)) {
+            overflow: hidden;
+          }
+        </style>
+    
+        <slot></slot>
+    
+      </template>
+    
+    </dom-module>
+    
+    <script>//~~WEBPATH~~/iron-collapse/iron-collapse.html.js
+    Polymer({is:"iron-collapse",behaviors:[Polymer.IronResizableBehavior],properties:{horizontal:{type:Boolean,value:!1,observer:"_horizontalChanged"},opened:{type:Boolean,value:!1,notify:!0,observer:"_openedChanged"},transitioning:{type:Boolean,notify:!0,readOnly:!0},noAnimation:{type:Boolean},_desiredSize:{type:String,value:""}},get dimension(){return this.horizontal?"width":"height"},get _dimensionMax(){return this.horizontal?"maxWidth":"maxHeight"},get _dimensionMaxCss(){return this.horizontal?"max-width":
+    "max-height"},hostAttributes:{role:"group","aria-hidden":"true"},listeners:{transitionend:"_onTransitionEnd"},toggle:function(){this.opened=!this.opened},show:function(){this.opened=!0},hide:function(){this.opened=!1},updateSize:function(b,d){b="auto"===b?"":b;d=d&&!this.noAnimation&&this.isAttached&&this._desiredSize!==b;this._desiredSize=b;this._updateTransition(!1);d&&(d=this._calcSize(),""===b&&(this.style[this._dimensionMax]="",b=this._calcSize()),this.style[this._dimensionMax]=d,this.scrollTop=
+    this.scrollTop,this._updateTransition(!0),d=b!==d);this.style[this._dimensionMax]=b;d||this._transitionEnd()},enableTransition:function(b){Polymer.Base._warn("`enableTransition()` is deprecated, use `noAnimation` instead.");this.noAnimation=!b},_updateTransition:function(b){this.style.transitionDuration=b&&!this.noAnimation?"":"0s"},_horizontalChanged:function(){this.style.transitionProperty=this._dimensionMaxCss;this.style["maxWidth"===this._dimensionMax?"maxHeight":"maxWidth"]="";this.updateSize(this.opened?
+    "auto":"0px",!1)},_openedChanged:function(){this.setAttribute("aria-hidden",!this.opened);this._setTransitioning(!0);this.toggleClass("iron-collapse-closed",!1);this.toggleClass("iron-collapse-opened",!1);this.updateSize(this.opened?"auto":"0px",!0);this.opened&&this.focus()},_transitionEnd:function(){this.style[this._dimensionMax]=this._desiredSize;this.toggleClass("iron-collapse-closed",!this.opened);this.toggleClass("iron-collapse-opened",this.opened);this._updateTransition(!1);this.notifyResize();
+    this._setTransitioning(!1)},_onTransitionEnd:function(b){Polymer.dom(b).rootTarget===this&&this._transitionEnd()},_calcSize:function(){return this.getBoundingClientRect()[this.dimension]+"px"}});
+    </script>
+    
+    
+    
+    <iron-iconset-svg name="av" size="24">
+    <svg><defs>
+    <g id="add-to-queue"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-7v2h-3v3h-2v-3H8v-2h3V7h2v3h3z" /></g>
+    <g id="airplay"><path d="M6 22h12l-6-6zM21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v-2H3V5h18v12h-4v2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" /></g>
+    <g id="album"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" /></g>
+    <g id="art-track"><path d="M22 13h-8v-2h8v2zm0-6h-8v2h8V7zm-8 10h8v-2h-8v2zm-2-8v6c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2zm-1.5 6l-2.25-3-1.75 2.26-1.25-1.51L3.5 15h7z" /></g>
+    <g id="av-timer"><path d="M11 17c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1zm0-14v4h2V5.08c3.39.49 6 3.39 6 6.92 0 3.87-3.13 7-7 7s-7-3.13-7-7c0-1.68.59-3.22 1.58-4.42L12 13l1.41-1.41-6.8-6.8v.02C4.42 6.45 3 9.05 3 12c0 4.97 4.02 9 9 9 4.97 0 9-4.03 9-9s-4.03-9-9-9h-1zm7 9c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1zM6 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1z" /></g>
+    <g id="branding-watermark"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16h-9v-6h9v6z" /></g>
+    <g id="call-to-action"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3v-3h18v3z" /></g>
+    <g id="closed-caption"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 7H9.5v-.5h-2v3h2V13H11v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1zm7 0h-1.5v-.5h-2v3h2V13H18v1c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1z" /></g>
+    <g id="equalizer"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z" /></g>
+    <g id="explicit"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 6h-4v2h4v2h-4v2h4v2H9V7h6v2z" /></g>
+    <g id="fast-forward"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" /></g>
+    <g id="fast-rewind"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" /></g>
+    <g id="featured-play-list"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 8H3V9h9v2zm0-4H3V5h9v2z" /></g>
+    <g id="featured-video"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 9H3V5h9v7z" /></g>
+    <g id="fiber-dvr"><path d="M17.5 10.5h2v1h-2zm-13 0h2v3h-2zM21 3H3c-1.11 0-2 .89-2 2v14c0 1.1.89 2 2 2h18c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zM8 13.5c0 .85-.65 1.5-1.5 1.5H3V9h3.5c.85 0 1.5.65 1.5 1.5v3zm4.62 1.5h-1.5L9.37 9h1.5l1 3.43 1-3.43h1.5l-1.75 6zM21 11.5c0 .6-.4 1.15-.9 1.4L21 15h-1.5l-.85-2H17.5v2H16V9h3.5c.85 0 1.5.65 1.5 1.5v1z" /></g>
+    <g id="fiber-manual-record"><circle cx="12" cy="12" r="8" /></g>
+    <g id="fiber-new"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zM8.5 15H7.3l-2.55-3.5V15H3.5V9h1.25l2.5 3.5V9H8.5v6zm5-4.74H11v1.12h2.5v1.26H11v1.11h2.5V15h-4V9h4v1.26zm7 3.74c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1V9h1.25v4.51h1.13V9.99h1.25v3.51h1.12V9h1.25v5z" /></g>
+    <g id="fiber-pin"><path d="M5.5 10.5h2v1h-2zM20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zM9 11.5c0 .85-.65 1.5-1.5 1.5h-2v2H4V9h3.5c.85 0 1.5.65 1.5 1.5v1zm3.5 3.5H11V9h1.5v6zm7.5 0h-1.2l-2.55-3.5V15H15V9h1.25l2.5 3.5V9H20v6z" /></g>
+    <g id="fiber-smart-record"><g><circle cx="9" cy="12" r="8" /><path d="M17 4.26v2.09c2.33.82 4 3.04 4 5.65s-1.67 4.83-4 5.65v2.09c3.45-.89 6-4.01 6-7.74s-2.55-6.85-6-7.74z" /></g></g>
+    <g id="forward-10"><path d="M4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8zm6.8 3H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.8-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z" /></g>
+    <g id="forward-30"><path d="M9.6 13.5h.4c.2 0 .4-.1.5-.2s.2-.2.2-.4v-.2s-.1-.1-.1-.2-.1-.1-.2-.1h-.5s-.1.1-.2.1-.1.1-.1.2v.2h-1c0-.2 0-.3.1-.5s.2-.3.3-.4.3-.2.4-.2.4-.1.5-.1c.2 0 .4 0 .6.1s.3.1.5.2.2.2.3.4.1.3.1.5v.3s-.1.2-.1.3-.1.2-.2.2-.2.1-.3.2c.2.1.4.2.5.4s.2.4.2.6c0 .2 0 .4-.1.5s-.2.3-.3.4-.3.2-.5.2-.4.1-.6.1c-.2 0-.4 0-.5-.1s-.3-.1-.5-.2-.2-.2-.3-.4-.1-.4-.1-.6h.8v.2s.1.1.1.2.1.1.2.1h.5s.1-.1.2-.1.1-.1.1-.2v-.5s-.1-.1-.1-.2-.1-.1-.2-.1h-.6v-.7zm5.7.7c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5zM4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8z" /></g>
+    <g id="forward-5"><path d="M4 13c0 4.4 3.6 8 8 8s8-3.6 8-8h-2c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v4l5-5-5-5v4c-4.4 0-8 3.6-8 8zm6.7.9l.2-2.2h2.4v.7h-1.7l-.1.9s.1 0 .1-.1.1 0 .1-.1.1 0 .2 0h.2c.2 0 .4 0 .5.1s.3.2.4.3.2.3.3.5.1.4.1.6c0 .2 0 .4-.1.5s-.1.3-.3.5-.3.2-.5.3-.4.1-.6.1c-.2 0-.4 0-.5-.1s-.3-.1-.5-.2-.2-.2-.3-.4-.1-.3-.1-.5h.8c0 .2.1.3.2.4s.2.1.4.1c.1 0 .2 0 .3-.1l.2-.2s.1-.2.1-.3v-.6l-.1-.2-.2-.2s-.2-.1-.3-.1h-.2s-.1 0-.2.1-.1 0-.1.1-.1.1-.1.1h-.6z" /></g>
+    <g id="games"><path d="M15 7.5V2H9v5.5l3 3 3-3zM7.5 9H2v6h5.5l3-3-3-3zM9 16.5V22h6v-5.5l-3-3-3 3zM16.5 9l-3 3 3 3H22V9h-5.5z" /></g>
+    <g id="hd"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 12H9.5v-2h-2v2H6V9h1.5v2.5h2V9H11v6zm2-6h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1h-4V9zm1.5 4.5h2v-3h-2v3z" /></g>
+    <g id="hearing"><path d="M17 20c-.29 0-.56-.06-.76-.15-.71-.37-1.21-.88-1.71-2.38-.51-1.56-1.47-2.29-2.39-3-.79-.61-1.61-1.24-2.32-2.53C9.29 10.98 9 9.93 9 9c0-2.8 2.2-5 5-5s5 2.2 5 5h2c0-3.93-3.07-7-7-7S7 5.07 7 9c0 1.26.38 2.65 1.07 3.9.91 1.65 1.98 2.48 2.85 3.15.81.62 1.39 1.07 1.71 2.05.6 1.82 1.37 2.84 2.73 3.55.51.23 1.07.35 1.64.35 2.21 0 4-1.79 4-4h-2c0 1.1-.9 2-2 2zM7.64 2.64L6.22 1.22C4.23 3.21 3 5.96 3 9s1.23 5.79 3.22 7.78l1.41-1.41C6.01 13.74 5 11.49 5 9s1.01-4.74 2.64-6.36zM11.5 9c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5-2.5 1.12-2.5 2.5z" /></g>
+    <g id="high-quality"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 11H9.5v-2h-2v2H6V9h1.5v2.5h2V9H11v6zm7-1c0 .55-.45 1-1 1h-.75v1.5h-1.5V15H14c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v4zm-3.5-.5h2v-3h-2v3z" /></g>
+    <g id="library-add"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z" /></g>
+    <g id="library-books"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" /></g>
+    <g id="library-music"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 5h-3v5.5c0 1.38-1.12 2.5-2.5 2.5S10 13.88 10 12.5s1.12-2.5 2.5-2.5c.57 0 1.08.19 1.5.51V5h4v2zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z" /></g>
+    <g id="loop"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" /></g>
+    <g id="mic"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z" /></g>
+    <g id="mic-none"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1.2-9.1c0-.66.54-1.2 1.2-1.2.66 0 1.2.54 1.2 1.2l-.01 6.2c0 .66-.53 1.2-1.19 1.2-.66 0-1.2-.54-1.2-1.2V4.9zm6.5 6.1c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z" /></g>
+    <g id="mic-off"><path d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28zm-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18l5.98 5.99zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73 4.27 3z" /></g>
+    <g id="movie"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" /></g>
+    <g id="music-video"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c0-1.66 1.34-3 3-3 .35 0 .69.07 1 .18V6h5v2h-3v7.03c-.02 1.64-1.35 2.97-3 2.97-1.66 0-3-1.34-3-3z" /></g>
+    <g id="new-releases"><path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z" /></g>
+    <g id="not-interested"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z" /></g>
+    <g id="note"><path d="M22 10l-6-6H4c-1.1 0-2 .9-2 2v12.01c0 1.1.9 1.99 2 1.99l16-.01c1.1 0 2-.89 2-1.99v-8zm-7-4.5l5.5 5.5H15V5.5z" /></g>
+    <g id="pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></g>
+    <g id="pause-circle-filled"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" /></g>
+    <g id="pause-circle-outline"><path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" /></g>
+    <g id="play-arrow"><path d="M8 5v14l11-7z" /></g>
+    <g id="play-circle-filled"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" /></g>
+    <g id="play-circle-outline"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></g>
+    <g id="playlist-add"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z" /></g>
+    <g id="playlist-add-check"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zM2 16h8v-2H2v2zm19.5-4.5L23 13l-6.99 7-4.51-4.5L13 14l3.01 3 5.49-5.5z" /></g>
+    <g id="playlist-play"><path d="M19 9H2v2h17V9zm0-4H2v2h17V5zM2 15h13v-2H2v2zm15-2v6l5-3-5-3z" /></g>
+    <g id="queue"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z" /></g>
+    <g id="queue-music"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z" /></g>
+    <g id="queue-play-next"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h2v-2H3V5h18v8h2V5c0-1.11-.9-2-2-2zm-8 7V7h-2v3H8v2h3v3h2v-3h3v-2h-3zm11 8l-4.5 4.5L18 21l3-3-3-3 1.5-1.5L24 18z" /></g>
+    <g id="radio"><path d="M3.24 6.15C2.51 6.43 2 7.17 2 8v12c0 1.1.89 2 2 2h16c1.11 0 2-.9 2-2V8c0-1.11-.89-2-2-2H8.3l8.26-3.34L15.88 1 3.24 6.15zM7 20c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-8h-2v-2h-2v2H4V8h16v4z" /></g>
+    <g id="recent-actors"><path d="M21 5v14h2V5h-2zm-4 14h2V5h-2v14zM14 5H2c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1zM8 7.75c1.24 0 2.25 1.01 2.25 2.25S9.24 12.25 8 12.25 5.75 11.24 5.75 10 6.76 7.75 8 7.75zM12.5 17h-9v-.75c0-1.5 3-2.25 4.5-2.25s4.5.75 4.5 2.25V17z" /></g>
+    <g id="remove-from-queue"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-7v2H8v-2h8z" /></g>
+    <g id="repeat"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z" /></g>
+    <g id="repeat-one"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4zm-4-2V9h-1l-2 1v1h1.5v4H13z" /></g>
+    <g id="replay"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" /></g>
+    <g id="replay-10"><path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z" /></g>
+    <g id="replay-30"><path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-2.4 8.5h.4c.2 0 .4-.1.5-.2s.2-.2.2-.4v-.2s-.1-.1-.1-.2-.1-.1-.2-.1h-.5s-.1.1-.2.1-.1.1-.1.2v.2h-1c0-.2 0-.3.1-.5s.2-.3.3-.4.3-.2.4-.2.4-.1.5-.1c.2 0 .4 0 .6.1s.3.1.5.2.2.2.3.4.1.3.1.5v.3s-.1.2-.1.3-.1.2-.2.2-.2.1-.3.2c.2.1.4.2.5.4s.2.4.2.6c0 .2 0 .4-.1.5s-.2.3-.3.4-.3.2-.5.2-.4.1-.6.1c-.2 0-.4 0-.5-.1s-.3-.1-.5-.2-.2-.2-.3-.4-.1-.4-.1-.6h.8v.2s.1.1.1.2.1.1.2.1h.5s.1-.1.2-.1.1-.1.1-.2v-.5s-.1-.1-.1-.2-.1-.1-.2-.1h-.6v-.7zm5.7.7c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1.3.2.5.3.2.3.3.6.1.5.1.8v.7zm-.8-.8v-.5c0-.1-.1-.2-.1-.3s-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z" /></g>
+    <g id="replay-5"><path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.3 8.9l.2-2.2h2.4v.7h-1.7l-.1.9s.1 0 .1-.1.1 0 .1-.1.1 0 .2 0h.2c.2 0 .4 0 .5.1s.3.2.4.3.2.3.3.5.1.4.1.6c0 .2 0 .4-.1.5s-.1.3-.3.5-.3.2-.4.3-.4.1-.6.1c-.2 0-.4 0-.5-.1s-.3-.1-.5-.2-.2-.2-.3-.4-.1-.3-.1-.5h.8c0 .2.1.3.2.4s.2.1.4.1c.1 0 .2 0 .3-.1l.2-.2s.1-.2.1-.3v-.6l-.1-.2-.2-.2s-.2-.1-.3-.1h-.2s-.1 0-.2.1-.1 0-.1.1-.1.1-.1.1h-.7z" /></g>
+    <g id="shuffle"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z" /></g>
+    <g id="skip-next"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" /></g>
+    <g id="skip-previous"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" /></g>
+    <g id="slow-motion-video"><path d="M13.05 9.79L10 7.5v9l3.05-2.29L16 12zm0 0L10 7.5v9l3.05-2.29L16 12zm0 0L10 7.5v9l3.05-2.29L16 12zM11 4.07V2.05c-2.01.2-3.84 1-5.32 2.21L7.1 5.69c1.11-.86 2.44-1.44 3.9-1.62zM5.69 7.1L4.26 5.68C3.05 7.16 2.25 8.99 2.05 11h2.02c.18-1.46.76-2.79 1.62-3.9zM4.07 13H2.05c.2 2.01 1 3.84 2.21 5.32l1.43-1.43c-.86-1.1-1.44-2.43-1.62-3.89zm1.61 6.74C7.16 20.95 9 21.75 11 21.95v-2.02c-1.46-.18-2.79-.76-3.9-1.62l-1.42 1.43zM22 12c0 5.16-3.92 9.42-8.95 9.95v-2.02C16.97 19.41 20 16.05 20 12s-3.03-7.41-6.95-7.93V2.05C18.08 2.58 22 6.84 22 12z" /></g>
+    <g id="snooze"><path d="M7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-3-9h3.63L9 15.2V17h6v-2h-3.63L15 10.8V9H9v2z" /></g>
+    <g id="sort-by-alpha"><path d="M14.94 4.66h-4.72l2.36-2.36zm-4.69 14.71h4.66l-2.33 2.33zM6.1 6.27L1.6 17.73h1.84l.92-2.45h5.11l.92 2.45h1.84L7.74 6.27H6.1zm-1.13 7.37l1.94-5.18 1.94 5.18H4.97zm10.76 2.5h6.12v1.59h-8.53v-1.29l5.92-8.56h-5.88v-1.6h8.3v1.26l-5.93 8.6z" /></g>
+    <g id="stop"><path d="M6 6h12v12H6z" /></g>
+    <g id="subscriptions"><path d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 10v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2zm-6 4l-6-3.27v6.53L16 16z" /></g>
+    <g id="subtitles"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 12h4v2H4v-2zm10 6H4v-2h10v2zm6 0h-4v-2h4v2zm0-4H10v-2h10v2z" /></g>
+    <g id="surround-sound"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.76 16.24l-1.41 1.41C4.78 16.1 4 14.05 4 12c0-2.05.78-4.1 2.34-5.66l1.41 1.41C6.59 8.93 6 10.46 6 12s.59 3.07 1.76 4.24zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm5.66 1.66l-1.41-1.41C17.41 15.07 18 13.54 18 12s-.59-3.07-1.76-4.24l1.41-1.41C19.22 7.9 20 9.95 20 12c0 2.05-.78 4.1-2.34 5.66zM12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" /></g>
+    <g id="video-call"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z" /></g>
+    <g id="video-label"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z" /></g>
+    <g id="video-library"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z" /></g>
+    <g id="videocam"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" /></g>
+    <g id="videocam-off"><path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z" /></g>
+    <g id="volume-down"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z" /></g>
+    <g id="volume-mute"><path d="M7 9v6h4l5 5V4l-5 5H7z" /></g>
+    <g id="volume-off"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></g>
+    <g id="volume-up"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></g>
+    <g id="web"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z" /></g>
+    <g id="web-asset"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm0 14H5V8h14v10z" /></g>
+    </defs></svg>
+    </iron-iconset-svg>
+    
+    
+    
+    
+    
+    
+    
+    
+    <dom-module id="paper-tooltip">
+      <template>
+        <style>
+          :host {
+            display: block;
+            position: absolute;
+            outline: none;
+            z-index: 1002;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+          }
+    
+          #tooltip {
+            display: block;
+            outline: none;
+            @apply --paper-font-common-base;
+            font-size: 10px;
+            line-height: 1;
+            background-color: var(--paper-tooltip-background, #616161);
+            color: var(--paper-tooltip-text-color, white);
+            padding: 8px;
+            border-radius: 2px;
+            @apply --paper-tooltip;
+          }
+    
+          @keyframes keyFrameScaleUp {
+            0% {
+              transform: scale(0.0);
+            }
+            100% {
+              transform: scale(1.0);
+            }
+          }
+    
+          @keyframes keyFrameScaleDown {
+            0% {
+              transform: scale(1.0);
+            }
+            100% {
+              transform: scale(0.0);
+            }
+          }
+    
+          @keyframes keyFrameFadeInOpacity {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: var(--paper-tooltip-opacity, 0.9);
+            }
+          }
+    
+          @keyframes keyFrameFadeOutOpacity {
+            0% {
+              opacity: var(--paper-tooltip-opacity, 0.9);
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+    
+          @keyframes keyFrameSlideDownIn {
+            0% {
+              transform: translateY(-2000px);
+              opacity: 0;
+            }
+            10% {
+              opacity: 0.2;
+            }
+            100% {
+              transform: translateY(0);
+              opacity: var(--paper-tooltip-opacity, 0.9);
+            }
+          }
+    
+          @keyframes keyFrameSlideDownOut {
+            0% {
+              transform: translateY(0);
+              opacity: var(--paper-tooltip-opacity, 0.9);
+            }
+            10% {
+              opacity: 0.2;
+            }
+            100% {
+              transform: translateY(-2000px);
+              opacity: 0;
+            }
+          }
+    
+          .fade-in-animation {
+            opacity: 0;
+            animation-delay: var(--paper-tooltip-delay-in, 500ms);
+            animation-name: keyFrameFadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: var(--paper-tooltip-duration-in, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .fade-out-animation {
+            opacity: var(--paper-tooltip-opacity, 0.9);
+            animation-delay: var(--paper-tooltip-delay-out, 0ms);
+            animation-name: keyFrameFadeOutOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: var(--paper-tooltip-duration-out, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .scale-up-animation {
+            transform: scale(0);
+            opacity: var(--paper-tooltip-opacity, 0.9);
+            animation-delay: var(--paper-tooltip-delay-in, 500ms);
+            animation-name: keyFrameScaleUp;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: var(--paper-tooltip-duration-in, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .scale-down-animation {
+            transform: scale(1);
+            opacity: var(--paper-tooltip-opacity, 0.9);
+            animation-delay: var(--paper-tooltip-delay-out, 500ms);
+            animation-name: keyFrameScaleDown;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: var(--paper-tooltip-duration-out, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .slide-down-animation {
+            transform: translateY(-2000px);
+            opacity: 0;
+            animation-delay: var(--paper-tooltip-delay-out, 500ms);
+            animation-name: keyFrameSlideDownIn;
+            animation-iteration-count: 1;
+            animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+            animation-duration: var(--paper-tooltip-duration-out, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .slide-down-animation-out {
+            transform: translateY(0);
+            opacity: var(--paper-tooltip-opacity, 0.9);
+            animation-delay: var(--paper-tooltip-delay-out, 500ms);
+            animation-name: keyFrameSlideDownOut;
+            animation-iteration-count: 1;
+            animation-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
+            animation-duration: var(--paper-tooltip-duration-out, 500ms);
+            animation-fill-mode: forwards;
+            @apply --paper-tooltip-animation;
+          }
+    
+          .cancel-animation {
+            animation-delay: -30s !important;
+          }
+    
+          /* Thanks IE 10. */
+    
+          .hidden {
+            display: none !important;
+          }
+        </style>
+    
+        <div id="tooltip" class="hidden">
+          <slot></slot>
+        </div>
+      </template>
+    
+      <script>//~~WEBPATH~~/paper-tooltip/paper-tooltip.html.js
+    Polymer({is:"paper-tooltip",hostAttributes:{role:"tooltip",tabindex:-1},properties:{for:{type:String,observer:"_findTarget"},manualMode:{type:Boolean,value:!1,observer:"_manualModeChanged"},position:{type:String,value:"bottom"},fitToVisibleBounds:{type:Boolean,value:!1},offset:{type:Number,value:14},marginTop:{type:Number,value:14},animationDelay:{type:Number,value:500,observer:"_delayChange"},animationEntry:{type:String,value:""},animationExit:{type:String,value:""},animationConfig:{type:Object,
+    value:function(){return{entry:[{name:"fade-in-animation",node:this,timing:{delay:0}}],exit:[{name:"fade-out-animation",node:this}]}}},_showing:{type:Boolean,value:!1}},listeners:{webkitAnimationEnd:"_onAnimationEnd"},get target(){var b=Polymer.dom(this).parentNode,d=Polymer.dom(this).getOwnerRoot();return this.for?Polymer.dom(d).querySelector("#"+this.for):b.nodeType==Node.DOCUMENT_FRAGMENT_NODE?d.host:b},attached:function(){this._findTarget()},detached:function(){this.manualMode||this._removeListeners()},
+    playAnimation:function(b){"entry"===b?this.show():"exit"===b&&this.hide()},cancelAnimation:function(){this.$.tooltip.classList.add("cancel-animation")},show:function(){if(!this._showing){if(""===Polymer.dom(this).textContent.trim()){for(var b=!0,d=Polymer.dom(this).getEffectiveChildNodes(),f=0;f<d.length;f++)if(""!==d[f].textContent.trim()){b=!1;break}if(b)return}this._showing=!0;this.$.tooltip.classList.remove("hidden");this.$.tooltip.classList.remove("cancel-animation");this.$.tooltip.classList.remove(this._getAnimationType("exit"));
+    this.updatePosition();this._animationPlaying=!0;this.$.tooltip.classList.add(this._getAnimationType("entry"))}},hide:function(){this._showing&&(this._animationPlaying?(this._showing=!1,this._cancelAnimation()):(this._onAnimationFinish(),this._showing=!1,this._animationPlaying=!0))},updatePosition:function(){if(this._target&&this.offsetParent){var b=this.offset;14!=this.marginTop&&14==this.offset&&(b=this.marginTop);var d=this.offsetParent.getBoundingClientRect(),f=this._target.getBoundingClientRect(),
+    h=this.getBoundingClientRect(),m=(f.width-h.width)/2,w=(f.height-h.height)/2,l=f.left-d.left,p=f.top-d.top;switch(this.position){case "top":var n=l+m;var q=p-h.height-b;break;case "bottom":n=l+m;q=p+f.height+b;break;case "left":n=l-h.width-b;q=p+w;break;case "right":n=l+f.width+b,q=p+w}this.fitToVisibleBounds?(d.left+n+h.width>window.innerWidth?(this.style.right="0px",this.style.left="auto"):(this.style.left=Math.max(0,n)+"px",this.style.right="auto"),d.top+q+h.height>window.innerHeight?(this.style.bottom=
+    d.height+"px",this.style.top="auto"):(this.style.top=Math.max(-d.top,q)+"px",this.style.bottom="auto")):(this.style.left=n+"px",this.style.top=q+"px")}},_addListeners:function(){this._target&&(this.listen(this._target,"mouseenter","show"),this.listen(this._target,"focus","show"),this.listen(this._target,"mouseleave","hide"),this.listen(this._target,"blur","hide"),this.listen(this._target,"tap","hide"));this.listen(this.$.tooltip,"animationend","_onAnimationEnd");this.listen(this,"mouseenter","hide")},
+    _findTarget:function(){this.manualMode||this._removeListeners();this._target=this.target;this.manualMode||this._addListeners()},_delayChange:function(b){500!==b&&this.updateStyles({"--paper-tooltip-delay-in":b+"ms"})},_manualModeChanged:function(){this.manualMode?this._removeListeners():this._addListeners()},_cancelAnimation:function(){this.$.tooltip.classList.remove(this._getAnimationType("entry"));this.$.tooltip.classList.remove(this._getAnimationType("exit"));this.$.tooltip.classList.remove("cancel-animation");
+    this.$.tooltip.classList.add("hidden")},_onAnimationFinish:function(){this._showing&&(this.$.tooltip.classList.remove(this._getAnimationType("entry")),this.$.tooltip.classList.remove("cancel-animation"),this.$.tooltip.classList.add(this._getAnimationType("exit")))},_onAnimationEnd:function(){this._animationPlaying=!1;this._showing||(this.$.tooltip.classList.remove(this._getAnimationType("exit")),this.$.tooltip.classList.add("hidden"))},_getAnimationType:function(b){if("entry"===b&&""!==this.animationEntry)return this.animationEntry;
+    if("exit"===b&&""!==this.animationExit)return this.animationExit;if(this.animationConfig[b]&&"string"===typeof this.animationConfig[b][0].name){if(this.animationConfig[b][0].timing&&this.animationConfig[b][0].timing.delay&&0!==this.animationConfig[b][0].timing.delay){var d=this.animationConfig[b][0].timing.delay;"entry"===b?this.updateStyles({"--paper-tooltip-delay-in":d+"ms"}):"exit"===b&&this.updateStyles({"--paper-tooltip-delay-out":d+"ms"})}return this.animationConfig[b][0].name}},_removeListeners:function(){this._target&&
+    (this.unlisten(this._target,"mouseenter","show"),this.unlisten(this._target,"focus","show"),this.unlisten(this._target,"mouseleave","hide"),this.unlisten(this._target,"blur","hide"),this.unlisten(this._target,"tap","hide"));this.unlisten(this.$.tooltip,"animationend","_onAnimationEnd");this.unlisten(this,"mouseenter","hide")}});
+    </script>
+    </dom-module>
+    
+    
+    <dom-module id="facets-dive-legend">
+      <template>
+        <style>
+          :host {
+            @apply --paper-font-common-base;
+          }
+    
+          .legend {
+            border: 1px solid #a9a9a9;
+            min-width: 200px;
+          }
+    
+          .topbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            background: #E6E6FA;
+          }
+    
+          .expand-button {
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+          }
+    
+          .legend-body {
+            border-top: 1px solid #a9a9a9;
+            padding: 8px;
+            background: white;
+          }
+    
+          .legend .layout-row {
+            margin: 0;
+          }
+          .legend .layout-row span {
+            margin: 2px 0 0 8px;
+          }
+    
+          /**
+           * Legend table shim. Polymer's dom-repeat feature has a known issue in
+           * which it doesn't work with <tr> elements inside of a <table>. So
+           * instead, we use CSS with classed divs to achieve table behavior.
+           */
+          .legend-table {
+            display: table;
+            margin-left: 2px;
+          }
+          .legend-row {
+            display: table-row;
+          }
+          .legend-cell {
+            display: table-cell;
+          }
+    
+          /**
+           * Color legend.
+           */
+          .legend .color {
+            font-size: 14px;
+          }
+          .legend .color iron-icon {
+            --iron-icon-width: 16px;
+            --iron-icon-height: 16px;
+            margin: 0 2px;
+          }
+          .legend .color iron-icon[fill="#ffffff"] {
+            background: #dddddd;
+          }
+          .legend .color span {
+            margin: 0;
+          }
+          .legend .special {
+            font-style: italic;
+          }
+    
+          .legend h2 {
+            @apply --paper-font-subhead;
+            color: #4f423e;
+            font-weight: bold;
+            line-height: 1;
+            margin: 0;
+          }
+          .legend .color-by-field {
+            color: #968e8c;
+            display: block;
+            font-size: 12.5px;
+            font-weight: normal;
+            margin: 2px 0 4px 20px;
+          }
+          .vertical-facet {
+            color: var(--grid-faceting-vertical-label-color);
+          }
+          .vertical-facet iron-icon {
+            fill: var(--grid-faceting-vertical-label-color);
+            transform: rotate(-90deg) scale(0.9, 1.1);
+          }
+          .horizontal-facet {
+            color: var(--grid-faceting-horizontal-label-color);
+          }
+          .horizontal-facet iron-icon {
+            fill: var(--grid-faceting-horizontal-label-color);
+          }
+          .vertical-position {
+            color: var(--item-positioning-vertical-label-color);
+          }
+          .vertical-position iron-icon {
+            fill: var(--item-positioning-vertical-label-color);
+            transform: rotate(-90deg);
+          }
+          .horizontal-position {
+            color: var(--item-positioning-horizontal-label-color);
+          }
+          .horizontal-position iron-icon {
+            fill: var(--item-positioning-horizontal-label-color);
+          }
+        </style>
+        <template is="dom-if" if="[[_anyColor(colorBy, palette)]]">
+          <div class="legend">
+            <div class="topbar">
+              <div class="title">Legend</div>
+              <paper-icon-button class="expand-button" on-click="_toggleOpened" icon="[[_getIcon(_opened)]]">
+              </paper-icon-button>
+            </div>
+            <iron-collapse id="collapse" opened="{{_opened}}">
+              <div class="legend-body">
+                <h2>Colors</h2>
+                <span class="color-by-field">
+                  by [[_breakUpAndTruncate(colorBy)]]
+                  <paper-tooltip position="top">[[colorBy]]</paper-tooltip>
+                </span>
+    
+                <div class="legend-table">
                   <template is="dom-repeat" items="[[palette]]">
                     <div class="legend-row color">
                       <div class="legend-cell">
-                      <iron-icon icon="av:fiber-manual-record" fill$="[[item.color]]" style$="fill:[[item.color]]"></iron-icon>
+                        <iron-icon icon="av:fiber-manual-record" fill$="[[item.color]]" style$="fill:[[item.color]]"></iron-icon>
                       </div>
                       <div class="legend-cell">
                         <span class$="[[_specialClass(item.content.special)]]">
@@ -21614,993 +22121,99 @@
                       </div>
                     </div>
                   </template>
-                  </div>
-        
-                </template>
-        
+                </div>
               </div>
-        
-            </template>
-        
-          </template>
-        </dom-module>
-        
-        <script>//~~WEBPATH~~/facets-dive/components/facets-dive-controls/facets-dive-controls.js
-        Polymer({is:"facets-dive-controls",properties:{atlasUrl:{type:String,value:""},keys:{type:Array,value:[]},stats:{type:Object,value:{}},verticalFacet:{type:String,value:"",notify:!0},verticalBuckets:{type:Number,value:10,notify:!0},verticalBagOfWords:{type:Boolean,value:!1,notify:!0},horizontalFacet:{type:String,value:"",notify:!0},horizontalBuckets:{type:Number,value:10,notify:!0},horizontalBagOfWords:{type:Boolean,value:!1,notify:!0},positionMode:{type:String,value:"stacked",notify:!0},verticalPosition:{type:String,
-        value:"",notify:!0},horizontalPosition:{type:String,value:"",notify:!0},colorBy:{type:String,value:"",notify:!0},imageFieldName:{type:String,value:"",notify:!0},palette:{type:Array,value:[]},paletteChoice:{type:String,value:"standard",notify:!0},gridFacetingVerticalLabelColor:{type:String,value:"#666666",observer:"_updateCSSVars"},gridFacetingHorizontalLabelColor:{type:String,value:"#dd6622",observer:"_updateCSSVars"},itemPositioningVerticalLabelColor:{type:String,value:"#2255aa",observer:"_updateCSSVars"},
-        itemPositioningHorizontalLabelColor:{type:String,value:"#118844",observer:"_updateCSSVars"}},_getImageFieldNameDefaultLabel:function(a){return a?"\x3cIMAGE\x3e":"\x3cDEFAULT\x3e"},_isModeScatter:function(a){return"scatter"===a},_isKeyNumeric:function(a){return this.stats&&a in this.stats&&this.stats[a].isNumeric()},_isKeyCategorical:function(a){return this.stats&&a in this.stats&&!this.stats[a].isNumeric()},_updateCSSVars:function(){this.customStyle["--grid-faceting-vertical-label-color"]=this.gridFacetingVerticalLabelColor;
-        this.customStyle["--grid-faceting-horizontal-label-color"]=this.gridFacetingHorizontalLabelColor;this.customStyle["--item-positioning-vertical-label-color"]=this.itemPositioningVerticalLabelColor;this.customStyle["--item-positioning-horizontal-label-color"]=this.itemPositioningHorizontalLabelColor;this.updateStyles()},_breakUp:function(a){return(""+a).replace(/([\W_])/g,"$1\u200b")},_breakUpAndTruncate:function(a){return Zg(""+a).replace(/([\W_])/g,"$1\u200b")},_specialClass:function(a){return a?
-        "special":""},_maxBuckets:function(a,b){var c=this.stats[a];return c?b&&this._hasWordTree(a)?Math.min(100,c.wordTree.highestLevel):Math.min(100,c.uniqueCount+1):100},_hasWordTree:function(a){a=this.stats[a];return!!a&&!!a.wordTree&&1<a.wordTree.highestLevel},_anyFacet:function(){for(var a=0;a<arguments.length;a++);return!(!this.verticalFacet&&!this.horizontalFacet)},_anyPosition:function(){for(var a=0;a<arguments.length;a++);return!(!this.verticalPosition&&!this.horizontalPosition&&"stacked"===this.positionMode)},
-        _anyFacetOrPosition:function(){for(var a=0;a<arguments.length;a++);return this._anyFacet()||this._anyPosition()},_anyColor:function(){return!!(this.colorBy&&this.palette&&this.palette.length)},_anySettings:function(){return this._anyFacet()||this._anyPosition()||this._anyColor()}});
-        </script>
-        
-        
-        
-        
-        
-        
-        
-        
-        <dom-module id="iron-image">
-          <template>
-            <style>
-              :host {
-                display: inline-block;
-                overflow: hidden;
-                position: relative;
-              }
-        
-              #baseURIAnchor {
-                display: none;
-              }
-        
-              #sizedImgDiv {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-        
-                display: none;
-              }
-        
-              #img {
-                display: block;
-                width: var(--iron-image-width, auto);
-                height: var(--iron-image-height, auto);
-              }
-        
-              :host([sizing]) #sizedImgDiv {
-                display: block;
-              }
-        
-              :host([sizing]) #img {
-                display: none;
-              }
-        
-              #placeholder {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-        
-                background-color: inherit;
-                opacity: 1;
-        
-                @apply --iron-image-placeholder;
-              }
-        
-              #placeholder.faded-out {
-                transition: opacity 0.5s linear;
-                opacity: 0;
-              }
-            </style>
-        
-            <a id="baseURIAnchor" href="#"></a>
-            <div id="sizedImgDiv" role="img" hidden$="[[_computeImgDivHidden(sizing)]]" aria-hidden$="[[_computeImgDivARIAHidden(alt)]]" aria-label$="[[_computeImgDivARIALabel(alt, src)]]"></div>
-            <img id="img" alt$="[[alt]]" hidden$="[[_computeImgHidden(sizing)]]" on-load="_imgOnLoad" on-error="_imgOnError">
-            <div id="placeholder" hidden$="[[_computePlaceholderHidden(preload, fade, loading, loaded)]]" class$="[[_computePlaceholderClassName(preload, fade, loading, loaded)]]"></div>
-          </template>
-        
-          <script>//~~WEBPATH~~/iron-image/iron-image.html.js
-        Polymer({is:"iron-image",properties:{src:{type:String,value:""},alt:{type:String,value:null},preventLoad:{type:Boolean,value:!1},sizing:{type:String,value:null,reflectToAttribute:!0},position:{type:String,value:"center"},preload:{type:Boolean,value:!1},placeholder:{type:String,value:null,observer:"_placeholderChanged"},fade:{type:Boolean,value:!1},loaded:{notify:!0,readOnly:!0,type:Boolean,value:!1},loading:{notify:!0,readOnly:!0,type:Boolean,value:!1},error:{notify:!0,readOnly:!0,type:Boolean,value:!1},
-        width:{observer:"_widthChanged",type:Number,value:null},height:{observer:"_heightChanged",type:Number,value:null}},observers:["_transformChanged(sizing, position)","_loadStateObserver(src, preventLoad)"],created:function(){this._resolvedSrc=""},_imgOnLoad:function(){this.$.img.src===this._resolveSrc(this.src)&&(this._setLoading(!1),this._setLoaded(!0),this._setError(!1))},_imgOnError:function(){this.$.img.src===this._resolveSrc(this.src)&&(this.$.img.removeAttribute("src"),this.$.sizedImgDiv.style.backgroundImage=
-        "",this._setLoading(!1),this._setLoaded(!1),this._setError(!0))},_computePlaceholderHidden:function(){return!this.preload||!this.fade&&!this.loading&&this.loaded},_computePlaceholderClassName:function(){return this.preload&&this.fade&&!this.loading&&this.loaded?"faded-out":""},_computeImgDivHidden:function(){return!this.sizing},_computeImgDivARIAHidden:function(){return""===this.alt?"true":void 0},_computeImgDivARIALabel:function(){return null!==this.alt?this.alt:""===this.src?"":this._resolveSrc(this.src).replace(/[?|#].*/g,
-        "").split("/").pop()},_computeImgHidden:function(){return!!this.sizing},_widthChanged:function(){this.style.width=isNaN(this.width)?this.width:this.width+"px"},_heightChanged:function(){this.style.height=isNaN(this.height)?this.height:this.height+"px"},_loadStateObserver:function(a,b){var c=this._resolveSrc(a);c!==this._resolvedSrc&&(this._resolvedSrc=c,this.$.img.removeAttribute("src"),this.$.sizedImgDiv.style.backgroundImage="",""===a||b?this._setLoading(!1):(this.$.img.src=this._resolvedSrc,this.$.sizedImgDiv.style.backgroundImage=
-        'url("'+this._resolvedSrc+'")',this._setLoading(!0)),this._setLoaded(!1),this._setError(!1))},_placeholderChanged:function(){this.$.placeholder.style.backgroundImage=this.placeholder?'url("'+this.placeholder+'")':""},_transformChanged:function(){var a=this.$.sizedImgDiv.style,b=this.$.placeholder.style;a.backgroundSize=b.backgroundSize=this.sizing;a.backgroundPosition=b.backgroundPosition=this.sizing?this.position:"";a.backgroundRepeat=b.backgroundRepeat=this.sizing?"no-repeat":""},_resolveSrc:function(a){a=
-        Polymer.ResolveUrl.resolveUrl(a,this.$.baseURIAnchor.href);"/"===a[0]&&(a=(location.origin||location.protocol+"//"+location.host)+a);return a}});
-        </script>
-        </dom-module>
-        
-        
-        
-        
-        
-        
-        <dom-module id="paper-material-styles">
-          <template>
-            <style>
-              :host, html {
-                --paper-material: {
-                  display: block;
-                  position: relative;
-                };
-                --paper-material-elevation-1: {
-                  @apply --shadow-elevation-2dp;
-                };
-                --paper-material-elevation-2: {
-                  @apply --shadow-elevation-4dp;
-                };
-                --paper-material-elevation-3: {
-                  @apply --shadow-elevation-6dp;
-                };
-                --paper-material-elevation-4: {
-                  @apply --shadow-elevation-8dp;
-                };
-                --paper-material-elevation-5: {
-                  @apply --shadow-elevation-16dp;
-                };
-              }
-              :host(.paper-material), .paper-material {
-                @apply --paper-material;
-              }
-              :host(.paper-material[elevation="1"]), .paper-material[elevation="1"] {
-                @apply --paper-material-elevation-1;
-              }
-              :host(.paper-material[elevation="2"]), .paper-material[elevation="2"] {
-                @apply --paper-material-elevation-2;
-              }
-              :host(.paper-material[elevation="3"]), .paper-material[elevation="3"] {
-                @apply --paper-material-elevation-3;
-              }
-              :host(.paper-material[elevation="4"]), .paper-material[elevation="4"] {
-                @apply --paper-material-elevation-4;
-              }
-              :host(.paper-material[elevation="5"]), .paper-material[elevation="5"] {
-                @apply --paper-material-elevation-5;
-              }
-            </style>
-          </template>
-        </dom-module>
-        
-        
-        
-        
-        
-        <dom-module id="paper-card">
-          <template>
-            <style include="paper-material-styles">
-              :host {
-                display: inline-block;
-                position: relative;
-                box-sizing: border-box;
-                background-color: var(--paper-card-background-color, var(--primary-background-color));
-                border-radius: 2px;
-        
-                @apply --paper-font-common-base;
-                @apply --paper-card;
-              }
-        
-              /* IE 10 support for HTML5 hidden attr */
-              [hidden] {
-                display: none !important;
-              }
-        
-              .header {
-                position: relative;
-                border-top-left-radius: inherit;
-                border-top-right-radius: inherit;
-                overflow: hidden;
-        
-                @apply --paper-card-header;
-              }
-        
-              .header iron-image {
-                display: block;
-                width: 100%;
-                --iron-image-width: 100%;
-                pointer-events: none;
-        
-                @apply --paper-card-header-image;
-              }
-        
-              .header .title-text {
-                padding: 16px;
-                font-size: 24px;
-                font-weight: 400;
-                color: var(--paper-card-header-color, #000);
-        
-                @apply --paper-card-header-text;
-              }
-        
-              .header .title-text.over-image {
-                position: absolute;
-                bottom: 0px;
-        
-                @apply --paper-card-header-image-text;
-              }
-        
-              :host ::slotted(.card-content) {
-                padding: 16px;
-                position:relative;
-        
-                @apply --paper-card-content;
-              }
-        
-              :host ::slotted(.card-actions) {
-                border-top: 1px solid #e8e8e8;
-                padding: 5px 16px;
-                position:relative;
-        
-                @apply --paper-card-actions;
-              }
-        
-              :host([elevation="1"]) {
-                @apply --paper-material-elevation-1;
-              }
-        
-              :host([elevation="2"]) {
-                @apply --paper-material-elevation-2;
-              }
-        
-              :host([elevation="3"]) {
-                @apply --paper-material-elevation-3;
-              }
-        
-              :host([elevation="4"]) {
-                @apply --paper-material-elevation-4;
-              }
-        
-              :host([elevation="5"]) {
-                @apply --paper-material-elevation-5;
-              }
-            </style>
-        
-            <div class="header">
-              <iron-image hidden$="[[!image]]" aria-hidden$="[[_isHidden(image)]]" src="[[image]]" alt="[[alt]]" placeholder="[[placeholderImage]]" preload="[[preloadImage]]" fade="[[fadeImage]]"></iron-image>
-              <div hidden$="[[!heading]]" class$="title-text [[_computeHeadingClass(image)]]">[[heading]]</div>
-            </div>
-        
-            <slot></slot>
-          </template>
-        
-          <script>//~~WEBPATH~~/paper-card/paper-card.html.js
-        Polymer({is:"paper-card",properties:{heading:{type:String,value:"",observer:"_headingChanged"},image:{type:String,value:""},alt:{type:String},preloadImage:{type:Boolean,value:!1},fadeImage:{type:Boolean,value:!1},placeholderImage:{type:String,value:null},elevation:{type:Number,value:1,reflectToAttribute:!0},animatedShadow:{type:Boolean,value:!1},animated:{type:Boolean,reflectToAttribute:!0,readOnly:!0,computed:"_computeAnimated(animatedShadow)"}},_isHidden:function(a){return a?"false":"true"},_headingChanged:function(a){var b=
-        this.getAttribute("heading"),c=this.getAttribute("aria-label");"string"===typeof c&&c!==b||this.setAttribute("aria-label",a)},_computeHeadingClass:function(a){return a?" over-image":""},_computeAnimated:function(a){return a}});
-        </script>
-        </dom-module>
-        
-     
-        <script>//~~WEBPATH~~/iron-flex-layout/iron-flex-layout.html.js
-            var mj=document.createElement("style");mj.textContent="[hidden] { display: none !important; }";document.head.appendChild(mj);
-            </script>
+            </iron-collapse>
+          </div>
+        </template>
+      </template>
+    </dom-module>
+    <script>//~~WEBPATH~~/facets-dive/components/facets-dive-legend/facets-dive-legend.js
+    Polymer({is:"facets-dive-legend",properties:{colorBy:{type:String,value:"",observer:"_open"},palette:{type:Array,value:[]},_opened:{type:Boolean,value:!1}},_breakUpAndTruncate(b){return qn(""+b).replace(/([\W_])/g,"$1\u200b")},_anyColor(){return!!(this.colorBy&&this.palette&&this.palette.length)},_specialClass(b){return b?"special":""},_open(){this._opened=!0},_toggleOpened(){this._opened=!this._opened},_getIcon(b){return b?"expand-less":"expand-more"}});
+    </script>
+    
+    
+    
+    <dom-module id="facets-dive">
+      <template>
+    
         <style>
-        
-          /*******************************
-                    Flex Layout
-          *******************************/
-        
-          html /deep/ .layout.horizontal,
-          html /deep/ .layout.horizontal-reverse,
-          html /deep/ .layout.vertical,
-          html /deep/ .layout.vertical-reverse {
-            display: -ms-flexbox;
-            display: -webkit-flex;
+          /**
+           * paper-input-container uses an element containing only &nbsp; for
+           * spacing purposes. Aggressive vulcanizers sometimes remove this content.
+           * This CSS rule forces the containing element to have the correct height
+           * in either case.
+           */
+          :host paper-input-container > .floated-label-placeholder {
+            min-height: 20px;
+          }
+    
+          :host {
+            background: #ffffff;
+            box-sizing: border-box;
             display: flex;
+            flex-grow: 1;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
           }
-        
-          html /deep/ .layout.inline {
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-          }
-        
-          html /deep/ .layout.horizontal {
-            -ms-flex-direction: row;
-            -webkit-flex-direction: row;
-            flex-direction: row;
-          }
-        
-          html /deep/ .layout.horizontal-reverse {
-            -ms-flex-direction: row-reverse;
-            -webkit-flex-direction: row-reverse;
-            flex-direction: row-reverse;
-          }
-        
-          html /deep/ .layout.vertical {
-            -ms-flex-direction: column;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-          }
-        
-          html /deep/ .layout.vertical-reverse {
-            -ms-flex-direction: column-reverse;
-            -webkit-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-          }
-        
-          html /deep/ .layout.wrap {
-            -ms-flex-wrap: wrap;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
-          }
-        
-          html /deep/ .layout.wrap-reverse {
-            -ms-flex-wrap: wrap-reverse;
-            -webkit-flex-wrap: wrap-reverse;
-            flex-wrap: wrap-reverse;
-          }
-        
-          html /deep/ .flex-auto {
-            -ms-flex: 1 1 auto;
-            -webkit-flex: 1 1 auto;
-            flex: 1 1 auto;
-          }
-        
-          html /deep/ .flex-none {
-            -ms-flex: none;
-            -webkit-flex: none;
-            flex: none;
-          }
-        
-          html /deep/ .flex,
-          html /deep/ .flex-1 {
-            -ms-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-          }
-        
-          html /deep/ .flex-2 {
-            -ms-flex: 2;
-            -webkit-flex: 2;
-            flex: 2;
-          }
-        
-          html /deep/ .flex-3 {
-            -ms-flex: 3;
-            -webkit-flex: 3;
-            flex: 3;
-          }
-        
-          html /deep/ .flex-4 {
-            -ms-flex: 4;
-            -webkit-flex: 4;
-            flex: 4;
-          }
-        
-          html /deep/ .flex-5 {
-            -ms-flex: 5;
-            -webkit-flex: 5;
-            flex: 5;
-          }
-        
-          html /deep/ .flex-6 {
-            -ms-flex: 6;
-            -webkit-flex: 6;
-            flex: 6;
-          }
-        
-          html /deep/ .flex-7 {
-            -ms-flex: 7;
-            -webkit-flex: 7;
-            flex: 7;
-          }
-        
-          html /deep/ .flex-8 {
-            -ms-flex: 8;
-            -webkit-flex: 8;
-            flex: 8;
-          }
-        
-          html /deep/ .flex-9 {
-            -ms-flex: 9;
-            -webkit-flex: 9;
-            flex: 9;
-          }
-        
-          html /deep/ .flex-10 {
-            -ms-flex: 10;
-            -webkit-flex: 10;
-            flex: 10;
-          }
-        
-          html /deep/ .flex-11 {
-            -ms-flex: 11;
-            -webkit-flex: 11;
-            flex: 11;
-          }
-        
-          html /deep/ .flex-12 {
-            -ms-flex: 12;
-            -webkit-flex: 12;
-            flex: 12;
-          }
-        
-          /* alignment in cross axis */
-        
-          html /deep/ .layout.start {
-            -ms-flex-align: start;
-            -webkit-align-items: flex-start;
-            align-items: flex-start;
-          }
-        
-          html /deep/ .layout.center,
-          html /deep/ .layout.center-center {
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-          }
-        
-          html /deep/ .layout.end {
-            -ms-flex-align: end;
-            -webkit-align-items: flex-end;
-            align-items: flex-end;
-          }
-        
-          /* alignment in main axis */
-        
-          html /deep/ .layout.start-justified {
-            -ms-flex-pack: start;
-            -webkit-justify-content: flex-start;
-            justify-content: flex-start;
-          }
-        
-          html /deep/ .layout.center-justified,
-          html /deep/ .layout.center-center {
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-          }
-        
-          html /deep/ .layout.end-justified {
-            -ms-flex-pack: end;
-            -webkit-justify-content: flex-end;
-            justify-content: flex-end;
-          }
-        
-          html /deep/ .layout.around-justified {
-            -ms-flex-pack: around;
-            -webkit-justify-content: space-around;
-            justify-content: space-around;
-          }
-        
-          html /deep/ .layout.justified {
-            -ms-flex-pack: justify;
-            -webkit-justify-content: space-between;
-            justify-content: space-between;
-          }
-        
-          /* self alignment */
-        
-          html /deep/ .self-start {
-            -ms-align-self: flex-start;
-            -webkit-align-self: flex-start;
-            align-self: flex-start;
-          }
-        
-          html /deep/ .self-center {
-            -ms-align-self: center;
-            -webkit-align-self: center;
-            align-self: center;
-          }
-        
-          html /deep/ .self-end {
-            -ms-align-self: flex-end;
-            -webkit-align-self: flex-end;
-            align-self: flex-end;
-          }
-        
-          html /deep/ .self-stretch {
-            -ms-align-self: stretch;
-            -webkit-align-self: stretch;
-            align-self: stretch;
-          }
-        
-          /*******************************
-                    Other Layout
-          *******************************/
-        
-          html /deep/ .block {
-            display: block;
-          }
-        
-          /* IE 10 support for HTML5 hidden attr */
-          html /deep/ [hidden] {
-            display: none !important;
-          }
-        
-          html /deep/ .invisible {
-            visibility: hidden !important;
-          }
-        
-          html /deep/ .relative {
+          .fill {
+            display: flex;
+            flex-grow: 1;
             position: relative;
           }
-        
-          html /deep/ .fit {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-          }
-        
-          body.fullbleed {
-            margin: 0;
-            height: 100vh;
-          }
-        
-          html /deep/ .scroll {
-            -webkit-overflow-scrolling: touch;
-            overflow: auto;
-          }
-        
-          .fixed-bottom,
-          .fixed-left,
-          .fixed-right,
-          .fixed-top {
-            position: fixed;
-          }
-        
-          html /deep/ .fixed-top {
-            top: 0;
-            left: 0;
-            right: 0;
-          }
-        
-          html /deep/ .fixed-right {
-            top: 0;
-            right: 0;
-            bottom: 0;
-          }
-        
-          html /deep/ .fixed-bottom {
-            right: 0;
-            bottom: 0;
-            left: 0;
-          }
-        
-          html /deep/ .fixed-left {
-            top: 0;
-            bottom: 0;
-            left: 0;
-          }
-        
-        </style>
-        
-        
-        <script>//~~WEBPATH~~/iron-flex-layout/classes/iron-flex-layout.html.js
-        console.warn("This file is deprecated. Please use `iron-flex-layout/iron-flex-layout-classes.html`, and one of the specific dom-modules instead");
-        </script>
-        
-        <style>
-        
-          /*******************************
-                    Flex Layout
-          *******************************/
-        
-          .layout.horizontal,
-          .layout.horizontal-reverse,
-          .layout.vertical,
-          .layout.vertical-reverse {
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-          }
-        
-          .layout.inline {
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-          }
-        
-          .layout.horizontal {
-            -ms-flex-direction: row;
-            -webkit-flex-direction: row;
-            flex-direction: row;
-          }
-        
-          .layout.horizontal-reverse {
-            -ms-flex-direction: row-reverse;
-            -webkit-flex-direction: row-reverse;
-            flex-direction: row-reverse;
-          }
-        
-          .layout.vertical {
-            -ms-flex-direction: column;
-            -webkit-flex-direction: column;
+          .main {
             flex-direction: column;
           }
-        
-          .layout.vertical-reverse {
-            -ms-flex-direction: column-reverse;
-            -webkit-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+          facets-dive-controls {
+            border-bottom: 1px solid #d3d3d3;
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: 60px;
           }
-        
-          .layout.wrap {
-            -ms-flex-wrap: wrap;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
+          .row {
+            display: flex;
+            flex-direction: row;
           }
-        
-          .layout.wrap-reverse {
-            -ms-flex-wrap: wrap-reverse;
-            -webkit-flex-wrap: wrap-reverse;
-            flex-wrap: wrap-reverse;
-          }
-        
-          .flex-auto {
-            -ms-flex: 1 1 auto;
-            -webkit-flex: 1 1 auto;
-            flex: 1 1 auto;
-          }
-        
-          .flex-none {
-            -ms-flex: none;
-            -webkit-flex: none;
-            flex: none;
-          }
-        
-          .flex,
-          .flex-1 {
-            -ms-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-          }
-        
-          .flex-2 {
-            -ms-flex: 2;
-            -webkit-flex: 2;
-            flex: 2;
-          }
-        
-          .flex-3 {
-            -ms-flex: 3;
-            -webkit-flex: 3;
-            flex: 3;
-          }
-        
-          .flex-4 {
-            -ms-flex: 4;
-            -webkit-flex: 4;
-            flex: 4;
-          }
-        
-          .flex-5 {
-            -ms-flex: 5;
-            -webkit-flex: 5;
-            flex: 5;
-          }
-        
-          .flex-6 {
-            -ms-flex: 6;
-            -webkit-flex: 6;
-            flex: 6;
-          }
-        
-          .flex-7 {
-            -ms-flex: 7;
-            -webkit-flex: 7;
-            flex: 7;
-          }
-        
-          .flex-8 {
-            -ms-flex: 8;
-            -webkit-flex: 8;
-            flex: 8;
-          }
-        
-          .flex-9 {
-            -ms-flex: 9;
-            -webkit-flex: 9;
-            flex: 9;
-          }
-        
-          .flex-10 {
-            -ms-flex: 10;
-            -webkit-flex: 10;
-            flex: 10;
-          }
-        
-          .flex-11 {
-            -ms-flex: 11;
-            -webkit-flex: 11;
-            flex: 11;
-          }
-        
-          .flex-12 {
-            -ms-flex: 12;
-            -webkit-flex: 12;
-            flex: 12;
-          }
-        
-          /* alignment in cross axis */
-        
-          .layout.start {
-            -ms-flex-align: start;
-            -webkit-align-items: flex-start;
-            align-items: flex-start;
-          }
-        
-          .layout.center,
-          .layout.center-center {
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-          }
-        
-          .layout.end {
-            -ms-flex-align: end;
-            -webkit-align-items: flex-end;
-            align-items: flex-end;
-          }
-        
-          /* alignment in main axis */
-        
-          .layout.start-justified {
-            -ms-flex-pack: start;
-            -webkit-justify-content: flex-start;
-            justify-content: flex-start;
-          }
-        
-          .layout.center-justified,
-          .layout.center-center {
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-          }
-        
-          .layout.end-justified {
-            -ms-flex-pack: end;
-            -webkit-justify-content: flex-end;
-            justify-content: flex-end;
-          }
-        
-          .layout.around-justified {
-            -ms-flex-pack: around;
-            -webkit-justify-content: space-around;
-            justify-content: space-around;
-          }
-        
-          .layout.justified {
-            -ms-flex-pack: justify;
-            -webkit-justify-content: space-between;
-            justify-content: space-between;
-          }
-        
-          /* self alignment */
-        
-          .self-start {
-            -ms-align-self: flex-start;
-            -webkit-align-self: flex-start;
-            align-self: flex-start;
-          }
-        
-          .self-center {
-            -ms-align-self: center;
-            -webkit-align-self: center;
-            align-self: center;
-          }
-        
-          .self-end {
-            -ms-align-self: flex-end;
-            -webkit-align-self: flex-end;
-            align-self: flex-end;
-          }
-        
-          .self-stretch {
-            -ms-align-self: stretch;
-            -webkit-align-self: stretch;
-            align-self: stretch;
-          }
-        
-          /*******************************
-                    Other Layout
-          *******************************/
-        
-          .block {
-            display: block;
-          }
-        
-          /* IE 10 support for HTML5 hidden attr */
-          [hidden] {
-            display: none !important;
-          }
-        
-          .invisible {
-            visibility: hidden !important;
-          }
-        
-          .relative {
-            position: relative;
-          }
-        
-          .fit {
+          facets-dive-legend {
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
+            bottom: 14px;
+            right: 24px;
+          }
+          .zoom-controls {
+            bottom: 14px;
+            box-sizing: border-box;
             left: 0;
+            position: absolute;
           }
-        
-          body.fullbleed {
-            margin: 0;
-            height: 100vh;
+          .zoom-controls paper-button {
+            background-color: #e7e7e7;
+            clear: left;
+            color: #2b2b2b;
+            display: block;
+            float: left;
+            margin: 4px 8px;
+            min-width: 0;
+            padding: 8px;
           }
-        
-          .scroll {
-            -webkit-overflow-scrolling: touch;
-            overflow: auto;
+          facets-dive-info-card {
+            background: #fff8f4;
+            border-left: 1px solid #c6c6c6;
+            box-sizing: border-box;
+            flex-grow: 0;
+            flex-shrink: 0;
+            width: 240px;
           }
-        
-          /* fixed position */
-        
-          .fixed-bottom,
-          .fixed-left,
-          .fixed-right,
-          .fixed-top {
-            position: fixed;
-          }
-        
-          .fixed-top {
-            top: 0;
-            left: 0;
-            right: 0;
-          }
-        
-          .fixed-right {
-            top: 0;
-            right: 0;
-            bottom: 0;
-          }
-        
-          .fixed-bottom {
-            right: 0;
-            bottom: 0;
-            left: 0;
-          }
-        
-          .fixed-left {
-            top: 0;
-            bottom: 0;
-            left: 0;
-          }
-        
         </style>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <script>//~~WEBPATH~~/facets-dive/lib/info-renderers.js
-        function kh(a,b){var c=document.createElement("dl"),d;for(d in a)if(a.hasOwnProperty(d)){var e=document.createElement("dt");e.textContent=d;c.appendChild(e);e=document.createElement("dd");e.textContent=a[d];c.appendChild(e)}b.appendChild(c)};
-        </script>
-        
-        
-        <dom-module id="facets-dive-info-card">
-          <template>
-            <style>
-              :host {
-                @apply(--paper-font-common-base);
-                box-sizing: border-box;
-                max-height: 100%;
-                max-width: 100%;
-                overflow: auto;
-                padding: 8px;
-              }
-              ::content dt {
-                color: #9e7c65;
-                font-size: 14px;
-              }
-              ::content dd {
-                @apply(--paper-font-common-code);
-                color: #513726;
-                margin: 0 0 16px 0;
-              }
-            </style>
-            
-          </template>
-        </dom-module>
-        
-        <script>//~~WEBPATH~~/facets-dive/components/facets-dive-info-card/facets-dive-info-card.js
-        Polymer({is:"facets-dive-info-card",properties:{infoRenderer:{type:Object},selectedData:{type:Array,value:[],observer:"_updateSelected"}},_updateSelected:function(a){var b=Polymer.dom(this.root);b.innerHTML="";if(a)for(var c=this.infoRenderer||kh,d=0;d<a.length;d++){var e=a[d],f=document.createElement("div");f.style.width="100%";b.appendChild(f);c(e,f)}}});
-        </script>
-        
-        
-        
-        
-        <dom-module id="facets-dive">
-          <template>
-        
-            <style>
-              /**
-               * paper-input-container uses an element containing only &nbsp; for
-               * spacing purposes. Aggressive vulcanizers sometimes remove this content.
-               * This CSS rule forces the containing element to have the correct height
-               * in either case.
-               */
-              ::content paper-input-container > .floated-label-placeholder {
-                min-height: 20px;
-              }
-        
-              :host {
-                background: #ffffff;
-                box-sizing: border-box;
-                display: flex;
-                flex: 1;
-                height: 100%;
-                overflow: hidden;
-                position: relative;
-                width: 100%;
-              }
-              .fill {
-                bottom: 0;
-                left: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-              }
-              #vis {
-                bottom: 0;
-                left: 240px;
-                position: absolute;
-                right: 240px;
-                top: 0;
-                width: auto;
-              }
-              #controls {
-                background: #e1eae9;
-                border-right: 1px solid #cccccc;
-                bottom: 0;
-                box-sizing: border-box;
-                left: 0;
-                position: absolute;
-                top: 0;
-                width: 240px;
-              }
-              #infoCard {
-                background: #fff8f4;
-                bottom: 0;
-                border-left: 1px solid #c6c6c6;
-                box-sizing: border-box;
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 240px;
-              }
-        
-              /**
-               * Zoom Controls.
-               */
-              .zoom-controls {
-                bottom: 14px;
-                box-sizing: border-box;
-                left: 250px;
-                position: absolute;
-              }
-              .zoom-controls paper-button {
-                background-color: #e7e7e7;
-                clear: left;
-                color: #2b2b2b;
-                display: block;
-                float: left;
-                margin: 4px 8px;
-                min-width: 0;
-                padding: 8px;
-              }
-            </style>
-        
+    
+        <div class="fill main">
+          <facets-dive-controls id="controls" atlas-url="[[atlasUrl]]" keys="[[_keys]]" stats="[[stats]]" vertical-facet="{{verticalFacet}}" vertical-buckets="{{verticalBuckets}}" vertical-bag-of-words="{{verticalBagOfWords}}" horizontal-facet="{{horizontalFacet}}" horizontal-buckets="{{horizontalBuckets}}" horizontal-bag-of-words="{{horizontalBagOfWords}}" position-mode="{{positionMode}}" vertical-position="{{verticalPosition}}" horizontal-position="{{horizontalPosition}}" color-by="{{colorBy}}" image-field-name="{{imageFieldName}}" palette="[[_palette]]" palette-choice="{{paletteChoice}}" grid-faceting-vertical-label-color="[[gridFacetingVerticalLabelColor]]" grid-faceting-horizontal-label-color="[[gridFacetingHorizontalLabelColor]]" item-positioning-vertical-label-color="[[itemPositioningVerticalLabelColor]]" item-positioning-horizontal-label-color="[[itemPositioningHorizontalLabelColor]]"></facets-dive-controls>
+    
+          <div class="fill row">
             <div class="fill">
-              <facets-dive-vis id="vis" class="fill" data="[[data]]" filtered-data-indices="[[filteredDataIndices]]" atlas-url="[[atlasUrl]]" sprite-url="[[spriteUrl]]" cross-origin="[[crossOrigin]]" keys="{{_keys}}" stats="{{_stats}}" sprite-image-width="[[spriteImageWidth]]" sprite-image-height="[[spriteImageHeight]]" vertical-facet="[[verticalFacet]]" vertical-buckets="[[verticalBuckets]]" vertical-bag-of-words="[[verticalBagOfWords]]" horizontal-facet="[[horizontalFacet]]" horizontal-buckets="[[horizontalBuckets]]" horizontal-bag-of-words="[[horizontalBagOfWords]]" position-mode="[[positionMode]]" vertical-position="[[verticalPosition]]" horizontal-position="[[horizontalPosition]]" color-by="{{colorBy}}" image-field-name="{{imageFieldName}}" palette="{{_palette}}" palette-choice="[[paletteChoice]]" grid-faceting-vertical-label-color="{{gridFacetingVerticalLabelColor}}" grid-faceting-horizontal-label-color="{{gridFacetingHorizontalLabelColor}}" item-positioning-vertical-label-color="{{itemPositioningVerticalLabelColor}}" item-positioning-horizontal-label-color="{{itemPositioningHorizontalLabelColor}}" selected-data="{{selectedData}}"></facets-dive-vis>
-        
-              <facets-dive-controls id="controls" atlas-url="[[atlasUrl]]" keys="[[_keys]]" stats="[[_stats]]" vertical-facet="{{verticalFacet}}" vertical-buckets="{{verticalBuckets}}" vertical-bag-of-words="{{verticalBagOfWords}}" horizontal-facet="{{horizontalFacet}}" horizontal-buckets="{{horizontalBuckets}}" horizontal-bag-of-words="{{horizontalBagOfWords}}" position-mode="{{positionMode}}" vertical-position="{{verticalPosition}}" horizontal-position="{{horizontalPosition}}" color-by="{{colorBy}}" image-field-name="{{imageFieldName}}" palette="[[_palette]]" palette-choice="{{paletteChoice}}" grid-faceting-vertical-label-color="[[gridFacetingVerticalLabelColor]]" grid-faceting-horizontal-label-color="[[gridFacetingHorizontalLabelColor]]" item-positioning-vertical-label-color="[[itemPositioningVerticalLabelColor]]" item-positioning-horizontal-label-color="[[itemPositioningHorizontalLabelColor]]"></facets-dive-controls>
-        
+              <facets-dive-vis id="vis" class="fill" data="[[data]]" filtered-data-indices="[[filteredDataIndices]]" atlas-url="[[atlasUrl]]" sprite-url="[[spriteUrl]]" cross-origin="[[crossOrigin]]" keys="{{_keys}}" stats="{{stats}}" sprite-image-width="[[spriteImageWidth]]" sprite-image-height="[[spriteImageHeight]]" vertical-facet="[[verticalFacet]]" vertical-buckets="[[verticalBuckets]]" vertical-bag-of-words="[[verticalBagOfWords]]" horizontal-facet="[[horizontalFacet]]" horizontal-buckets="[[horizontalBuckets]]" horizontal-bag-of-words="[[horizontalBagOfWords]]" position-mode="[[positionMode]]" vertical-position="[[verticalPosition]]" horizontal-position="[[horizontalPosition]]" color-by="{{colorBy}}" image-field-name="{{imageFieldName}}" palette="{{_palette}}" palette-choice="[[paletteChoice]]" grid-faceting-vertical-label-color="{{gridFacetingVerticalLabelColor}}" grid-faceting-horizontal-label-color="{{gridFacetingHorizontalLabelColor}}" item-positioning-vertical-label-color="{{itemPositioningVerticalLabelColor}}" item-positioning-horizontal-label-color="{{itemPositioningHorizontalLabelColor}}" fit-grid-aspect-ratio-to-viewport="[[fitGridAspectRatioToViewport]]" selected-data="{{selectedData}}" selected-indices="{{selectedIndices}}" compared-data="{{comparedData}}" compared-indices="{{comparedIndices}}" stable-colors="[[stableColors]]"></facets-dive-vis>
+    
               <div class="zoom-controls">
                 <paper-button raised id="zoomInButton">
                   <iron-icon icon="icons:add"></iron-icon>
@@ -22612,16 +22225,24 @@
                   <iron-icon icon="icons:aspect-ratio"></iron-icon>
                 </paper-button>
               </div>
-        
-              <facets-dive-info-card id="infoCard" selected-data="[[selectedData]]" info-renderer="[[infoRenderer]]"></facets-dive-info-card>
+    
+              <facets-dive-legend id="legend" color-by="[[colorBy]]" palette="[[_palette]]">
+              </facets-dive-legend>
             </div>
-        
-          </template>
-        </dom-module>
-        
-        <script>//~~WEBPATH~~/facets-dive/components/facets-dive/facets-dive.js
-        Polymer({is:"facets-dive",properties:{data:{type:Array,value:null,notify:!0},filteredDataIndices:{type:Array,value:null},_keys:{type:Array,value:[]},_stats:{type:Object,value:{}},atlasUrl:{type:String,value:null,notify:!0},spriteUrl:{type:String,value:null,notify:!0},crossOrigin:{type:String,value:null,notify:!0},spriteImageWidth:{type:Number,value:64},spriteImageHeight:{type:Number,value:64},gridFacetingVerticalLabelColor:{type:String,value:"#666666"},gridFacetingHorizontalLabelColor:{type:String,
-        value:"#dd6622"},itemPositioningVerticalLabelColor:{type:String,value:"#2255aa"},itemPositioningHorizontalLabelColor:{type:String,value:"#118844"},verticalFacet:{type:String,value:"",notify:!0},verticalBuckets:{type:Number,value:10,notify:!0},verticalBagOfWords:{type:Boolean,value:!1,notify:!0},horizontalFacet:{type:String,value:"",notify:!0},horizontalBuckets:{type:Number,value:10,notify:!0},horizontalBagOfWords:{type:Boolean,value:!1,notify:!0},positionMode:{type:String,value:"stacked",notify:!0},
-        verticalPosition:{type:String,value:"",notify:!0},horizontalPosition:{type:String,value:"",notify:!0},colorBy:{type:String,value:"",notify:!0},imageFieldName:{type:String,value:"",notify:!0},_palette:{type:Array,value:[]},paletteChoice:{type:String,value:"standard",notify:!0},selectedData:{type:Array,value:[],notify:!0},height:{type:Number,value:null,observer:"_updateHeight"},infoRenderer:{type:Object}},ready:function(){var a=this.$;a.fitButton.onclick=function(){return a.vis.fitToViewport()};a.zoomInButton.onclick=
-        function(){return a.vis.zoomIn()};a.zoomOutButton.onclick=function(){return a.vis.zoomOut()};this._updateHeight()},_updateHeight:function(){null!==this.height&&(this.style.height="number"===typeof this.height?this.height+"px":this.height)}});</script>
-        
+    
+            <template is="dom-if" if="[[!hideInfoCard]]">
+              <facets-dive-info-card id="infoCard" selected-data="[[selectedData]]" info-renderer="[[infoRenderer]]">
+              </facets-dive-info-card>
+            </template>
+          </div>
+        </div>
+    
+      </template>
+    </dom-module>
+    
+    <script>//~~WEBPATH~~/facets-dive/components/facets-dive/facets-dive.js
+    Polymer({is:"facets-dive",properties:{data:{type:Array,value:null,notify:!0},filteredDataIndices:{type:Array,value:null},_keys:{type:Array,value:[]},stats:{type:Object,value:{},notify:!0},atlasUrl:{type:String,value:null,notify:!0},spriteUrl:{type:String,value:null,notify:!0},crossOrigin:{type:String,value:null,notify:!0},spriteImageWidth:{type:Number,value:64},spriteImageHeight:{type:Number,value:64},gridFacetingVerticalLabelColor:{type:String,value:"#666666"},gridFacetingHorizontalLabelColor:{type:String,
+    value:"#dd6622"},itemPositioningVerticalLabelColor:{type:String,value:"#2255aa"},itemPositioningHorizontalLabelColor:{type:String,value:"#118844"},fitGridAspectRatioToViewport:{type:Boolean,value:!1},verticalFacet:{type:String,value:"",notify:!0},verticalBuckets:{type:Number,value:10,notify:!0},verticalBagOfWords:{type:Boolean,value:!1,notify:!0},horizontalFacet:{type:String,value:"",notify:!0},horizontalBuckets:{type:Number,value:10,notify:!0},horizontalBagOfWords:{type:Boolean,value:!1,notify:!0},
+    positionMode:{type:String,value:"stacked",notify:!0},verticalPosition:{type:String,value:"",notify:!0},horizontalPosition:{type:String,value:"",notify:!0},colorBy:{type:String,value:"",notify:!0},imageFieldName:{type:String,value:"",notify:!0},_palette:{type:Array,value:[]},paletteChoice:{type:String,value:"standard",notify:!0},selectedData:{type:Array,value:[],notify:!0},selectedIndices:{type:Array,value:[],notify:!0},comparedData:{type:Array,value:[],notify:!0},comparedIndices:{type:Array,value:[],
+    notify:!0},height:{type:Number,value:null,observer:"_updateHeight"},infoRenderer:{type:Object},hideInfoCard:{type:Boolean,value:!1},stableColors:{type:Boolean,value:!1}},ready(){const b=this.$;b.fitButton.onclick=()=>b.vis.fitToViewport();b.zoomInButton.onclick=()=>b.vis.zoomIn();b.zoomOutButton.onclick=()=>b.vis.zoomOut();this.hideInfoCard&&(b.vis.style.right="0");this._updateHeight()},_updateHeight:function(){null!==this.height&&(this.style.height="number"===typeof this.height?this.height+"px":
+    this.height)}});</script>
