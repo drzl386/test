@@ -21066,22 +21066,25 @@ function qn(b){return 65>b.length?b:b.substr(0,30)+"..."+b.substr(-30)};
 
 
 <dom-module id="facets-dive-vis">
-    <template>
-      <style>
-        :host {
-          box-sizing: border-box;
-          display: block;
-          height: 100%;
-          width: 100%;
-        }
-        ::content .labels {
-          @apply(--paper-font-common-base);
-          @apply(--paper-font-headline);
-        }
-      </style>
+  <template>
+    <style>
+      :host {
+        box-sizing: border-box;
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+      .labels {
+        @apply --paper-font-common-base;
+        @apply --paper-font-headline;
+      }
       
-    </template>
-  </dom-module>
+    </style>
+    <div id="holder">
+      
+    </div>
+  </template>
+</dom-module>
 
 <script>//~~WEBPATH~~/facets-dive/components/facets-dive-vis/facets-dive-vis.js
 /*
