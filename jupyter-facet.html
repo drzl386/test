@@ -19939,11 +19939,17 @@
     (d,f,h)=>{d.x=f;d.y=h};this.computeItemPosition=hm;this.horizontalGridAlignment=this.verticalGridAlignment=im.Tight;this.cellItemComparator=null}clear(){this.verticalKeys=[];this.verticalKeysHash={};this.horizontalKeys=[];this.horizontalKeysHash={};this.cells={};this.height=this.width=this.longestCellLength=0}};
     </script>
     
-    <script>//~~WEBPATH~~/facets-dive/lib/axis.js
+    <--!script>//~~WEBPATH~~/facets-dive/lib/axis.js
     class xm extends am{constructor(b,d){super();this.side=b;this.cell=d;switch(b){case Zl.Left:this.minScale=30/d.innerHeight;for(b=d.siblings.left;!(!b||b.items.length||b.siblings.above&&b.siblings.above.items.length);)b=b.siblings.left;b&&(this.minScale=Math.max(this.minScale,39.2/(d.contentX-(b.contentX+b.innerWidth))));break;case Zl.Bottom:this.minScale=30/d.innerWidth;for(b=d.siblings.below;!(!b||b.items.length||b.siblings.right&&b.siblings.right.items.length);)b=b.siblings.below;b&&(this.minScale=
     Math.max(this.minScale,39.2/(d.contentY-(b.contentY+b.innerHeight))));break;default:throw Error("Axes for specified side are not implemented.");}}path(b){const d=4/b,f=6/b;return this.side===Zl.Left?`M ${this.cell.contentX-d-f},${this.cell.contentY+.6/b} h ${f} v ${this.cell.innerHeight-1.2/b} h -${f}`:this.side===Zl.Bottom?`M ${this.cell.contentX+.6/b},${this.cell.contentY-d-f} v ${f} h ${this.cell.innerWidth-1.2/b} v -${f}`:""}key(){return`${this.cell.compoundKey}-${this.side}`}};
+    </script-->
+
+    <script>//~~WEBPATH~~/facets-dive/lib/axis.js
+        var wf=this&&this.__extends||function(){var a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var b in c)c.hasOwnProperty(b)&&(a[b]=c[b])};return function(b,c){function d(){this.constructor=b}a(b,c);b.prototype=null===c?Object.create(c):(d.prototype=c.prototype,new d)}}(),xf=function(a){function b(b,d){var c=a.call(this)||this;c.side=b;c.cell=d;switch(b){case kf.Left:c.minScale=30/d.innerHeight;for(b=d.siblings.left;!(!b||b.items.length||b.siblings.above&&
+        b.siblings.above.items.length);)b=b.siblings.left;b&&(c.minScale=Math.max(c.minScale,39.2/(d.contentX-(b.contentX+b.innerWidth))));break;case kf.Bottom:c.minScale=30/d.innerWidth;for(b=d.siblings.below;!(!b||b.items.length||b.siblings.right&&b.siblings.right.items.length);)b=b.siblings.below;b&&(c.minScale=Math.max(c.minScale,39.2/(d.contentY-(b.contentY+b.innerHeight))));break;default:throw Error("Axes for specified side are not implemented.");}return c}wf(b,a);b.prototype.strokeWidth=function(a){return 1.2/
+        a};b.prototype.path=function(a){var b=4/a;var c=6/a;if(this.side===kf.Left){var f=this.cell.contentX-b-c;b=this.cell.contentY+.6/a;return"M "+f+","+b+" h "+c+" v "+(this.cell.innerHeight-1.2/a)+" h -"+c}return this.side===kf.Bottom?(f=this.cell.contentX+.6/a,b=this.cell.contentY-b-c,"M "+f+","+b+" v "+c+" h "+(this.cell.innerWidth-1.2/a)+" v -"+c):""};b.prototype.key=function(){return this.cell.compoundKey+"-"+this.side};return b}(jf);
     </script>
-    
+        
     
     <script>//~~WEBPATH~~/facets-dive/lib/data-example.js
     </script>
@@ -21865,11 +21871,10 @@
         </script>
         </dom-module>
         
-        
-        <script>//~~WEBPATH~~/iron-flex-layout/classes/iron-shadow-flex-layout.html.js
-        console.warn("This file is deprecated. Please use `iron-flex-layout/iron-flex-layout-classes.html`, and one of the specific dom-modules instead");
-        </script>
-        
+     
+        <script>//~~WEBPATH~~/iron-flex-layout/iron-flex-layout.html.js
+            var mj=document.createElement("style");mj.textContent="[hidden] { display: none !important; }";document.head.appendChild(mj);
+            </script>
         <style>
         
           /*******************************
