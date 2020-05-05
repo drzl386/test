@@ -6973,14 +6973,7 @@ Y.styleDocument(a)},getComputedStyleValue:function(a,b){return(a=window.getCompu
    * @return {{passive: boolean} | undefined} Options to use for addEventListener and removeEventListener
    */
   function PASSIVE_TOUCH(eventName) {
-    if (isMouseEvent(eventName) || eventName === 'touchend') {
-      return {passive: true};;
-    }
-    if (HAS_NATIVE_TA && SUPPORTS_PASSIVE && Polymer.passiveTouchGestures) {
-      return {passive: true};
-    } else {
-      return{passive: true};;
-    }
+    return{passive: true}
   }
 
   // Check for touch-only devices
