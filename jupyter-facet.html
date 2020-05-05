@@ -21639,7 +21639,8 @@ const Ep=(b,d)=>{const f=document.createElement("dl");for(const m in b)if(b.hasO
 </dom-module>
 
 <script>//~~WEBPATH~~/facets-dive/components/facets-dive-info-card/facets-dive-info-card.js
-Polymer({is:"facets-dive-info-card",properties:{infoRenderer:{type:Object},selectedData:{type:Array,value:[],observer:"_updateSelected"}},ready(){this.scopeSubtree(this.$.holder,!0)},_updateSelected(b){this.$.holder.innerHTML="";if(b){var d=this.infoRenderer||Ep;for(let f=0;f<b.length;f++){const h=b[f],m=document.createElement("div");m.style.width="100%";this.$.holder.appendChild(m);d(h,m)}}}});
+Polymer({is:"facets-dive-info-card",properties:{infoRenderer:{type:Object},selectedData:{type:Array,value:[],observer:"_updateSelected"}},_updateSelected:function(a){var b=Polymer.dom(this.root);b.innerHTML="";if(a)for(var c=this.infoRenderer||kh,d=0;d<a.length;d++){var e=a[d],f=document.createElement("div");f.style.width="100%";b.appendChild(f);c(e,f)}}});
+
 </script>
 
 
